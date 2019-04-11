@@ -17,7 +17,7 @@ import DetailPage from './components/DetailPage'
 
 import 'tachyons'
 import './index.css'
-
+console.log("PROCESS ENV", process.env)
 const client = new ApolloClient({ uri: process.env.SERVER_URL })
 
 ReactDOM.render(
