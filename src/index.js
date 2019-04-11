@@ -18,7 +18,7 @@ import DetailPage from './components/DetailPage'
 import 'tachyons'
 import './index.css'
 
-const client = new ApolloClient({ uri: 'http://localhost:4000' })
+const client = new ApolloClient({ uri: 'https://ancient-savannah-48855.herokuapp.com/' })
 
 ReactDOM.render(
   <ApolloProvider client={client}>
