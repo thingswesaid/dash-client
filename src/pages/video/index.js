@@ -3,6 +3,8 @@ import { Query } from 'react-apollo'
 import  { gql } from 'apollo-boost'
 import YouTube from 'react-youtube'
 
+import styles from './index.module.css'
+
 export default class Video extends Component {
   render() {
     // console.log("PROPS > ", this.props.match.params.id)
@@ -39,7 +41,11 @@ export default class Video extends Component {
             <Fragment>
                 VIDEO SECTION
 
-                <YouTube videoId={"ZIchuVxBVng"} opts={opts} />
+                <YouTube 
+                  videoId={"ZIchuVxBVng"} 
+                  opts={opts} 
+                  className={styles.videoPlayer}
+                />
 
             </Fragment>
           )
