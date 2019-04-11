@@ -1,0 +1,1 @@
+web: yarn && node src/index.js
