@@ -1,12 +1,23 @@
-import React, { Component, Fragment } from 'react'
-import Post from '../components/Post'
+import React, { Component, Fragment } from 'react' 
 import { Query } from 'react-apollo'
 import  { gql } from 'apollo-boost'
+import YouTube from 'react-youtube'
 
-export default class DraftsPage extends Component {
+export default class Video extends Component {
   render() {
+    // console.log("PROPS > ", this.props.match.params.id)
+
+    console.log("YouTube > ", YouTube)
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: { 
+        autoplay: 1
+      }
+    };
+
     return (
-      <Query query={DRAFTS_QUERY}>
+      <Query query={FEED_QUERY}>
         {({ data, loading, error, refetch }) => {
           if (loading) {
             return (
@@ -23,21 +34,13 @@ export default class DraftsPage extends Component {
               </div>
             )
           }
+
           return (
             <Fragment>
-              <div className="flex justify-between items-center">
-                <h1>Drafts</h1>
-              </div>
-              {data.drafts &&
-                data.drafts.map(draft => (
-                  <Post
-                    key={draft.id}
-                    post={draft}
-                    refresh={() => refetch()}
-                    isDraft={!draft.published}
-                  />
-                ))}
-              {this.props.children}
+                VIDEO SECTION
+
+                <YouTube videoId={"ZIchuVxBVng"} opts={opts} />
+
             </Fragment>
           )
         }}
@@ -46,9 +49,9 @@ export default class DraftsPage extends Component {
   }
 }
 
-export const DRAFTS_QUERY = gql`
-  query DraftsQuery {
-    drafts {
+export const FEED_QUERY = gql`
+  query FeedQuery {
+    feed {
       id
       content
       title

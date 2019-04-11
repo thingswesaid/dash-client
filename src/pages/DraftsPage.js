@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import Post from '../components/Post'
+import Post from './Post'
 import { Query } from 'react-apollo'
 import  { gql } from 'apollo-boost'
 
-export default class FeedPage extends Component {
+export default class DraftsPage extends Component {
   render() {
     return (
-      <Query query={FEED_QUERY}>
+      <Query query={DRAFTS_QUERY}>
         {({ data, loading, error, refetch }) => {
           if (loading) {
             return (
@@ -23,17 +23,18 @@ export default class FeedPage extends Component {
               </div>
             )
           }
-
           return (
             <Fragment>
-              <h1>Feed</h1>
-              {data.feed &&
-                data.feed.map(post => (
+              <div className="flex justify-between items-center">
+                <h1>Drafts</h1>
+              </div>
+              {data.drafts &&
+                data.drafts.map(draft => (
                   <Post
-                    key={post.id}
-                    post={post}
+                    key={draft.id}
+                    post={draft}
                     refresh={() => refetch()}
-                    isDraft={!post.published}
+                    isDraft={!draft.published}
                   />
                 ))}
               {this.props.children}
@@ -45,9 +46,9 @@ export default class FeedPage extends Component {
   }
 }
 
-export const FEED_QUERY = gql`
-  query FeedQuery {
-    feed {
+export const DRAFTS_QUERY = gql`
+  query DraftsQuery {
+    drafts {
       id
       content
       title

@@ -10,10 +10,11 @@ import {
 import { ApolloProvider } from 'react-apollo'
 import ApolloClient from 'apollo-boost'
 
-import FeedPage from './components/FeedPage'
-import DraftsPage from './components/DraftsPage'
-import CreatePage from './components/CreatePage'
-import DetailPage from './components/DetailPage'
+import FeedPage from './pages/FeedPage'
+import DraftsPage from './pages/DraftsPage'
+import CreatePage from './pages/CreatePage'
+import DetailPage from './pages/DetailPage'
+import VideoPage from './pages/video'
 
 import 'tachyons'
 import './index.css'
@@ -63,6 +64,7 @@ ReactDOM.render(
             <Route path="/drafts" component={DraftsPage} />
             <Route path="/create" component={CreatePage} />
             <Route path="/post/:id" component={DetailPage} />
+            <Route path="/video/:id" component={VideoPage} />
           </Switch>
         </div>
       </Fragment>
