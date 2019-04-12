@@ -19,7 +19,7 @@ import VideoPage from './pages/video'
 import 'tachyons'
 import './index.css'
 
-const client = new ApolloClient({ uri: 'https://damp-everglades-10625.herokuapp.com/' })
+const client = new ApolloClient({ uri: 'https://ancient-savannah-48855.herokuapp.com/' })
 
 ReactDOM.render(
   <ApolloProvider client={client}>
