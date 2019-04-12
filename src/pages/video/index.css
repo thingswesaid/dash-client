@@ -1,0 +1,7 @@
+.videoPlayer {
+    width: 640px;
+}
+
+.videoPlayer img {
+    border-radius: 10px;
+}

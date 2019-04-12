@@ -2,13 +2,11 @@ import React, { Component, Fragment } from 'react'
 import { Query } from 'react-apollo'
 import  { gql } from 'apollo-boost'
 import YouTube from 'react-youtube'
-
-// import styles from './index.module.css'
+import './index.css'
 
 export default class Video extends Component {
   render() {
     // console.log("PROPS > ", this.props.match.params.id)
-
     return (
       <Query query={FEED_QUERY}>
         {({ data, loading, error, refetch }) => {
@@ -30,14 +28,9 @@ export default class Video extends Component {
 
           return (
             <Fragment>
-                VIDEO SECTION
-                <div>
-                  <img src="https://res.cloudinary.com/dw4v960db/image/upload/v1555027202/Aries_Secret_April.jpg" />
-                  <YouTube 
-                    videoId={"ZIchuVxBVng"} 
-                  />
-                </div>
-
+              <div className="videoPlayer">
+                <img src="https://res.cloudinary.com/dw4v960db/image/upload/v1555027202/Aries_Secret_April.jpg" /> /* has to come from API */                <YouTube  videoId={"ZIchuVxBVng"} />
+              </div>
             </Fragment>
           )
         }}
