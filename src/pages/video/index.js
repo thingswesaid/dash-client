@@ -9,15 +9,6 @@ export default class Video extends Component {
   render() {
     // console.log("PROPS > ", this.props.match.params.id)
 
-    console.log("YouTube > ", YouTube)
-    const opts = {
-      height: '390',
-      width: '640',
-      playerVars: { 
-        autoplay: 1
-      }
-    };
-
     return (
       <Query query={FEED_QUERY}>
         {({ data, loading, error, refetch }) => {
@@ -40,12 +31,12 @@ export default class Video extends Component {
           return (
             <Fragment>
                 VIDEO SECTION
-
-                <YouTube 
-                  videoId={"ZIchuVxBVng"} 
-                  opts={opts} 
-                  className={styles.videoPlayer}
-                />
+                <div className={styles.videoPlayer}>
+                  <img src="https://res.cloudinary.com/dw4v960db/image/upload/v1555027202/Aries_Secret_April.jpg" />
+                  <YouTube 
+                    videoId={"ZIchuVxBVng"} 
+                  />
+                </div>
 
             </Fragment>
           )
