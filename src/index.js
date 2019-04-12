@@ -19,8 +19,8 @@ import VideoPage from './pages/video'
 import 'tachyons'
 import './index.css'
 
-// const client = new ApolloClient({ uri: 'https://ancient-savannah-48855.herokuapp.com/' }) //TODO url will have to be setup in process.env
-const client = new ApolloClient({ uri: 'http://localhost:4000' })
+const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' }) //TODO url will have to be setup in process.env
+// const client = new ApolloClient({ uri: 'http://localhost:4000' })
 
 ReactDOM.render(
   <ApolloProvider client={client}>
