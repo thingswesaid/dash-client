@@ -3,7 +3,7 @@ import { Query } from 'react-apollo'
 import  { gql } from 'apollo-boost'
 import YouTube from 'react-youtube'
 
-import styles from './index.module.css'
+// import styles from './index.module.css'
 
 export default class Video extends Component {
   render() {
@@ -31,7 +31,7 @@ export default class Video extends Component {
           return (
             <Fragment>
                 VIDEO SECTION
-                <div className={styles.videoPlayer}>
+                <div>
                   <img src="https://res.cloudinary.com/dw4v960db/image/upload/v1555027202/Aries_Secret_April.jpg" />
                   <YouTube 
                     videoId={"ZIchuVxBVng"} 

@@ -13,7 +13,7 @@
     "react-dom": "16.8.6",
     "react-modal": "3.8.1",
     "react-router-dom": "4.4.0-beta.8",
-    "react-scripts-cssmodules": "^1.1.50",
+    "react-scripts": "^2.1.8",
     "react-youtube": "^7.9.0",
     "tachyons": "4.11.1"
   },
