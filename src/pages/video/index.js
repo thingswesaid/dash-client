@@ -4,11 +4,14 @@ import  { gql } from 'apollo-boost'
 import YouTube from 'react-youtube'
 import './index.css'
 
+import playButton from '../../assets/images/play-button.png'
+
 export default class Video extends Component {
+  // add state for playing to hide the image placeholder
   render() {
     // this.props.match.params.id
     return (
-      <Query query={VIDEO_QUERY} variables={{ id: "5" }}>
+      <Query query={VIDEO_QUERY} variables={{id: "5"}}>
         {({ data, loading, error, refetch }) => {
           if (loading) {
             return (
@@ -26,12 +29,15 @@ export default class Video extends Component {
             )
           }
 
-          console.log("DATA >>>>> ", data)
+          // if !data show mosaic with all other videos - VIDEO NOT FOUND in the middle
+          const { image, link } = data.videos[0];
 
           return (
             <Fragment>
               <div className="videoPlayer">
-                <img src="https://res.cloudinary.com/dw4v960db/image/upload/v1555027202/Aries_Secret_April.jpg" /> /* has to come from API */                <YouTube  videoId={"ZIchuVxBVng"} />
+                <img src={playButton} className="playButton" />
+                <img src={image} /> 
+                <YouTube videoId={link} />
               </div>
             </Fragment>
           )
@@ -42,7 +48,7 @@ export default class Video extends Component {
 }
 
 export const VIDEO_QUERY = gql`
-  query VideoQuery($id: String!) {
+  query VideoQuery($id: ID!) {
     videos(id: $id) {
       id
       link

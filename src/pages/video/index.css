@@ -1,7 +1,35 @@
 .videoPlayer {
     width: 640px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .videoPlayer img {
     border-radius: 10px;
+    position: absolute;
+}
+
+.playButton {
+    z-index: 1;
+    width: 80px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: .8;
+    transition: all .1s ease-in-out;
+    cursor: pointer;
+}
+
+.playButton:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.playButton:active {
+    opacity: 1;
+    transform: scale(0.9);
 }
