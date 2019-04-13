@@ -6,9 +6,9 @@ import './index.css'
 
 export default class Video extends Component {
   render() {
-    // console.log("PROPS > ", this.props.match.params.id)
+    // this.props.match.params.id
     return (
-      <Query query={FEED_QUERY}>
+      <Query query={VIDEO_QUERY} variables={{ id: "5" }}>
         {({ data, loading, error, refetch }) => {
           if (loading) {
             return (
@@ -26,6 +26,8 @@ export default class Video extends Component {
             )
           }
 
+          console.log("DATA >>>>> ", data)
+
           return (
             <Fragment>
               <div className="videoPlayer">
@@ -39,13 +41,16 @@ export default class Video extends Component {
   }
 }
 
-export const FEED_QUERY = gql`
-  query FeedQuery {
-    feed {
+export const VIDEO_QUERY = gql`
+  query VideoQuery($id: String!) {
+    videos(id: $id) {
       id
-      content
-      title
-      published
+      link
+      preview
+      image
+      users {
+        id
+      }
     }
   }
 `
