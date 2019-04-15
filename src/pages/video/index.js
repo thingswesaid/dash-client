@@ -1,62 +1,69 @@
-import React, { Component, Fragment } from 'react' 
-import { Query } from 'react-apollo'
-import  { gql } from 'apollo-boost'
-import YouTube from 'react-youtube'
-import './index.css'
+import React, { Component, Fragment } from 'react';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import YouTube from 'react-youtube';
 
-import playButton from '../../assets/images/play-button.png'
+import './index.css';
+import Loader from '../../shared-components/loader';
+import Error from '../../shared-components/error';
+import NotFound from './components/not-found';
+import playButton from '../../assets/images/play-button.png';
+import { VIDEO_QUERY } from '../../operations/queries';
+
+// will call when user purchases video and doesn't exist yet
+const CREATE_USER_MUTATION = gql`
+  mutation CreateUserMutation($email: String!, $ip: String!) {
+    createUser(email: $email, ip: $ip) {
+      id
+    }
+  }
+`;
 
 export default class Video extends Component {
-  // add state for playing to hide the image placeholder
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasAccess: false,
+    };
+  }
+
+  setUserVideoAccess({ users }) {
+    const { userEmail, userIp } = this.props;
+    const user = users.filter(({ email }) => email === userEmail)[0];
+    if (user) {
+      const hasIp = user.ips.includes(userIp);
+      // if !hasIp add new IP to DB
+    }
+    this.setState({ hasAccess: !!user });
+  }
+
   render() {
-    // this.props.match.params.id
+    const { videoId } = this.props;
+    const { hasAccess } = this.state;
+    console.log('hasAccess', hasAccess);
     return (
-      <Query query={VIDEO_QUERY} variables={{id: "5"}}>
-        {({ data, loading, error, refetch }) => {
-          if (loading) {
-            return (
-              <div className="flex w-100 h-100 items-center justify-center pt7">
-                <div>Loading ...</div>
-              </div>
-            )
-          }
+      <Query
+        query={VIDEO_QUERY}
+        variables={{ id: videoId }}
+        onCompleted={data => this.setUserVideoAccess(data.videos[0])}
+      >
+        {({ data, loading, error }) => {
+          if (loading) { return <Loader />; }
+          if (error) { return <Error />; }
+          if (!data.videos.length) { return <NotFound />; }
 
-          if (error) {
-            return (
-              <div className="flex w-100 h-100 items-center justify-center pt7">
-                <div>An unexpected error occured.</div>
-              </div>
-            )
-          }
-
-          // if !data show mosaic with all other videos - VIDEO NOT FOUND in the middle
           const { image, link } = data.videos[0];
-
           return (
             <Fragment>
               <div className="videoPlayer">
-                <img src={playButton} className="playButton" />
-                <img src={image} /> 
+                <img src={playButton} className="playButton" alt="play button" />
+                <img src={image} className="videoPlaceholder" alt="placeholder" />
                 <YouTube videoId={link} />
               </div>
             </Fragment>
-          )
+          );
         }}
       </Query>
-    )
+    );
   }
 }
-
-export const VIDEO_QUERY = gql`
-  query VideoQuery($id: ID!) {
-    videos(id: $id) {
-      id
-      link
-      preview
-      image
-      users {
-        id
-      }
-    }
-  }
-`

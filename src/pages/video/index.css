@@ -5,9 +5,9 @@
     overflow: hidden;
 }
 
-.videoPlayer img {
-    border-radius: 10px;
+.videoPlaceholder {
     position: absolute;
+    width: 100%;
 }
 
 .playButton {

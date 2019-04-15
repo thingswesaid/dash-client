@@ -60,19 +60,20 @@ class DetailPage extends Component {
         }}
       >
         {(publish, { data, loading, error }) => {
-          return (
-            <a
-              className="f6 dim br1 ba ph3 pv2 mb2 dib black pointer"
-              onClick={async () => {
-                await publish({
-                  variables: { id },
-                })
-                this.props.history.replace('/')
-              }}
-            >
-              Publish
-            </a>
-          )
+          // return (
+          //   <a
+          //     className="f6 dim br1 ba ph3 pv2 mb2 dib black pointer"
+          //     onClick={async () => {
+          //       await publish({
+          //         variables: { id },
+          //       })
+          //       this.props.history.replace('/')
+          //     }}
+          //   >
+          //     Publish
+          //   </a>
+          // )
+          return(<div></div>)
         }}
       </Mutation>
     )
@@ -100,19 +101,20 @@ class DetailPage extends Component {
         }}
       >
         {(deletePost, { data, loading, error }) => {
-          return (
-            <a
-              className="f6 dim br1 ba ph3 pv2 mb2 dib black pointer"
-              onClick={async () => {
-                await deletePost({
-                  variables: { id },
-                })
-                this.props.history.replace('/')
-              }}
-            >
-              Delete
-            </a>
-          )
+          // return (
+          //   <a
+          //     className="f6 dim br1 ba ph3 pv2 mb2 dib black pointer"
+          //     onClick={async () => {
+          //       await deletePost({
+          //         variables: { id },
+          //       })
+          //       this.props.history.replace('/')
+          //     }}
+          //   >
+          //     Delete
+          //   </a>
+          // )
+          return (<div></div>)
         }}
       </Mutation>
     )

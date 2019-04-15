@@ -60,9 +60,9 @@ class CreatePage extends Component {
                   type="submit"
                   value="Create"
                 />
-                <a className="f6 pointer" onClick={this.props.history.goBack}>
+                {/* <a className="f6 pointer" onClick={this.props.history.goBack} >
                   or cancel
-                </a>
+                </a> */}
               </form>
             </div>
           )
