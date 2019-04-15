@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
 import YouTube from 'react-youtube';
 
 import './index.css';
@@ -10,14 +9,14 @@ import NotFound from './components/not-found';
 import playButton from '../../assets/images/play-button.png';
 import { VIDEO_QUERY } from '../../operations/queries';
 
-// will call when user purchases video and doesn't exist yet
-const CREATE_USER_MUTATION = gql`
-  mutation CreateUserMutation($email: String!, $ip: String!) {
-    createUser(email: $email, ip: $ip) {
-      id
-    }
-  }
-`;
+// // will call when user purchases video and doesn't exist yet
+// const CREATE_USER_MUTATION = gql`
+//   mutation CreateUserMutation($email: String!, $ip: String!) {
+//     createUser(email: $email, ip: $ip) {
+//       id
+//     }
+//   }
+// `;
 
 export default class Video extends Component {
   constructor(props) {
