@@ -21,7 +21,7 @@ import './index.css';
 // const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' });
 const client = new ApolloClient({ uri: 'http://localhost:4000' });
 
-document.cookie = 'user-email=manuel.dicristo@icloud.com;path=/';
+document.cookie = 'user-email=smanuel.dicristo@icloud.com;path=/';
 
 const AppFrameWithData = withAppData(AppFrame);
 
