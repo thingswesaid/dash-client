@@ -8,4 +8,10 @@ export const CREATE_USER_MUTATION = gql`
   }
 `;
 
-export const foobar = 'foobar'; // TODO remove
+export const ADD_USER_IP_MUTATION = gql`
+  mutation addUserIpMutation($email: String!, $ips: [String]!) {
+    addUserIp(email: $email, ips: $ips) {
+      id
+    }
+  }
+`;
