@@ -5,7 +5,7 @@ import YouTube from 'react-youtube';
 import './index.css';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
-import NotFound from './components/not-found';
+import VideoNotFound from './components/video-not-found';
 import playButton from '../../assets/images/play-button.png';
 import { VIDEO_QUERY } from '../../operations/queries';
 import { ADD_USER_IP_MUTATION } from '../../operations/mutations';
@@ -46,7 +46,7 @@ export default class Video extends Component {
             {({ data, loading, error }) => {
               if (loading) { return <Loader />; }
               if (error) { return <Error />; }
-              if (!data.videos.length) { return <NotFound />; }
+              if (!data.videos.length) { return <VideoNotFound />; }
 
               const { image, link } = data.videos[0];
               return (
