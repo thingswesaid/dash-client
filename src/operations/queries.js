@@ -7,6 +7,8 @@ export const VIDEO_QUERY = gql`
       link
       preview
       image
+      published
+      amount
       users {
         id
         email
