@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
 import React, { Component, Fragment } from 'react';
 import { Query, Mutation } from 'react-apollo';
 import YouTube from 'react-youtube';
-import StripeCheckout from 'react-stripe-checkout';
+import classNames from 'classnames';
 
 import './index.css';
+import { throwServerError } from 'apollo-link-http-common';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import VideoNotFound from './components/video-not-found';
@@ -22,11 +24,16 @@ export default class Video extends Component {
       hasAccess: false,
       videoOpen: false,
       showPreview: false,
+      paypalAppended: false,
+      showPayment: false,
+      amount: 0,
     };
   }
 
-  setUserVideoAccess(users, addUserIp, playVideo) {
+  checkUserVideoAccess(video, addUserIp) {
     const { userEmail, userIp } = this.props;
+    const { paypalAppended } = this.state;
+    const { users, amount } = video;
     const user = users.filter(({ email }) => email === userEmail)[0];
     if (user) {
       const hasIp = user.ips.includes(userIp);
@@ -35,29 +42,55 @@ export default class Video extends Component {
         addUserIp({ variables: { email: userEmail, ips: [...ips, userIp] } });
       }
     }
-    // if doesn't have access open payment component - buzzz
-    // start video from extended
-    this.setState({ hasAccess: !!user, videoOpen: !!user && playVideo });
+    this.setState({ hasAccess: !!user, videoOpen: !!user });
+    if (!user) {
+      if (!paypalAppended) this.generatePaypalButtons(amount);
+      else this.setState({ showPayment: true });
+    } else if (user) {
+      this.setState({ hasAccess: true, videoOpen: true });
+    }
   }
 
-  foobar(stuff) {
-    console.log('IN FOOBAR', stuff);
+  // eslint-disable-next-line class-methods-use-this
+  generatePaypalButtons(amount) {
+    paypal.Buttons({
+      createOrder(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: amount,
+            },
+          }],
+        });
+      },
+
+      onApprove(data, actions) { // will work on this
+        return actions.order.capture().then((details) => {
+          alert(`Transaction completed by ${details.payer.name.given_name}!`);
+        });
+      },
+    });
+    paypal.Buttons().render('#paypal-button-container');
+    this.setState({ paypalAppended: true, showPayment: true });
   }
 
+  // add back to video when payments is showing
   render() {
     const { videoId } = this.props;
-    const { videoOpen, showPreview } = this.state;
+    const {
+      videoOpen, showPreview, hasAccess, showPayment,
+    } = this.state;
     const videoLabel = showPreview ? labelPreview : labelExtended;
+
     return (
       <Mutation mutation={ADD_USER_IP_MUTATION}>
         {addUserIp => (
           <Query
             query={VIDEO_QUERY}
             variables={{ id: videoId }}
-            onCompleted={data => this.setUserVideoAccess(data.videos[0].users, addUserIp, false)}
+            // onCompleted={data => this.setUserVideoAccess(data.videos[0].users, addUserIp)}
           >
             {({ data, loading, error }) => {
-              console.log('VIDEO > ', data);
               if (loading) { return <Loader />; }
               if (error) { return <Error />; } /* log to sumo or similar */
               if (!data.videos.length) { return <VideoNotFound />; }
@@ -70,48 +103,61 @@ export default class Video extends Component {
 
               return (
                 <Fragment>
-                  <div className="videoMain">
+                  <div className="page">
                     <div className="suggestion" />
-                    <div className="videoContainer">
-                      <div className="videoPlayer shadow">
-                        <img src={videoLabel} className="videoLabel" alt="video label" />
-                        { videoOpen ? (
-                          <YouTube
-                            videoId={showPreview ? preview : link}
-                            opts={{
-                              playerVars: {
-                                autoplay: 1,
-                              },
-                            }}
-                          />
-                        ) : (
-                          <Fragment>
-                            <button
-                              type="button"
-                              className="playButton"
-                              onClick={() => { this.setUserVideoAccess(users, addUserIp, true); }}
-                              onKeyPress={() => { this.setState({ videoOpen: true }); }}
-                            >
-                              <img src={playButton} alt="play button" />
-                            </button>
-                            <img src={image} className="videoPlaceholder" alt="placeholder" />
-                          </Fragment>
-                        )}
+
+                    <div className={classNames('cardsContainer', { showPayment })}>
+                      <div className="videoContainer shadow">
+                        <div className="videoPlayer">
+                          <img src={videoLabel} className="videoLabel" alt="video label" />
+                          { videoOpen ? (
+                            <YouTube
+                              videoId={showPreview ? preview : link}
+                              opts={{
+                                playerVars: {
+                                  autoplay: 1,
+                                },
+                              }}
+                            />
+                          ) : (
+                            <Fragment>
+                              <button
+                                type="button"
+                                className="playButton"
+                                onClick={() => { this.checkUserVideoAccess(data.videos[0], addUserIp); }}
+                                onKeyPress={() => { this.setState({ videoOpen: true }); }}
+                              >
+                                <img src={playButton} alt="play button" />
+                              </button>
+                              <img src={image} className="videoPlaceholder" alt="placeholder" />
+                            </Fragment>
+                          )}
+                        </div>
+                        <div className="payments">
+                          <div className="videoPrice">ONLY $4.99</div>
+                          <div id="paypal-button-container" />
+                          <div
+                            className="videoBackButton"
+                            onClick={() => { this.setState({ showPayment: false }); }}
+                          >
+                              BACK
+                          </div>
+                        </div>
                       </div>
                       <button
                         type="button"
                         className="showLabel"
                         onClick={() => {
                           if (showPreview) {
-                            this.setUserVideoAccess(users, addUserIp, true);
+                            this.checkUserVideoAccess(data.videos[0], addUserIp);
                             this.setState({ showPreview: !showPreview });
                           } else {
-                            this.setState({ showPreview: !showPreview, videoOpen: !showPreview });
+                            this.setState({ showPreview: !showPreview, videoOpen: !showPreview, showPayment: false });
                           }
                         }}
                         onKeyPress={() => {
                           if (showPreview) {
-                            this.setUserVideoAccess(users, addUserIp, true);
+                            this.checkUserVideoAccess(data.videos[0], addUserIp);
                             this.setState({ showPreview: !showPreview });
                           } else {
                             this.setState({ showPreview: !showPreview, videoOpen: !showPreview });
@@ -120,19 +166,14 @@ export default class Video extends Component {
                       >
                         <div className="arrowDown" />
                         <p>
-                        WATCH
+                          WATCH
                           {' '}
                           {showPreview ? 'EXTENDED' : 'PREVIEW'}
                         </p>
                       </button>
                     </div>
-                    <div className="payments">
-                      <StripeCheckout
-                        stripeKey="pk_test_ug5eEUpY4GbVR6xrl2uULelO00OswKbtVo"
-                        token={this.foobar}
-                        amount={amount}
-                      />
-                    </div>
+
+                    <div className="ads" />
                   </div>
                   <div className="merch" />
                 </Fragment>

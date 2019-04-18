@@ -68,9 +68,10 @@ html {
 }
 
 .shadow {
-  -webkit-box-shadow: 0px 12px 14px -15px rgba(71,71,71,1);
-    -moz-box-shadow: 0px 12px 14px -15px rgba(71,71,71,1);
-    box-shadow: 0px 12px 14px -15px rgba(71,71,71,1);
+  -webkit-box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
+  -moz-box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
+  box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
+  
 }
 
 button {
