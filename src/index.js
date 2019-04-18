@@ -8,6 +8,14 @@ import {
   Route,
 } from 'react-router-dom';
 
+// TODOs: implement paypal sandbox and test
+// capture email address (from paypal?)
+// create Already bought? button that turns into email field with little button on the right
+// build video suggestion section on the left
+// fix hover issue on video images
+// look into teespring for api / display product
+// implement lazyloading for images
+
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import AppFrame from './shared-components/app-frame';
 import FeedPage from './pages/FeedPage';

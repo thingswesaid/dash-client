@@ -4,6 +4,7 @@ export const VIDEO_QUERY = gql`
   query VideoQuery($id: ID!) {
     videos(id: $id) {
       id
+      name
       link
       preview
       image

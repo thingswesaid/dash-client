@@ -5,7 +5,6 @@ import YouTube from 'react-youtube';
 import classNames from 'classnames';
 
 import './index.css';
-import { throwServerError } from 'apollo-link-http-common';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import VideoNotFound from './components/video-not-found';
@@ -135,13 +134,20 @@ export default class Video extends Component {
                         </div>
                         <div className="payments">
                           <div className="videoPrice">ONLY $4.99</div>
+                          <div className="emailField">
+                            <p>ALREADY PURCHASED?</p>
+                            <div>
+                              <input placeholder="YOUR EMAIL ADDRESS" />
+                              <button>GO</button>
+                            </div>
+                          </div>
                           <div id="paypal-button-container" />
-                          <div
+                          <button
                             className="videoBackButton"
                             onClick={() => { this.setState({ showPayment: false }); }}
                           >
                               BACK
-                          </div>
+                          </button>
                         </div>
                       </div>
                       <button

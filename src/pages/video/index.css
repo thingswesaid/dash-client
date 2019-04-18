@@ -17,7 +17,7 @@
 }
 
 .videoContainer {
-	width: 640px;
+	width: 50vw;
 	height: 360px;
 	position: relative;
   transition: transform 0.5s;
@@ -51,16 +51,46 @@
 	left: 0;
 	background: #f1f1f1;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
+	flex-direction: column;
 	align-items: center;
 	background: lightblue url("../../assets/images/universe-bg.jpg") no-repeat; 
 	background-size: 680px;
 	border-radius: 10px;
 }
 
+.payments .emailField p {
+	color: white;
+	font-size: 10px;
+	margin: 0 0 1px 3px;
+}
+
+.payments .emailField input {
+	border-radius: 5px;
+	border: 1px solid gray;
+	padding: 5px 10px;
+	width: 207px;
+	height: 33px;
+	outline: none;
+}
+
+.payments .emailField input::placeholder {
+	color: lightgray;
+}
+
+.payments .emailField input:focus {
+	border: 2px solid #f7c556;
+}
+
+.payments .emailField button {
+	background: white;
+    padding: 9px;
+    margin-left: 10px;
+		border-radius: 3px;
+		color: #8a5b8a;
+}
+
 .videoBackButton {
-	position: absolute;
-	bottom: 40px;
 	color: #8a5b8a;
 	border: 1px solid white;
 	border-radius: 8px;
@@ -70,14 +100,7 @@
 	font-weight: 500;
 }
 
-.videoBackButton:hover {
-	opacity: 1;
-	transform: scale(1.02);
-}
-
-.payments .videoPrice {
-	position: absolute;
-	top: 46px;
+.videoPrice {
 	color: white;
 	border-bottom: 1px solid white;
 	padding: 7px;
@@ -114,21 +137,10 @@
 	right: 0;
 	left: 0;
 	opacity: .8;
-	transition: all .1s ease-in-out;
 }
 
 .playButton img {
 	width: 80px;
-}
-
-.playButton:hover {
-	opacity: 1;
-	transform: scale(1.02);
-}
-
-.playButton:active {
-	opacity: 1;
-	transform: scale(0.9);
 }
 
 .showLabel {
