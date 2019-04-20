@@ -106,16 +106,21 @@ export default class Video extends Component {
   }
 
   async generatePaypalButtons() {
-    const result = await fetch('/foobar', {
-      method: 'GET',
-      credentials: 'same-origin',
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-    console.log('result', result);
-    const json = await result.json();
-    console.log('>>>>>>>>> json <<<<<<<<<', json);
+    try {
+      const result = await fetch('/foobar', {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+      console.log('result', result);
+      const json = await result.json();
+      console.log('>>>>>>>>> json <<<<<<<<<', json);
+    } catch (err) {
+      console.log('err >> ', err);
+    }
+
     const { amount } = this.state;
     paypal.Buttons({
       createOrder(data, actions) {

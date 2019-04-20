@@ -3,7 +3,7 @@ const http = require('http');
 const path = require('path');
 const checkoutNodeJssdk = require('@paypal/checkout-server-sdk');
 
-const payPalClient = require('../Common/payPalClient');
+const payPalClient = require('./payPalClient.js');
 
 const app = express();
 const port = process.env.PORT || '8080';
