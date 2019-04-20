@@ -1,0 +1,23 @@
+.appFrame {
+	position: relative;  
+	margin-top: 70px;
+}
+
+.notification {
+	border-radius: 15px;
+	overflow: hidden;
+	text-align: center;
+	color: #6e6e6e;
+}
+
+.notificationError {
+	color: white;
+	background: #f76565;
+}
+
+.notificationSuccess {
+	color: white;
+	background: #76ed79;
+}
+
+

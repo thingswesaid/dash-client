@@ -59,6 +59,10 @@
 	border-radius: 10px;
 }
 
+.payments .emailField {
+	margin-bottom: -20px;
+}
+
 .payments .emailField p {
 	color: white;
 	font-size: 10px;

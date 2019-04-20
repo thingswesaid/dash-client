@@ -3,11 +3,13 @@ import { Query } from 'react-apollo';
 
 import { getCookie } from '../../utils';
 import { USERIP_QUERY } from '../../operations/queries';
+import Loader from '../loader';
+import Error from '../error';
 
 const getDisplayName = WrappedComponent => WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
 const defaultState = {
-  userEmail: '',
+  cookieEmail: '',
 };
 
 export const AppContext = React.createContext(defaultState);
@@ -16,10 +18,10 @@ export function withAppData(WrappedComponent) {
   class WithAppData extends React.Component {
     constructor(props) {
       super(props);
-      const userEmail = getCookie('user-email');
+      const cookieEmail = getCookie('dash-user-email');
 
       this.state = {
-        userEmail,
+        cookieEmail,
       };
     }
 
@@ -27,6 +29,8 @@ export function withAppData(WrappedComponent) {
       return (
         <Query query={USERIP_QUERY}>
           {({ data, loading, error }) => {
+            if (loading) { return <Loader />; }
+            if (error) { return <Error error={error} />; } /* log to sumo or similar */
             const { userIp } = data;
             return (
               <AppContext.Provider value={{ ...this.state, ...{ userIp } }}>

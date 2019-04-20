@@ -1,45 +1,17 @@
-import React, { Fragment } from 'react'
-import { NavLink, Link } from 'react-router-dom';
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
 
-const AppFrame = props => (
-	<Fragment>
-		<nav className="pa3 pa4-ns">
-			<Link
-				className="link dim black b f6 f5-ns dib mr3"
-				to="/"
-				title="Feed"
-			>
-				Blog
-			</Link>
-			<NavLink
-				className="link dim f6 f5-ns dib mr3 black"
-				activeClassName="gray"
-				exact={true}
-				to="/"
-				title="Feed"
-			>
-				Feed
-			</NavLink>
-			<NavLink
-				className="link dim f6 f5-ns dib mr3 black"
-				activeClassName="gray"
-				exact={true}
-				to="/drafts"
-				title="Drafts"
-			>
-				Drafts
-			</NavLink>
-			<Link
-				to="/create"
-				className="f6 link dim br1 ba ph3 pv2 fr mb2 dib black"
-			>
-				+ Create Draft
-			</Link>
-		</nav>
-		<div className="fl w-100 pl4 pr4">
-			{props.children}
-		</div>
-	</Fragment>
-)
+import Navbar from '../navbar';
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
 
-export default AppFrame;
+export default ({ children }) => (
+  <div className="appFrame">
+    <Navbar />
+    <ToastContainer autoClose={5000} />
+    <div className="bodyPage">
+      {children}
+    </div>
+    {/* <Footer /> */}
+  </div>
+);

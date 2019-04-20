@@ -8,20 +8,9 @@ import {
   Route,
 } from 'react-router-dom';
 
-// TODOs: implement paypal sandbox and test
-// capture email address (from paypal?)
-// create Already bought? button that turns into email field with little button on the right
-// build video suggestion section on the left
-// fix hover issue on video images
-// look into teespring for api / display product
-// implement lazyloading for images
-
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import AppFrame from './shared-components/app-frame';
 import FeedPage from './pages/FeedPage';
-import DraftsPage from './pages/DraftsPage';
-import CreatePage from './pages/CreatePage';
-import DetailPage from './pages/DetailPage';
 import VideoPage from './pages/video';
 
 import './index.css';
@@ -29,26 +18,30 @@ import './index.css';
 // const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' });
 const client = new ApolloClient({ uri: 'http://localhost:4000' });
 
-document.cookie = 'user-email=smanuel.dicristo@icloud.com;path=/';
+document.cookie = 'dash-user-email=smanuel.dicristo@icloud.com;path=/'; // temp
 
 const AppFrameWithData = withAppData(AppFrame);
+
+// add
+// 404 page
+// unsubscribe email page
+// terms and conditions page (content centered with universe icons on the sides)
+// emails page (if it's possible to serve them from this site)
+// email your account has been suspended, too many ips using it - contact us info@dashinbetween.com
 
 render((
   <ApolloProvider client={client}>
     <Router>
       <AppFrameWithData>
         <AppContext.Consumer>
-          {({ userEmail, userIp }) => (
+          {({ cookieEmail, userIp, triggerNotification }) => (
             <Switch>
               <Route exact path="/" component={FeedPage} />
-              <Route path="/drafts" component={DraftsPage} />
-              <Route path="/create" component={CreatePage} />
-              <Route path="/post/:id" component={DetailPage} />
               <Route
                 path="/video/:id"
                 render={
                   ({ match: { params: { id } } }) => (
-                    <VideoPage userEmail={userEmail} videoId={id} userIp={userIp} />
+                    <VideoPage cookieEmail={cookieEmail} videoId={id} userIp={userIp} triggerNotification={triggerNotification} />
                   )
                 }
               />
