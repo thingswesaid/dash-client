@@ -146,6 +146,9 @@ export default class Video extends Component {
       videoOpen, showPreview, hasAccess, showPayment, userCheck,
     } = this.state;
     const videoLabel = showPreview ? labelPreview : labelExtended;
+    console.log('=======================');
+    console.log('>>>>>>>>> STATE <<<<<<<<<<', this.state);
+    console.log('=======================');
     return (
       <Fragment>
         <Adopt mapper={mapper} id={videoId} ip={userIp} videoComponent={this}>
