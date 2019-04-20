@@ -61,7 +61,7 @@ export default class Video extends Component {
 
     if (!user) {
       if (!paypalAppended) this.generatePaypalButtons();
-      else this.setState({ showPayment: true });
+      else this.setState({ showPayment: true, videoOpen: false });
       return undefined;
     }
     const hasIp = user.ips.includes(userIp);
@@ -125,7 +125,7 @@ export default class Video extends Component {
         });
       },
     }).render('#paypal-button-container');
-    this.setState({ paypalAppended: true, showPayment: true });
+    this.setState({ paypalAppended: true, showPayment: true, videoOpen: false });
   }
 
   cfh(createAnonymousIp) {
@@ -146,9 +146,6 @@ export default class Video extends Component {
       videoOpen, showPreview, hasAccess, showPayment, userCheck,
     } = this.state;
     const videoLabel = showPreview ? labelPreview : labelExtended;
-    console.log('=======================');
-    console.log('>>>>>>>>> STATE <<<<<<<<<<', this.state);
-    console.log('=======================');
     return (
       <Fragment>
         <Adopt mapper={mapper} id={videoId} ip={userIp} videoComponent={this}>
