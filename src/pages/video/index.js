@@ -106,21 +106,6 @@ export default class Video extends Component {
   }
 
   async generatePaypalButtons() {
-    try {
-      const result = await fetch('/foobar', {
-        method: 'GET',
-        credentials: 'same-origin',
-        headers: {
-          'content-type': 'application/json',
-        },
-      });
-      console.log('result', result);
-      const json = await result.json();
-      console.log('>>>>>>>>> json <<<<<<<<<', json);
-    } catch (err) {
-      console.log('err >> ', err);
-    }
-
     const { amount } = this.state;
     paypal.Buttons({
       createOrder(data, actions) {
@@ -136,16 +121,7 @@ export default class Video extends Component {
         return actions.order.capture().then((details) => {
           console.log('>>>>>>>>> APPROVE2 <<<<<<<<<', details);
           // create user if doesn't exist and add to video's users
-
-          // fetch('/paypal-transaction-complete', {
-          //   method: 'post',
-          //   headers: {
-          //     'content-type': 'application/json',
-          //   },
-          //   body: JSON.stringify({
-          //     orderID: data.orderID,
-          //   }),
-          // });
+          // store payment id as well
         });
       },
     }).render('#paypal-button-container');
