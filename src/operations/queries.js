@@ -12,6 +12,7 @@ const VIDEO_QUERY = gql`
       image
       published
       amount
+      start
       users {
         id
         email

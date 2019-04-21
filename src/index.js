@@ -34,14 +34,18 @@ render((
     <Router>
       <AppFrameWithData>
         <AppContext.Consumer>
-          {({ cookieEmail, userIp, triggerNotification }) => (
+          {({ cookieEmail, userIp }) => (
             <Switch>
               <Route exact path="/" component={FeedPage} />
               <Route
                 path="/video/:id"
                 render={
                   ({ match: { params: { id } } }) => (
-                    <VideoPage cookieEmail={cookieEmail} videoId={id} userIp={userIp} triggerNotification={triggerNotification} />
+                    <VideoPage
+                      cookieEmail={cookieEmail}
+                      videoId={id}
+                      userIp={userIp}
+                    />
                   )
                 }
               />

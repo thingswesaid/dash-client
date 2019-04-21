@@ -18,10 +18,7 @@ import './index.css';
 
 const mapper = { getVideoQuery, addUserIpMutation, createAnonymousIpMutation };
 
-// PAYPAL MAKE MULTIPLE ACCOUNTS IN CASE ONE GETS FROZEN
 // add (i) right next to already purchased - pop up will explain the email used for purchase
-// implement paypal sandbox and test
-// capture email address (from paypal?)
 // check if paypal module includes GPAY | APPLE PAY
 // build video suggestion section on the left
 // fix hover issue on video images
@@ -107,6 +104,7 @@ export default class Video extends Component {
 
   async generatePaypalButtons() {
     const { amount } = this.state;
+    console.log('PAYPAL', paypal);
     paypal.Buttons({
       createOrder(data, actions) {
         return actions.order.create({
@@ -161,7 +159,7 @@ export default class Video extends Component {
 
             const video = data.videos[0];
             const {
-              image, link, preview,
+              image, link, preview, start,
             } = video;
 
             if (hasAccess && !userCheck) { this.cfh(createAnonymousIp); }
@@ -180,8 +178,12 @@ export default class Video extends Component {
                           <YouTube
                             videoId={showPreview ? preview : link}
                             opts={{
+                              host: 'http://www.youtube-nocookie.com',
                               playerVars: {
                                 autoplay: 1,
+                                modestbranding: 1,
+                                rel: 0,
+                                start: !showPreview ? start : 0,
                               },
                             }}
                           />
