@@ -29,17 +29,11 @@ export const USERIP_QUERY = gql`
   }
 `;
 
-export const getVideoQuery = ({ render, id, videoComponent }) => (
+export const getVideoQuery = ({ render, id }) => (
   // eslint-disable-next-line react/no-this-in-sfc
   <Query
     query={VIDEO_QUERY}
     variables={{ id }}
-    onCompleted={(data) => {
-      if (data.videos[0]) {
-        videoComponent.setState({ amount: data.videos[0].amount });
-      }
-    }
-    }
   >
     {render}
   </Query>

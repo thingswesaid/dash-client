@@ -15,10 +15,8 @@ import VideoPage from './pages/video';
 
 import './index.css';
 
-// const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' });
-const client = new ApolloClient({ uri: 'http://localhost:4000' });
-
-document.cookie = 'dash-user-email=smanuel.dicristo@icloud.com;path=/'; // temp
+const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' });
+// const client = new ApolloClient({ uri: 'http://localhost:4000' });
 
 const AppFrameWithData = withAppData(AppFrame);
 
@@ -34,18 +32,14 @@ render((
     <Router>
       <AppFrameWithData>
         <AppContext.Consumer>
-          {({ cookieEmail, userIp }) => (
+          {({ userIp }) => (
             <Switch>
               <Route exact path="/" component={FeedPage} />
               <Route
                 path="/video/:id"
                 render={
                   ({ match: { params: { id } } }) => (
-                    <VideoPage
-                      cookieEmail={cookieEmail}
-                      videoId={id}
-                      userIp={userIp}
-                    />
+                    <VideoPage videoId={id} userIp={userIp} />
                   )
                 }
               />

@@ -26,8 +26,38 @@ export const CREATE_ANONYMOUS_IP_MUTATION = gql`
   }
 `;
 
+const ADD_USER_TO_VIDEO_MUTATION = gql`
+  mutation addUserToVideoMutation(
+    $email: String!, 
+    $ips: [String], 
+    $videoId: String!, 
+    $phone: String, 
+    $firstName: String, 
+    $lastName: String,
+    $paymentId: String!
+  ) {
+    addUserToVideo(
+      email: $email, 
+      ips: $ips, 
+      videoId: $videoId, 
+      phone: $phone, 
+      firstName: $firstName, 
+      lastName: $lastName,
+      paymentId: $paymentId,
+    ) {
+      id
+    }
+  }
+`;
+
 export const addUserIpMutation = ({ render }) => (
   <Mutation mutation={ADD_USER_IP_MUTATION}>
+    {render}
+  </Mutation>
+);
+
+export const addUserToVideoMutation = ({ render }) => (
+  <Mutation mutation={ADD_USER_TO_VIDEO_MUTATION}>
     {render}
   </Mutation>
 );

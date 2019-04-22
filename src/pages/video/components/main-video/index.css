@@ -1,0 +1,167 @@
+.cardsContainer {
+	background-color: transparent;
+  perspective: 1000px;
+}
+
+.videoContainer {
+	width: 50vw;
+	height: 360px;
+	position: relative;
+  transition: transform 0.5s;
+	transform-style: preserve-3d;
+	z-index: 1;
+}
+
+.showPayment .videoContainer {	
+  transform: rotateY(180deg);
+}
+
+.videoPlayer {
+	height: 100%;
+	position: relative;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+	background: white;
+	backface-visibility: hidden;
+	z-index: 2;
+}
+
+.payments {
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #f1f1f1;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
+	background: lightblue url("../../../../assets/images/universe-bg.jpg") no-repeat; 
+	background-size: 680px;
+	border-radius: 10px;
+}
+
+.payments .emailField {
+	margin-bottom: -20px;
+}
+
+.payments .emailField p {
+	color: white;
+	font-size: 10px;
+	margin: 0 0 1px 3px;
+}
+
+.payments .emailField input {
+	border-radius: 5px;
+	border: 1px solid gray;
+	padding: 5px 10px;
+	width: 207px;
+	height: 33px;
+	outline: none;
+}
+
+.payments .emailField input::placeholder {
+	color: lightgray;
+}
+
+.payments .emailField input:focus {
+	border: 2px solid #f7c556;
+}
+
+.payments .emailField button {
+	background: white;
+    padding: 9px;
+    margin-left: 10px;
+		border-radius: 3px;
+		color: #8a5b8a;
+}
+
+.videoBackButton {
+	color: #8a5b8a;
+	border: 1px solid white;
+	border-radius: 8px;
+	padding: 7px 16px;
+	cursor: pointer;
+	background: white;
+	font-weight: 500;
+}
+
+.videoPrice {
+	color: white;
+	border-bottom: 1px solid white;
+	padding: 7px;
+}
+
+.payPalWrapper {
+	width: 40%;
+	background: rgba(255, 255, 255, .5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.videoLabel {
+	position: absolute;
+	top: -2px;
+	right: 0px;
+	z-index: 1;
+	width: 640px;
+	opacity: .9;
+}
+
+.videoPlaceholder {
+	position: absolute;
+	width: 100%;
+}
+
+.playButton {
+	z-index: 1;
+	width: 100%;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	opacity: .8;
+}
+
+.playButton img {
+	width: 80px;
+}
+
+.showLabel {
+	width: 76px;
+	border: 1px solid #e0e0e0;
+	text-align: center;
+	padding: 18px 9px 9px 9px;
+	border-radius: 15px;
+	line-height: 1.3;
+	background: white;
+	color: gray;
+	font-size: 11px;
+	transition: all .2s ease-in-out;
+	position: absolute;
+	top: 345px;
+	left: 30px;
+	-webkit-box-shadow: 0px 8px 14px -15px rgba(99,99,99,1);
+    -moz-box-shadow: 0px 8px 14px -15px rgba(99,99,99,1);
+    box-shadow: 0px 8px 14px -15px rgba(99,99,99,1);
+}
+
+.showLabel p {
+	margin-bottom: 0;
+	margin-top: 3px;
+}
+
+.arrowDown::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+	content: "\f144";
+	font-size: 20px;
+	color: lightgray;
+}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
-import { getCookie } from '../../utils';
 import { USERIP_QUERY } from '../../operations/queries';
 import Loader from '../loader';
 import Error from '../error';
@@ -16,15 +15,6 @@ export const AppContext = React.createContext(defaultState);
 
 export function withAppData(WrappedComponent) {
   class WithAppData extends React.Component {
-    constructor(props) {
-      super(props);
-      const cookieEmail = getCookie('dash-user-email');
-
-      this.state = {
-        cookieEmail,
-      };
-    }
-
     render() {
       return (
         <Query query={USERIP_QUERY}>
