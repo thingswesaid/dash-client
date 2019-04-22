@@ -19,18 +19,14 @@ const mapper = {
 
 // add (i) right next to already purchased - pop up will explain the email used for purchase
 // build video suggestion section on the left
-// fix hover issue on video images
-// look into teespring for api / display product (or just store image and link in DB)
-// implement lazyloading for images
 // build Mobile view (copy youtube app layout - video fixed - label - suggested)
 // check user status and ip blocked before showing the page
-// build other pages listed in router component
+// look into teespring for api / display product (or just store image and link in DB)
+// implement lazyloading for images
 // find where to store images - cdn
-// check if embedded shows commercials (make private video with forcing adds to test | maybe nocookie might be an issue)
+// build other pages listed in router component
 
-// MEMBERS early release (watch on website?)
-
-// TODO break in smaller components - refactor
+// MEMBERS early release (watch on youtube so people can like and comment)
 
 export default (props) => {
   const { videoId, userIp } = props;
