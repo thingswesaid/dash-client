@@ -198,7 +198,13 @@ export default class MainVideo extends Component {
               <div className="emailField">
                 <div className="alreadyPurchased">
                   <p>ALREADY PURCHASED?</p>
-                  <i className="fas fa-info-circle" onClick={() => { this.setState({ showModal: true }); }} />
+                  <i
+                    className="fas fa-info-circle"
+                    onClick={() => { this.setState({ showModal: true }); }}
+                    onKeyDown={() => { this.setState({ showModal: true }); }}
+                    role="button"
+                    tabIndex={0}
+                  />
                 </div>
                 <div>
                   <input

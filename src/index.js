@@ -26,6 +26,10 @@ const AppFrameWithData = withAppData(AppFrame);
 // terms and conditions page (content centered with universe icons on the sides)
 // emails page (if it's possible to serve them from this site)
 // email your account has been suspended, too many ips using it - contact us info@dashinbetween.com
+// email new videos
+// email we'll answer ASAP
+// build search component - elastic search video names
+
 
 render((
   <ApolloProvider client={client}>
