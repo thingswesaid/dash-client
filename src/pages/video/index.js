@@ -2,9 +2,11 @@
 import React, { Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 
-import { getVideoQuery } from '../../operations/queries';
+import { getVideoQuery, latestVideosQuery } from '../../operations/queries';
 import { addUserIpMutation, createAnonymousIpMutation, addUserToVideoMutation } from '../../operations/mutations';
 import MainVideo from './components/main-video';
+import Promo from './components/promo-video';
+import SuggestedVideos from './components/suggested-videos';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import VideoNotFound from './components/video-not-found';
@@ -12,6 +14,7 @@ import './index.css';
 
 const mapper = {
   getVideoQuery,
+  latestVideosQuery,
   addUserIpMutation,
   createAnonymousIpMutation,
   addUserToVideoMutation,
@@ -34,31 +37,39 @@ export default (props) => {
       <Adopt mapper={mapper} id={videoId} ip={userIp}>
         {({
           getVideoQuery: getVideo,
+          latestVideosQuery: latestVideos,
           addUserIpMutation: addUserIp,
           createAnonymousIpMutation: createAnonymousIp,
           addUserToVideoMutation: addUserToVideo,
         }) => {
           const {
-            data, loading, error, refetch,
+            data: videoResp, loading, error, refetch,
           } = getVideo;
+          const { data: { latestVideos: suggestedVideos } } = latestVideos;
+
           if (loading) { return <Loader />; }
           if (error) { return <Error error={error} />; } /* log to sumo or similar */
-          if (!data.videos.length || !data.videos[0].published) { return <VideoNotFound />; }
+          // create query param to see videos that are not published
+          if (!videoResp.videos.length || !videoResp.videos[0].published) { return <VideoNotFound />; }
 
-          const video = data.videos[0];
+          const video = videoResp.videos[0];
+
           return (
             <Fragment>
               <div className="page">
-                <div className="suggestion" />
-                <MainVideo
-                  video={video}
-                  userIp={userIp}
-                  addUserIp={addUserIp}
-                  refetchVideo={refetch}
-                  addUserToVideo={addUserToVideo}
-                  createAnonymousIp={createAnonymousIp}
-                />
-                <div className="ads" />
+                <div className="videoWrapper">
+                  <MainVideo
+                    video={video}
+                    userIp={userIp}
+                    addUserIp={addUserIp}
+                    refetchVideo={refetch}
+                    addUserToVideo={addUserToVideo}
+                    createAnonymousIp={createAnonymousIp}
+                  />
+                  <div className="separator" />
+                  <Promo />
+                </div>
+                <SuggestedVideos videos={suggestedVideos} />
               </div>
               <div className="merch" />
             </Fragment>

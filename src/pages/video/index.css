@@ -1,25 +1,28 @@
 .page {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-around;
-
-	/* margin-top: 50px; temp  */
+	max-width: 1400px;
+	align-items: center;
+	margin: 0 auto;
 }
 
-.suggestion {
-	height: 360px;
-	width: 200px;
-	border: 1px solid gray;
+.videoWrapper {
+	display: flex;
+	justify-content: center;
+	max-width: 1250px;
+	align-items: center;
 }
 
-.ads {
-	height: 360px;
-	width: 200px;
-	border: 1px solid orange;
+.separator {
+	height: 380px;
+	border-right: 1px solid rgb(210, 210, 210);
+	margin: 0 35px 0 50px;
 }
 
 .merch {
 	height: 135px;
-	width: 94%;
+	width: 96%;
 	margin: 0 auto;
 	border: 1px solid greenyellow;
 	margin-top: 80px;

@@ -10,7 +10,6 @@ import {
 
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import AppFrame from './shared-components/app-frame';
-import FeedPage from './pages/FeedPage';
 import VideoPage from './pages/video';
 
 import './index.css';
@@ -38,7 +37,6 @@ render((
         <AppContext.Consumer>
           {({ userIp }) => (
             <Switch>
-              <Route exact path="/" component={FeedPage} />
               <Route
                 path="/video/:id"
                 render={

@@ -1,4 +1,4 @@
-.navbar {
+.navbarContainer {
 	height: 50px;
 	display: flex;
 	justify-content: start;
@@ -10,9 +10,13 @@
 	border-bottom: 1px solid rgb(224, 226, 227);
 	padding: 0 15px;
 	background: rgba(255, 255, 255, .9);
-
 }
 
-.navbar img {
+.navBar {
+	margin: 0 auto;
+	min-width: 1400px;
+}
+
+.navbarContainer img {
 	width: 100px;
 }

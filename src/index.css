@@ -1,11 +1,17 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300, 400';
+@import 'https://fonts.googleapis.com/css?family=Raleway';
 
+@font-face {
+  font-family: 'Raleway', sans-serif;
+  src: url('./assets/fonts/tagliner.ttf');
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
   background: rgba(191, 191, 191, 0.05);
+  color: #4f4f4f;
 }
 
 html {

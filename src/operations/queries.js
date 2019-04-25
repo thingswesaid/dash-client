@@ -13,6 +13,8 @@ const VIDEO_QUERY = gql`
       published
       amount
       start
+      type
+      familyId
       users {
         id
         email
@@ -29,12 +31,38 @@ export const USERIP_QUERY = gql`
   }
 `;
 
+export const LATEST_VIDEOS_QUERY = gql` 
+  query LatestVideosQuery($type: String!, $skipId: String, $familyId: String) {
+    latestVideos(type: $type, skipId: $skipId, familyId: $familyId) {
+      id
+      title
+      name
+      image
+      published
+    }
+  }
+`;
+
 export const getVideoQuery = ({ render, id }) => (
-  // eslint-disable-next-line react/no-this-in-sfc
-  <Query
-    query={VIDEO_QUERY}
-    variables={{ id }}
-  >
+  <Query query={VIDEO_QUERY} variables={{ id }}>
     {render}
+  </Query>
+);
+
+export const latestVideosQuery = ({ render, id }) => (
+  <Query query={VIDEO_QUERY} variables={{ id }}>
+    {({ data: { videos } }) => {
+      const video = videos ? videos[0] : {};
+      const { id: videoId, type, familyId } = video;
+      const hasVideo = Object.keys(video).length;
+      return hasVideo ? (
+        <Query
+          query={LATEST_VIDEOS_QUERY}
+          variables={{ type, familyId, skipId: videoId }}
+        >
+          {render}
+        </Query>
+      ) : '';
+    }}
   </Query>
 );
