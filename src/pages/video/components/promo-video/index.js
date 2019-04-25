@@ -1,10 +1,11 @@
 import React from 'react';
+import Image from '../../../../shared-components/image';
 import './index.css';
 
 // will have to come from API - onClick takes you to youtube on new tab
 export default ({
   video: {
-    link, title, description, image,
+    link, title, description, image, placeholder,
   },
 }) => (
   <div className="promoVideo">
@@ -12,7 +13,7 @@ export default ({
       <p className="sectionTitle">POPULAR READING</p>
       <div className="imageContainer">
         <button className="image-container shadow" type="button">
-          <img src={image} alt="reading video placeholder" />
+          <Image image={image} placeholder={placeholder} className="image" />
         </button>
         <p className="title">{title}</p>
       </div>

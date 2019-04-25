@@ -34,20 +34,23 @@
 	justify-content: space-between;
 }
 
-.suggestion .video img {
+.suggestion .video .image {
 	height: 95px;
 	border-radius: 3px;
 	opacity: .9;
 	cursor: pointer;
 	transition: all .1s ease-in-out;
-	-webkit-filter: grayscale(30%);
-  filter: grayscale(30%);
+}
+
+.suggestedImageContainer {
+	overflow: hidden;
+	border-radius: 10px;
+	min-width: 170px;
 }
 
 .suggestion .video img:hover {
 	opacity: 1;
 	transform: scale(1.02);
-	filter: none;
 }
 
 .suggestion .video img:active {

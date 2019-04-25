@@ -4,6 +4,7 @@ import YouTube from 'react-youtube';
 import classNames from 'classnames';
 import { toast as addNotification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
+import Image from '../../../../shared-components/image';
 
 import { getCookie } from '../../../../utils';
 import Modal from '../../../../shared-components/modal';
@@ -35,7 +36,6 @@ export default class MainVideo extends Component {
     } = this;
     const cookieEmail = getCookie('dash-user-email');
     const user = users.filter(({ email }) => email === cookieEmail || email === emailField)[0];
-
     if (!user) {
       this.setState({ showPayment: true, videoOpen: false });
       return undefined;
@@ -118,7 +118,6 @@ export default class MainVideo extends Component {
       showPreview: false,
       showPayment: false,
     });
-
     refetchVideo();
     return undefined;
   }
@@ -144,7 +143,7 @@ export default class MainVideo extends Component {
     } = this.props;
 
     const {
-      id: queryVideoId, image, link, preview, start, amount,
+      id: queryVideoId, image, placeholder, link, preview, start, amount,
     } = video;
     const videoLabel = showPreview ? labelPreview : labelExtended;
 
@@ -188,7 +187,7 @@ export default class MainVideo extends Component {
                   >
                     <img src={playButton} alt="play button" />
                   </button>
-                  <img src={image} className="videoPlaceholder" alt="placeholder" />
+                  <Image image={image} placeholder={placeholder} className="videoPlaceholder" />
                 </Fragment>
               )}
             </div>

@@ -10,6 +10,7 @@ const VIDEO_QUERY = gql`
       link
       preview
       image
+      placeholder
       published
       amount
       start
@@ -38,6 +39,7 @@ export const LATEST_VIDEOS_QUERY = gql`
       title
       name
       image
+      placeholder
       published
     }
   }
@@ -50,6 +52,7 @@ export const PROMO_VIDEOS_QUERY = gql`
       title
       description
       image
+      placeholder
     }
   }
 `;

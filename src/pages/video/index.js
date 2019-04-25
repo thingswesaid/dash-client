@@ -21,7 +21,8 @@ const mapper = {
   addUserToVideoMutation,
 };
 
-// build video suggestion section on the left
+// >>> buy video - then click to preview - then back to extended doesn't work
+// util.js published video select <<<
 // build Mobile view (copy youtube app layout - video fixed - label - suggested)
 // check user status and ip blocked before showing the page
 // look into teespring for api / display product (or just store image and link in DB)
@@ -51,9 +52,6 @@ export default (props) => {
           const { data: { promoVideos: promoVideosArray } } = promoVideos;
 
           const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
-
-          console.log('promoVideo', promoVideo);
-
 
           if (loading) { return <Loader />; }
           if (error) { return <Error error={error} />; } /* log to sumo or similar */

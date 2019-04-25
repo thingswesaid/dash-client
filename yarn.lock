@@ -7393,6 +7393,10 @@ react-paypal-button-v2@^2.3.1:
     "@babel/polyfill" "^7.2.5"
     prop-types "^15.7.2"
 
+react-progressive-image@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-progressive-image/-/react-progressive-image-0.6.0.tgz#56b1c7153a6e1ebbe2a3bbf8f98c37410fbc67c2"
+
 react-router-dom@4.4.0-beta.8:
   version "4.4.0-beta.8"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.4.0-beta.8.tgz#bc85cb4bdc9347f5fe270f3e4555cd5038ae7a9f"
