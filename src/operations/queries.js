@@ -43,6 +43,17 @@ export const LATEST_VIDEOS_QUERY = gql`
   }
 `;
 
+export const PROMO_VIDEOS_QUERY = gql` 
+  query PromoVideosQuery($familyId: String) {
+    promoVideos(familyId: $familyId) {
+      link
+      title
+      description
+      image
+    }
+  }
+`;
+
 export const getVideoQuery = ({ render, id }) => (
   <Query query={VIDEO_QUERY} variables={{ id }}>
     {render}
@@ -59,6 +70,24 @@ export const latestVideosQuery = ({ render, id }) => (
         <Query
           query={LATEST_VIDEOS_QUERY}
           variables={{ type, familyId, skipId: videoId }}
+        >
+          {render}
+        </Query>
+      ) : '';
+    }}
+  </Query>
+);
+
+export const promoVideosQuery = ({ render, id }) => (
+  <Query query={VIDEO_QUERY} variables={{ id }}>
+    {({ data: { videos } }) => {
+      const video = videos ? videos[0] : {};
+      const { familyId } = video;
+      const hasVideo = Object.keys(video).length;
+      return hasVideo ? (
+        <Query
+          query={PROMO_VIDEOS_QUERY}
+          variables={{ familyId }}
         >
           {render}
         </Query>

@@ -23,4 +23,4 @@ export default ({ videos }) => {
     </div>
   );
 };
-// check published
+// check published <<<

@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 
-import { getVideoQuery, latestVideosQuery } from '../../operations/queries';
+import { getVideoQuery, latestVideosQuery, promoVideosQuery } from '../../operations/queries';
 import { addUserIpMutation, createAnonymousIpMutation, addUserToVideoMutation } from '../../operations/mutations';
 import MainVideo from './components/main-video';
 import Promo from './components/promo-video';
@@ -15,6 +15,7 @@ import './index.css';
 const mapper = {
   getVideoQuery,
   latestVideosQuery,
+  promoVideosQuery,
   addUserIpMutation,
   createAnonymousIpMutation,
   addUserToVideoMutation,
@@ -38,6 +39,7 @@ export default (props) => {
         {({
           getVideoQuery: getVideo,
           latestVideosQuery: latestVideos,
+          promoVideosQuery: promoVideos,
           addUserIpMutation: addUserIp,
           createAnonymousIpMutation: createAnonymousIp,
           addUserToVideoMutation: addUserToVideo,
@@ -46,6 +48,12 @@ export default (props) => {
             data: videoResp, loading, error, refetch,
           } = getVideo;
           const { data: { latestVideos: suggestedVideos } } = latestVideos;
+          const { data: { promoVideos: promoVideosArray } } = promoVideos;
+
+          const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
+
+          console.log('promoVideo', promoVideo);
+
 
           if (loading) { return <Loader />; }
           if (error) { return <Error error={error} />; } /* log to sumo or similar */
@@ -67,7 +75,7 @@ export default (props) => {
                     createAnonymousIp={createAnonymousIp}
                   />
                   <div className="separator" />
-                  <Promo />
+                  <Promo video={promoVideo} />
                 </div>
                 <SuggestedVideos videos={suggestedVideos} />
               </div>

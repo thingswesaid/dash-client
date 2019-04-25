@@ -7,6 +7,12 @@
 	align-items: center;
 }
 
+.promoVideo a {
+	text-decoration: none;
+	color: #535353;
+	text-align: center;
+}
+
 .promoVideo .sectionTitle {
 	font-weight: 600;
     margin: 0;
@@ -30,7 +36,7 @@
 }
 
 .promoVideo .imageContainer img {
-	height: 100%;
+	height: 105%;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -45,6 +51,7 @@
 	background: #1500006e;
 	padding: 5px;
 	border-radius: 10px;
+	top: 170px;
 }
 
 .promoVideo p.description {
