@@ -12,8 +12,8 @@ export default ({ videos }) => {
       <p className="title">MORE FOR YOU</p>
       <div className="videosList">
         {allVideos.map(({
-          image, placeholder, title, id, published,
-        }) => (published ? (
+          image, placeholder, title, id,
+        }) => (
           <a href={`/video/${id.slice(-5)}`} key={idGenerator()}>
             <div className="video">
               <div className="suggestedImageContainer">
@@ -22,9 +22,8 @@ export default ({ videos }) => {
               <p>{title}</p>
             </div>
           </a>
-        ) : ''))}
+        ))}
       </div>
     </div>
   );
 };
-// check published <<<

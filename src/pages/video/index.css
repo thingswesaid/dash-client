@@ -10,14 +10,28 @@
 .videoWrapper {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
 	max-width: 1250px;
 	align-items: center;
+}
+
+@media screen and (min-width: 970px) {
+	.videoWrapper {
+		flex-direction: row;
+	}
 }
 
 .separator {
 	height: 380px;
 	border-right: 1px solid rgb(210, 210, 210);
 	margin: 0 35px 0 50px;
+	display: none;
+}
+
+@media screen and (min-width: 1060px) {
+	.separator {
+		display: inherit;
+	}
 }
 
 .merch {

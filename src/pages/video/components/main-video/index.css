@@ -1,8 +1,25 @@
 .cardsContainer {
 	background-color: transparent;
 	perspective: 1000px;
-	width: 700px;
-	height: 394px;
+	width: 100%;
+	position: fixed;
+	top: 50px;
+	z-index: 2;
+	height: 370px;
+}
+
+
+@media screen and (min-width: 970px) {
+	.cardsContainer {
+		width: 700px;
+		position: inherit;
+	}
+}
+
+@media screen and (min-width: 730px) {
+	.cardsContainer {
+		height: 394px;
+	}
 }
 
 .videoContainer {
@@ -21,18 +38,33 @@
 .videoPlayer {
 	height: 100%;
 	position: relative;
-	border-radius: 10px;
 	overflow: hidden;
 	position: relative;
 	background: white;
 	backface-visibility: hidden;
 	z-index: 2;
+	background: black;
+	display: flex;
+	justify-content: center;
+}
+
+@media screen and (min-width: 970px) {
+	.videoPlayer {
+		border-radius: 10px;
+	}
 }
 
 .videoPlayer iframe {
-	width: 700px;
-	height: 394px;
+	width: 100vw;
 }
+
+@media screen and (min-width: 730px) {
+	.videoPlayer iframe {
+		width: 700px;
+		height: 394px;
+	}
+}
+
 
 .payments {
 	transform: rotateY(180deg);
@@ -122,7 +154,7 @@
 
 .videoPlaceholder {
 	position: absolute;
-	width: 100%;
+	height: 100%;
 }
 
 .playButton {

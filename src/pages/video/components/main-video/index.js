@@ -59,7 +59,7 @@ export default class MainVideo extends Component {
     const valid = EMAIL_REGEX.test(String(emailField).toLowerCase());
     if (!valid) {
       return addNotification.info(
-        'Email format not valid.', // move to constants
+        'Email format not valid.', // TODO move to constants
         { className: 'notification notificationError' },
       );
     }
@@ -77,7 +77,7 @@ export default class MainVideo extends Component {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  processPayment(payment, videoId, addUserToVideo) {
+  async processPayment(payment, videoId, addUserToVideo) {
     const { userIp, refetchVideo } = this.props;
     const {
       id: paymentId,
@@ -118,7 +118,7 @@ export default class MainVideo extends Component {
       showPreview: false,
       showPayment: false,
     });
-    refetchVideo();
+    await refetchVideo();
     return undefined;
   }
 
@@ -193,7 +193,7 @@ export default class MainVideo extends Component {
             </div>
             <div className="payments">
               <div className="videoPrice">ONLY $4.99</div>
-              {/* make amount dynamic */}
+              {/* TODO make amount dynamic */}
               <div className="emailField">
                 <div className="alreadyPurchased">
                   <p>ALREADY PURCHASED?</p>
@@ -222,7 +222,7 @@ export default class MainVideo extends Component {
                     this.processPayment(payment, queryVideoId, addUserToVideo);
                   }}
                   options={{
-                    // from process.env
+                    // TODO from process.env
                     clientId: 'AVYEH5XBfGFK5w3jgYL0HJWYrX5OleyMe31cugWyj7HC8nY4C2VYk-INYGqzmqB9ecJyQpe2cb5khiD-',
                   }}
                 />

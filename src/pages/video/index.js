@@ -26,11 +26,11 @@ const mapper = {
 // build Mobile view (copy youtube app layout - video fixed - label - suggested)
 // check user status and ip blocked before showing the page
 // look into teespring for api / display product (or just store image and link in DB)
-// implement lazyloading for images
 // find where to store images - cdn
 // build other pages listed in router component
 
 // MEMBERS early release (watch on youtube so people can like and comment)
+// Create and Mantain Facebook, IG to drive visits to videos in first 24 hours
 
 export default (props) => {
   const { videoId, userIp } = props;
@@ -54,8 +54,8 @@ export default (props) => {
           const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
 
           if (loading) { return <Loader />; }
-          if (error) { return <Error error={error} />; } /* log to sumo or similar */
-          // create query param to see videos that are not published
+          if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
+          // TODO create query param to add to the url to see videos that are not published ?showNotPublished=true
           if (!videoResp.videos.length || !videoResp.videos[0].published) { return <VideoNotFound />; }
 
           const video = videoResp.videos[0];
