@@ -6,17 +6,26 @@
 	position: fixed;
 	top: 0;
 	width: 100vw;
-	z-index: 2;
+	z-index: 3;
 	border-bottom: 1px solid rgb(224, 226, 227);
 	padding: 0 15px;
-	background: rgba(255, 255, 255, .9);
+	background: rgba(255, 255, 255, 1);
 }
 
 .navBar {
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
 	margin: 0 auto;
 	min-width: 1400px;
 }
 
 .navbarContainer img {
 	width: 100px;
+}
+
+@media screen and (min-width: 970px) {
+	.navbarContainer {
+		background: rgba(255, 255, 255, .9);
+	}
 }

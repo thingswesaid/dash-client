@@ -3,19 +3,21 @@
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	width: 1000px;
-	margin-top: 70px;
-	height: 175px;
+	width: 100%;
 }
 
 .suggestion .videosList {
 	display: flex;
-	justify-content: space-around;
+	justify-content: flex-start;
 	width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
 }
 
 .suggestion a {
 	text-decoration: none;
+	margin-left: 13px;
 }
 
 .suggestion .title {
@@ -65,3 +67,41 @@
 	font-weight: 100;
 	max-width: 155px;
 }
+
+@media screen and (min-width: 730px) and (max-width: 969px) {
+	.suggestion {
+		margin-top: 40px;
+	}
+}
+
+@media screen and (min-width: 970px) {
+	.suggestion {
+		width: 1000px;
+		margin-top: 50px;
+	}
+
+	.suggestion .videosList {
+		overflow: hidden;
+		justify-content: space-around;
+	}
+}
+
+/* @media screen and (max-width: 730px) {
+	.suggestion {
+		margin-top: -37vw;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.suggestion {
+		margin-top: 63vw;
+	}
+}
+
+@media screen and (max-width: 415px) {
+	.suggestion {
+		margin-top: 80vw;
+	}
+} */
+
+

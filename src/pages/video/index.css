@@ -13,12 +13,7 @@
 	flex-direction: column;
 	max-width: 1250px;
 	align-items: center;
-}
-
-@media screen and (min-width: 970px) {
-	.videoWrapper {
-		flex-direction: row;
-	}
+	height: 390px;
 }
 
 .separator {
@@ -28,16 +23,32 @@
 	display: none;
 }
 
-@media screen and (min-width: 1060px) {
-	.separator {
-		display: inherit;
-	}
-}
-
 .merch {
 	height: 135px;
 	width: 96%;
 	margin: 0 auto;
 	border: 1px solid greenyellow;
 	margin-top: 80px;
+}
+
+@media screen and (min-width: 1060px) {
+	.separator {
+		display: inherit;
+	}
+}
+
+@media screen and (min-width: 970px) {
+	.videoWrapper {
+		flex-direction: row;
+	}
+}
+
+@media screen and (max-width: 730px) {
+	.page {
+		display: inherit;
+	}
+
+	.videoWrapper {
+		height: 63vw;
+	}
 }

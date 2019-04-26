@@ -22,6 +22,8 @@ const mapper = {
 };
 
 // >>> buy video - then click to preview - then back to extended doesn't work
+// suggested video should not show current video (pass ID)
+// autoplay video on mobile
 // util.js published video select <<<
 // build Mobile view (copy youtube app layout - video fixed - label - suggested)
 // check user status and ip blocked before showing the page
@@ -75,6 +77,7 @@ export default (props) => {
                   <div className="separator" />
                   <Promo video={promoVideo} />
                 </div>
+                <div className="mobileWrapper" />
                 <SuggestedVideos videos={suggestedVideos} />
               </div>
               <div className="merch" />
