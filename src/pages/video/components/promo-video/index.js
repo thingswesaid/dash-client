@@ -1,11 +1,12 @@
 import React from 'react';
+import Media from 'react-media';
 import Image from '../../../../shared-components/image';
 import './index.css';
 
 export default ({
   orientation,
   video: {
-    link, title, description, image, placeholder,
+    link, title, description, image, placeholder, banner, bannerSmall,
   },
 }) => (orientation === 'portrait' ? (
   <div className="promoVideo">
@@ -21,18 +22,19 @@ export default ({
     </a>
   </div>
 ) : (
-  <div
+  <a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
     className="promoVideoMobile"
-    style={{ background: `url(${image}), no-repeat` }}
   >
-    <a
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="promoBackground"
-    >
-      <p className="title">{title}</p>
-      <p className="description">PICK A CARD READING</p>
-    </a>
-  </div>
+    <Media query="(min-width: 645px)">
+      {matches => (matches ? (
+        <img src={banner} />
+      ) : (
+        <img src={bannerSmall} />
+      ))
+          }
+    </Media>
+  </a>
 ));

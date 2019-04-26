@@ -53,6 +53,8 @@ export const PROMO_VIDEOS_QUERY = gql`
       description
       image
       placeholder
+      banner
+      bannerSmall
     }
   }
 `;

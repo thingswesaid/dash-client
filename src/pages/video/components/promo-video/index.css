@@ -70,42 +70,19 @@
 }
 
 .promoVideoMobile {
+	display: flex;
 	height: 90px;
 	width: 100vw;
-	text-decoration: none;
-	overflow: hidden;
-	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-size: cover !important;
-	background-position: center !important; 
 	cursor: pointer;
 	margin-top: 20px;
 }
 
-.promoVideoMobile a {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	color: white;
-	text-decoration: none;
-	padding: 0 3%;	
-}
-
-.promoVideoMobile a .title {
-	font-size: 2.5vw;
-	font-family: 'tagliner';
-}
-
-.promoVideoMobile a .description {
-	text-align: center;
-	font-weight: bold;
-	font-size: 2.5vw;
-}
-
-.descriptionMobile {
-	width: 280px;
+@media screen and (min-width: 970px) {
+	.promoVideoMobile {
+		display: none;
+	}
 }
 
 @media screen and (min-width: 1060px) {
