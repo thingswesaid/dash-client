@@ -6,6 +6,7 @@
 	justify-content: center;
 	align-items: center;
 	margin: 40px;
+	display: none;
 }
 
 .promoVideo a {
@@ -90,5 +91,11 @@
 @media screen and (min-width: 1060px) {
 	.promoVideo {
 		margin: inherit;
+	}
+}
+
+@media screen and (min-width: 970px) {
+	.promoVideo {
+		display: inherit;
 	}
 }

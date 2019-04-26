@@ -212,6 +212,12 @@
 		width: 700px;
 		position: inherit;
 	}
+
+	.videoContainer {
+		-webkit-box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
+		-moz-box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
+		box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
+	}
 }
 
 @media screen and (min-width: 730px) {

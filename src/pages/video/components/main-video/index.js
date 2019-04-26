@@ -162,7 +162,7 @@ export default class MainVideo extends Component {
           : ''
 				}
         <div className={classNames('cardsContainer', { showPayment })}>
-          <div className="videoContainer shadow">
+          <div className="videoContainer">
             <div className="videoPlayer">
               <img src={videoLabel} className="videoLabel" alt="video label" />
               { videoOpen || (hasAccess && videoOpen) ? (
