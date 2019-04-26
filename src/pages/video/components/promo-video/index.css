@@ -71,12 +71,17 @@
 
 .promoVideoMobile {
 	display: flex;
-	height: 90px;
+	height: 160px;
 	width: 100vw;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
 	margin-top: 20px;
+}
+
+.promoVideoMobile img {
+	height: 100%;
+	border-radius: 5px;
 }
 
 @media screen and (min-width: 970px) {
