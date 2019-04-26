@@ -172,7 +172,6 @@ export default class MainVideo extends Component {
                   opts={{
                     playerVars: {
                       autoplay: 1,
-                      mute: 1,
                       modestbranding: 1,
                       rel: 0,
                       start: !showPreview ? start : 0,

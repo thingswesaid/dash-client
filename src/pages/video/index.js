@@ -75,10 +75,11 @@ export default (props) => {
                     createAnonymousIp={createAnonymousIp}
                   />
                   <div className="separator" />
-                  <Promo video={promoVideo} />
+                  <Promo video={promoVideo} orientation="portrait" />
                 </div>
                 <div className="mobileWrapper" />
                 <SuggestedVideos videos={suggestedVideos} />
+                <Promo video={promoVideo} orientation="landscape" />
               </div>
               <div className="merch" />
             </Fragment>

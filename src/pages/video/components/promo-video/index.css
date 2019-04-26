@@ -17,7 +17,7 @@
 
 .promoVideo .sectionTitle {
 	font-weight: 600;
-    margin: 0;
+  margin: 0;
 	margin-bottom: 10px;
 	font-size: 18px;
 }
@@ -30,18 +30,19 @@
 }
 
 .promoVideo .imageContainer button {
-  width: 200px;
-  height: 200px;
+	width: 200px;
+	height: 200px;
 	position: relative;
 	overflow: hidden;
 	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .promoVideo .imageContainer .image {
 	height: 105%;
 	position: absolute;
-	top: 0;
-	left: 0;
 }
 
 .promoVideo .imageContainer p.title {
@@ -69,19 +70,38 @@
 }
 
 .promoVideoMobile {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	height: 120px;
+	height: 90px;
 	width: 100vw;
-	margin-top: 430px;
 	text-decoration: none;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-size: cover !important;
+	background-position: center !important; 
+	cursor: pointer;
+	margin-top: 20px;
 }
 
-.promoVideoMobile img {
-	width: 120px;
-	height: 120px;
-	border-radius: 50%;
+.promoVideoMobile a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	color: white;
+	text-decoration: none;
+	padding: 0 3%;	
+}
+
+.promoVideoMobile a .title {
+	font-size: 2.5vw;
+	font-family: 'tagliner';
+}
+
+.promoVideoMobile a .description {
+	text-align: center;
+	font-weight: bold;
+	font-size: 2.5vw;
 }
 
 .descriptionMobile {
