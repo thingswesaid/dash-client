@@ -2,20 +2,33 @@
 import React, { Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 
-import { getVideoQuery, latestVideosQuery, promoVideosQuery } from '../../operations/queries';
-import { addUserIpMutation, createAnonymousIpMutation, addUserToVideoMutation } from '../../operations/mutations';
 import MainVideo from './components/main-video';
 import Promo from './components/promo-video';
 import SuggestedVideos from './components/suggested-videos';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import VideoNotFound from './components/video-not-found';
+import Educational from './components/educational';
+import Merch from './components/merch';
 import './index.css';
+
+import {
+  getVideoQuery,
+  latestVideosQuery,
+  promoVideosQuery,
+  productsQuery,
+} from '../../operations/queries';
+import {
+  addUserIpMutation,
+  createAnonymousIpMutation,
+  addUserToVideoMutation,
+} from '../../operations/mutations';
 
 const mapper = {
   getVideoQuery,
   latestVideosQuery,
   promoVideosQuery,
+  productsQuery,
   addUserIpMutation,
   createAnonymousIpMutation,
   addUserToVideoMutation,
@@ -43,6 +56,7 @@ export default (props) => {
           getVideoQuery: getVideo,
           latestVideosQuery: latestVideos,
           promoVideosQuery: promoVideos,
+          productsQuery: products,
           addUserIpMutation: addUserIp,
           createAnonymousIpMutation: createAnonymousIp,
           addUserToVideoMutation: addUserToVideo,
@@ -52,8 +66,13 @@ export default (props) => {
           } = getVideo;
           const { data: { latestVideos: suggestedVideos } } = latestVideos;
           const { data: { promoVideos: promoVideosArray } } = promoVideos;
+          const { data: { products: productsArray } } = products;
 
           const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
+
+          console.log('=======================');
+          console.log('>>>>>>>>> PRODUCTS <<<<<<<<<<', productsArray);
+          console.log('=======================');
 
           if (loading) { return <Loader />; }
           if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
@@ -81,7 +100,10 @@ export default (props) => {
                 <SuggestedVideos videos={suggestedVideos} />
                 <Promo video={promoVideo} orientation="landscape" />
               </div>
-              <div className="merch" />
+              <div className="bottomPage">
+                <Educational />
+                <Merch />
+              </div>
             </Fragment>
           );
         }}

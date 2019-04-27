@@ -11,5 +11,5 @@ export const shuffle = (startArray) => {
     // TODO if (array[i].published) {
     [array[i], array[j]] = [array[j], array[i]];
   }
-  return array.slice(0, 5);
+  return array.slice(0, 12);
 };

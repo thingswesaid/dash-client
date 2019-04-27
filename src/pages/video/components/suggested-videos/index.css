@@ -81,8 +81,7 @@
 	}
 
 	.suggestion .videosList {
-		overflow: hidden;
-		justify-content: space-around;
+		justify-content: flex-start;
 	}
 }
 

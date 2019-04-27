@@ -59,6 +59,25 @@ export const PROMO_VIDEOS_QUERY = gql`
   }
 `;
 
+export const PRODUCT_QUERY = gql` 
+  query ProductsQuery($type: String) {
+    products(type: $type) {
+      link
+      name
+      description
+      image
+      placeholder
+      type
+    }
+  }
+`;
+
+export const productsQuery = ({ render, type }) => (
+  <Query query={PRODUCT_QUERY} variables={{ type }}>
+    {render}
+  </Query>
+);
+
 export const getVideoQuery = ({ render, id }) => (
   <Query query={VIDEO_QUERY} variables={{ id }}>
     {render}

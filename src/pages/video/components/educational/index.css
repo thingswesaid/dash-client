@@ -1,0 +1,21 @@
+.educational {
+   width: 50%; 
+}
+
+.educational img {
+	width: 230px;
+	margin-left: -8px;
+}
+
+.educational p {
+	width: 380px;
+	text-align: justify;
+}
+
+.educational p.dashEdu {
+	font-weight: 600;
+}
+
+.educational span {
+	color: #f1c40f;
+}
