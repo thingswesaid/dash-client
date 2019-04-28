@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 
+import { sort } from '../../utils';
 import MainVideo from './components/main-video';
 import Promo from './components/promo-video';
 import SuggestedVideos from './components/suggested-videos';
@@ -69,10 +70,7 @@ export default (props) => {
           const { data: { products: productsArray } } = products;
 
           const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
-
-          console.log('=======================');
-          console.log('>>>>>>>>> PRODUCTS <<<<<<<<<<', productsArray);
-          console.log('=======================');
+          const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
 
           if (loading) { return <Loader />; }
           if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
@@ -102,7 +100,7 @@ export default (props) => {
               </div>
               <div className="bottomPage">
                 <Educational />
-                <Merch />
+                <Merch products={productsArray || []} types={productTypes} />
               </div>
             </Fragment>
           );

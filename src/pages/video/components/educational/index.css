@@ -1,5 +1,6 @@
 .educational {
-   width: 50%; 
+	width: 40%;
+	display: none;
 }
 
 .educational img {
@@ -8,14 +9,17 @@
 }
 
 .educational p {
-	width: 380px;
 	text-align: justify;
+	max-width: 390px;
+	font-weight: 100;
 }
 
 .educational p.dashEdu {
 	font-weight: 600;
 }
 
-.educational span {
-	color: #f1c40f;
+@media screen and (min-width: 770px) {
+	.educational {
+		display: initial;
+	}
 }

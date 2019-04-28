@@ -15,7 +15,7 @@ Platform:
 
 npm manifest: 
   {
-    "name": "react-fullstack-basic",
+    "name": "dash-in-between",
     "version": "1.0.0",
     "devDependencies": {
       "eslint": "^5.16.0",
@@ -26,17 +26,24 @@ npm manifest:
     },
     "dependencies": {
       "apollo-boost": "0.3.1",
+      "classnames": "^2.2.6",
       "express": "^4.16.4",
       "graphql": "14.0.2",
       "http": "^0.0.0",
       "path": "^0.12.7",
       "react": "16.8.6",
+      "react-adopt": "^0.6.0",
       "react-apollo": "2.5.4",
+      "react-async-script-loader": "^0.3.0",
       "react-dom": "16.8.6",
+      "react-id-generator": "^0.1.6",
+      "react-media": "^1.9.2",
       "react-modal": "3.8.1",
+      "react-paypal-button-v2": "^2.3.1",
+      "react-progressive-image": "^0.6.0",
       "react-router-dom": "4.4.0-beta.8",
       "react-scripts": "^2.1.8",
-      "react-stripe-checkout": "^2.6.3",
+      "react-toastify": "^5.1.0",
       "react-youtube": "^7.9.0",
       "tachyons": "4.11.1"
     },
@@ -692,6 +699,13 @@ Lockfile:
       "@babel/helper-regex" "^7.4.3"
       regexpu-core "^4.5.4"
   
+  "@babel/polyfill@^7.2.5":
+    version "7.4.3"
+    resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.4.3.tgz#332dc6f57b718017c3a8b37b4eea8aa6eeac1187"
+    dependencies:
+      core-js "^2.6.5"
+      regenerator-runtime "^0.13.2"
+  
   "@babel/preset-env@7.3.1":
     version "7.3.1"
     resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.3.1.tgz#389e8ca6b17ae67aaf9a2111665030be923515db"
@@ -816,7 +830,7 @@ Lockfile:
     dependencies:
       regenerator-runtime "^0.12.0"
   
-  "@babel/runtime@^7.1.2":
+  "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.4.2":
     version "7.4.3"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.3.tgz#79888e452034223ad9609187a0ad1fe0d2ad4bdc"
     dependencies:
@@ -2165,6 +2179,10 @@ Lockfile:
       isobject "^3.0.0"
       static-extend "^0.1.1"
   
+  classnames@^2.2.6:
+    version "2.2.6"
+    resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  
   clean-css@4.2.x:
     version "4.2.1"
     resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.1.tgz#2d411ef76b8569b6d0c84068dabe85b0aa5e5c17"
@@ -2412,7 +2430,7 @@ Lockfile:
     version "1.2.7"
     resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   
-  core-js@^2.4.0, core-js@^2.5.0:
+  core-js@^2.4.0, core-js@^2.5.0, core-js@^2.6.5:
     version "2.6.5"
     resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   
@@ -2927,6 +2945,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dom-converter/-/dom-converter-0.2.0.tgz#6721a9daee2e293682955b6afe416771627bb768"
     dependencies:
       utila "~0.4"
+  
+  dom-helpers@^3.4.0:
+    version "3.4.0"
+    resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
+    dependencies:
+      "@babel/runtime" "^7.1.2"
   
   dom-serializer@0:
     version "0.1.1"
@@ -4205,6 +4229,14 @@ Lockfile:
     version "4.2.1"
     resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
   
+  hoist-non-react-statics@^1.0.3:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
+  
+  hoist-non-react-statics@^2.5.0:
+    version "2.5.5"
+    resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+  
   hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
     version "3.3.0"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
@@ -5319,6 +5351,12 @@ Lockfile:
   json-stringify-safe@~5.0.1:
     version "5.0.1"
     resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
+  
+  json2mq@^0.2.0:
+    version "0.2.0"
+    resolved "https://registry.yarnpkg.com/json2mq/-/json2mq-0.2.0.tgz#b637bd3ba9eabe122c83e9720483aeb10d2c904a"
+    dependencies:
+      string-convert "^0.2.0"
   
   json3@^3.3.2:
     version "3.3.2"
@@ -7318,6 +7356,14 @@ Lockfile:
       minimist "^1.2.0"
       strip-json-comments "~2.0.1"
   
+  react-adopt@^0.6.0:
+    version "0.6.0"
+    resolved "https://registry.yarnpkg.com/react-adopt/-/react-adopt-0.6.0.tgz#e5ff903a655d3082217f82bc9d5033a4b64fafad"
+    dependencies:
+      hoist-non-react-statics "^2.5.0"
+      react "^16.3.2"
+      react-display-name "^0.2.4"
+  
   react-apollo@2.5.4:
     version "2.5.4"
     resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.4.tgz#4b5ad2e9e38001521d072445acdb5b3b5489b22d"
@@ -7338,6 +7384,12 @@ Lockfile:
       promise "8.0.2"
       raf "3.4.1"
       whatwg-fetch "3.0.0"
+  
+  react-async-script-loader@^0.3.0:
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/react-async-script-loader/-/react-async-script-loader-0.3.0.tgz#c742b3ca25e08ba61ab7eb64371f814027692b86"
+    dependencies:
+      hoist-non-react-statics "^1.0.3"
   
   react-dev-utils@^8.0.0:
     version "8.0.0"
@@ -7369,6 +7421,10 @@ Lockfile:
       strip-ansi "5.0.0"
       text-table "0.2.0"
   
+  react-display-name@^0.2.4:
+    version "0.2.4"
+    resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.4.tgz#e2a670b81d79a2204335510c01246f4c92ff12cf"
+  
   react-dom@16.8.6:
     version "16.8.6"
     resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
@@ -7382,13 +7438,26 @@ Lockfile:
     version "5.1.4"
     resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.4.tgz#88dfb88857c18ceb3b9f95076f850d7121776991"
   
+  react-id-generator@^0.1.6:
+    version "0.1.6"
+    resolved "https://registry.yarnpkg.com/react-id-generator/-/react-id-generator-0.1.6.tgz#188328baa52509013b333ae208e65a9a0a9735f9"
+  
   react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
     version "16.8.6"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   
-  react-lifecycles-compat@^3.0.0:
+  react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
     version "3.0.4"
     resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  
+  react-media@^1.9.2:
+    version "1.9.2"
+    resolved "https://registry.yarnpkg.com/react-media/-/react-media-1.9.2.tgz#423ee12f952e1d69f1b994a58d3cbed21a92b370"
+    dependencies:
+      "@babel/runtime" "^7.2.0"
+      invariant "^2.2.2"
+      json2mq "^0.2.0"
+      prop-types "^15.5.10"
   
   react-modal@3.8.1:
     version "3.8.1"
@@ -7398,6 +7467,17 @@ Lockfile:
       prop-types "^15.5.10"
       react-lifecycles-compat "^3.0.0"
       warning "^3.0.0"
+  
+  react-paypal-button-v2@^2.3.1:
+    version "2.3.1"
+    resolved "https://registry.yarnpkg.com/react-paypal-button-v2/-/react-paypal-button-v2-2.3.1.tgz#9f56445b52498d03f779f18950dc5b74bb9c0a50"
+    dependencies:
+      "@babel/polyfill" "^7.2.5"
+      prop-types "^15.7.2"
+  
+  react-progressive-image@^0.6.0:
+    version "0.6.0"
+    resolved "https://registry.yarnpkg.com/react-progressive-image/-/react-progressive-image-0.6.0.tgz#56b1c7153a6e1ebbe2a3bbf8f98c37410fbc67c2"
   
   react-router-dom@4.4.0-beta.8:
     version "4.4.0-beta.8"
@@ -7479,9 +7559,23 @@ Lockfile:
     optionalDependencies:
       fsevents "1.2.4"
   
-  react-stripe-checkout@^2.6.3:
-    version "2.6.3"
-    resolved "https://registry.yarnpkg.com/react-stripe-checkout/-/react-stripe-checkout-2.6.3.tgz#3173a870b04e5a3c321a06d24cd53c6030111c45"
+  react-toastify@^5.1.0:
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-5.1.0.tgz#aefe1f084bf4733f083423f013d24242cb63c482"
+    dependencies:
+      "@babel/runtime" "^7.4.2"
+      classnames "^2.2.6"
+      prop-types "^15.7.2"
+      react-transition-group "^2.6.1"
+  
+  react-transition-group@^2.6.1:
+    version "2.9.0"
+    resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
+    dependencies:
+      dom-helpers "^3.4.0"
+      loose-envify "^1.4.0"
+      prop-types "^15.6.2"
+      react-lifecycles-compat "^3.0.4"
   
   react-youtube@^7.9.0:
     version "7.9.0"
@@ -7491,7 +7585,7 @@ Lockfile:
       prop-types "^15.5.3"
       youtube-player "^5.5.1"
   
-  react@16.8.6:
+  react@16.8.6, react@^16.3.2:
     version "16.8.6"
     resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
     dependencies:
@@ -8296,6 +8390,10 @@ Lockfile:
   stream-shift@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
+  
+  string-convert@^0.2.0:
+    version "0.2.1"
+    resolved "https://registry.yarnpkg.com/string-convert/-/string-convert-0.2.1.tgz#6982cc3049fbb4cd85f8b24568b9d9bf39eeff97"
   
   string-length@^2.0.0:
     version "2.0.0"

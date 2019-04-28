@@ -13,3 +13,10 @@ export const shuffle = (startArray) => {
   }
   return array.slice(0, 12);
 };
+
+export const sort = array => array.sort((a, b) => {
+  const typeA = a.toUpperCase();
+  const typeB = b.toUpperCase();
+  // eslint-disable-next-line no-nested-ternary
+  return (typeA < typeB) ? -1 : (typeA > typeB) ? 1 : 0;
+});

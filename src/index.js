@@ -14,8 +14,8 @@ import VideoPage from './pages/video';
 
 import './index.css';
 
-const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' });
-// const client = new ApolloClient({ uri: 'http://localhost:4000' });
+// const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' });
+const client = new ApolloClient({ uri: 'http://localhost:4000' });
 
 const AppFrameWithData = withAppData(AppFrame);
 
@@ -28,6 +28,9 @@ const AppFrameWithData = withAppData(AppFrame);
 // email new videos
 // email we'll answer ASAP
 // build search component - elastic search video names
+
+// fully test on all browsers
+// build recommendation engine
 
 
 render((
