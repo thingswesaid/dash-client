@@ -24,14 +24,14 @@
 }
 
 .bottomPage {
-	width: 90vw;
-	max-width: 960px;
-	margin: 0 auto;
-	margin-top: 30px;
-	display: flex;
-	justify-content: space-between;
-	border-top: 1px solid #d2d2d2;
-	padding: 20px 0;
+	width: 94vw;
+    max-width: 1070px;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #d2d2d2;
+    padding: 20px 0;
 }
 
 @media screen and (min-width: 1060px) {

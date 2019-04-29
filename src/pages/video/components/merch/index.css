@@ -10,10 +10,10 @@
 
 .merch .navMerch {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
+  align-items: center;
 	margin-bottom: 20px;
 	height: 25px;
-  align-items: center;
 }
 
 .merch .navMerch {
@@ -69,11 +69,12 @@
 }
 
 .merch .navMerch .type {
+	display: none;
 	cursor: pointer;
 	font-size: 14px;
 	color: gray;
 	outline:none;
-	display: none;
+	margin: 0px 13px;
 }
 
 .merch .navMerch .typeMobile {
@@ -95,67 +96,20 @@
 }
 
 .merch .products {
-	height: 400px;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	justify-content: center;
 	cursor: pointer;
-}
-
-.merch .line {
-	-webkit-box-shadow: -1px -52px 5px -47px rgba(122,122,122,1);
-	-moz-box-shadow: -1px -52px 5px -47px rgba(122,122,122,1);
-	box-shadow: -1px -52px 5px -47px rgba(122,122,122,1);
-	height: 25px;
-	background: transparent;
+	overflow: hidden;
 }
 
 .merch .products .product {
 	transition: all .1s ease-in-out;
 }
 
-.merch .products .product img {
+.merch .products .product .productImage {
 	width: 40vw;
 	margin: 7px;
-}
-
-@media screen and (min-width: 560px) {
-	.merch .navMerch .labelContainer {
-		display: none;
-	}
-	.merch .navMerch .type {
-		display: initial;
-	}
-}
-
-@media screen and (min-width: 573px) {
-	.merch .products .product img {
-		width: 26.5vw;
-	}
-}
-
-@media screen and (min-width: 770px) {
-	.merch {
-		margin: 0 0 0 50px;
-	}
-
-	.merch .products .product img {
-		width: 14.5vw;
-	}
-}
-
-@media screen and (min-width: 1065px) {
-	.merch .products .product img {
-		width: 158px;
-	}
-}
-
-@media screen and (min-width: 970px) {
-	.merch {
-		width: 60%;
-	}
 }
 
 .merch .products .product:hover {
@@ -167,3 +121,50 @@
   opacity: 1;
 	transform: scale(0.9);
 }
+
+@media screen and (min-width: 565px) {
+	.merch .navMerch .labelContainer {
+		display: none;
+	}
+	.merch .navMerch .type {
+		display: initial;
+	}
+
+	.merch .products .product .productImage {
+		width: 25vw;
+	}
+}
+
+@media screen and (min-width: 770px) {
+	.merch {
+		width: 60%;
+	}
+
+	.merch .products {
+		height: 400px;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.merch .products .product .productImage {
+		width: 15vw;
+		max-width: 190px;
+	}
+
+	.merch .navMerch .type {
+		font-size: 10px;
+	}
+}
+
+@media screen and (min-width: 940px) {
+	.merch .navMerch .type {
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 970px) {
+	.merch .products {
+		margin: 0px 9px;
+	}
+}
+
