@@ -33,7 +33,7 @@ export const USERIP_QUERY = gql`
 `;
 
 export const LATEST_VIDEOS_QUERY = gql` 
-  query LatestVideosQuery($type: String!, $skipId: String, $familyId: String) {
+  query LatestVideosQuery($type: String, $skipId: String, $familyId: String) {
     latestVideos(type: $type, skipId: $skipId, familyId: $familyId) {
       id
       title
@@ -88,6 +88,7 @@ export const latestVideosQuery = ({ render, id }) => (
   <Query query={VIDEO_QUERY} variables={{ id }}>
     {({ data: { videos } }) => {
       const video = videos ? videos[0] : {};
+      if (!video) { return render(); }
       const { id: videoId, type, familyId } = video;
       const hasVideo = Object.keys(video).length;
       return hasVideo ? (
@@ -106,6 +107,7 @@ export const promoVideosQuery = ({ render, id }) => (
   <Query query={VIDEO_QUERY} variables={{ id }}>
     {({ data: { videos } }) => {
       const video = videos ? videos[0] : {};
+      if (!video) { return render(); }
       const { familyId } = video;
       const hasVideo = Object.keys(video).length;
       return hasVideo ? (

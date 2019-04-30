@@ -1,0 +1,45 @@
+.notFound {
+	width: 100vw;
+	height: 100vh;
+}
+
+.notFound p.main {
+	text-align: center;
+	font-weight: 700;
+	font-size: 20px;
+	letter-spacing: 4px;
+	color: gray;
+}
+
+.notFound p {
+	font-size: 13px;
+	letter-spacing: 2px;
+	margin: 0 0 10px;
+	text-align: center;
+}
+
+.notFound .container {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.notFound .image {
+	width: 50%;
+	margin: -2px 0;
+	opacity: .8;
+	transition: all .1s ease-in-out;
+}
+
+.notFound .image:hover { 
+	opacity: 1;
+}
+
+@media screen and (min-width: 570px) {
+	.notFound .container {
+		width: 510px;
+	}
+
+	.notFound .image {
+		width: 170px;
+	}
+}

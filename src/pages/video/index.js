@@ -65,19 +65,21 @@ export default (props) => {
           const {
             data: videoResp, loading, error, refetch,
           } = getVideo;
+
+          if (
+            videoResp.videos
+            && (!videoResp.videos.length || !videoResp.videos[0].published)
+          ) { return (<VideoNotFound />); }
+          // TODO create query param to add to the url to see videos that are not published ?showNotPublished=true
+          if (loading) { return <Loader />; }
+          if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
+
+          const video = videoResp.videos[0];
           const { data: { latestVideos: suggestedVideos } } = latestVideos;
           const { data: { promoVideos: promoVideosArray } } = promoVideos;
           const { data: { products: productsArray } } = products;
-
           const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
           const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
-
-          if (loading) { return <Loader />; }
-          if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
-          // TODO create query param to add to the url to see videos that are not published ?showNotPublished=true
-          if (!videoResp.videos.length || !videoResp.videos[0].published) { return <VideoNotFound />; }
-
-          const video = videoResp.videos[0];
 
           return (
             <Fragment>

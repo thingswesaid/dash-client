@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default () => (
-  <div>
-    <div>An unexpected error occured.</div>
-  </div>
-);
+export default ({ error }) => (
+    <div>
+      <div>Error ...</div>
+    </div>
+  );
