@@ -23,7 +23,7 @@ export default () => (
           <div className="container">
             {videos.map(({ image, placeholder, link }) => (
               <a href={link} key={idGenerator()}>
-                <Image image={image} placeholder={placeholder} className="image" />
+                <Image src={image} placeholder={placeholder} className="image" />
               </a>
             ))}
           </div>

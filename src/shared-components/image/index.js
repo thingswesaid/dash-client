@@ -4,14 +4,16 @@ import classNames from 'classnames';
 
 import './index.css';
 
-export default ({ image, placeholder, className }) => (
-  <Image src={image} placeholder={placeholder}>
-    {(src, loading) => (
-      <img
-        src={src}
-        alt="Dash in Between"
-        className={classNames(className, { placeholderBlur: loading })}
-      />
-    )}
-  </Image>
+export default ({ src, placeholder, className }) => (
+  <div className={`imageContainer ${className}`}>
+    <Image src={src} placeholder={placeholder}>
+      {(srcReady, loading) => (
+        <img
+          src={srcReady}
+          alt="Dash in Between"
+          className={classNames({ placeholderBlur: loading })}
+        />
+      )}
+    </Image>
+  </div>
 );

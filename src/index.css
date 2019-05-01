@@ -53,3 +53,8 @@ button:active {
   opacity: 1;
 	transform: scale(0.9);
 }
+
+a {
+  text-decoration: none;
+	color: #535353;
+}

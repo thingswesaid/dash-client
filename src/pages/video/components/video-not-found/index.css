@@ -23,14 +23,14 @@
 	margin: 0 auto;
 }
 
-.notFound .image {
+.notFound img {
 	width: 50%;
 	margin: -2px 0;
 	opacity: .8;
 	transition: all .1s ease-in-out;
 }
 
-.notFound .image:hover { 
+.notFound img:hover { 
 	opacity: 1;
 }
 
@@ -39,7 +39,7 @@
 		width: 510px;
 	}
 
-	.notFound .image {
+	.notFound img {
 		width: 170px;
 	}
 }

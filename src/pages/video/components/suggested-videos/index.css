@@ -16,7 +16,6 @@
 }
 
 .suggestion a {
-	text-decoration: none;
 	margin-left: 13px;
 }
 
@@ -36,7 +35,14 @@
 	justify-content: space-between;
 }
 
-.suggestion .video .image {
+.suggestedImageContainer {
+	overflow: hidden;
+	border-radius: 10px;
+	min-width: 170px;
+}
+
+
+.suggestion .video .suggestedImageContainer img {
 	height: 95px;
 	border-radius: 3px;
 	opacity: .9;
@@ -44,18 +50,12 @@
 	transition: all .1s ease-in-out;
 }
 
-.suggestedImageContainer {
-	overflow: hidden;
-	border-radius: 10px;
-	min-width: 170px;
-}
-
-.suggestion .video img:hover {
+.suggestion .video .suggestedImageContainer img:hover {
 	opacity: 1;
 	transform: scale(1.02);
 }
 
-.suggestion .video img:active {
+.suggestion .video .suggestedImageContainer img:active {
   opacity: 1;
 	transform: scale(0.95);
 }

@@ -35,6 +35,7 @@ const mapper = {
   addUserToVideoMutation,
 };
 
+// CONSOLIDATE ALL QUERIES INTO ONE ENDPOINT (video + latest + promo + products)
 // >>> buy video - then click to preview - then back to extended doesn't work
 // check user status and ip blocked before showing the page
 // transfer assets to wasabi and setup cloudflare

@@ -2,8 +2,8 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
-const VIDEO_QUERY = gql` 
-  query VideoQuery($id: ID!) {
+export const VIDEO_QUERY = gql` 
+  query VideoQuery($id: ID) {
     videos(id: $id) {
       id
       name
@@ -22,6 +22,18 @@ const VIDEO_QUERY = gql`
         ips
         status
       }
+    }
+  }
+`;
+
+export const SEARCH_QUERY = gql` 
+  query VideoQuery($keywords: String!) {
+    videos(keywords: $keywords) {
+      id
+      link
+      image
+      title
+      placeholder
     }
   }
 `;

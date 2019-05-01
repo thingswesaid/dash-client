@@ -9,38 +9,40 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navbarOpen: false,
+      searchOpen: false,
     };
   }
 
+  closeSearch = () => {
+    this.setState({ searchOpen: false });
+  }
+
   render() {
-    const { navbarOpen } = this.state;
+    const { searchOpen } = this.state;
 
     return (
-      <div className={classNames('navbarContainer', { navbarOpen })}>
+      <div className={classNames('navbarContainer', { searchOpen })}>
         <div className="navBar">
           <img src={DashLogo} alt="dash in between logo" />
-          {navbarOpen ? <Search /> : '' }
-          {navbarOpen ? (
+          {searchOpen ? <Search close={this.closeSearch} /> : '' }
+          {searchOpen ? (
             <i
               className="fas fa-times-circle"
-              onClick={() => this.setState({ navbarOpen: !navbarOpen })}
-              onKeyDown={() => this.setState({ navbarOpen: !navbarOpen })}
+              onClick={() => this.setState({ searchOpen: !searchOpen })}
+              onKeyDown={() => this.setState({ searchOpen: !searchOpen })}
               role="button"
               tabIndex={0}
             />
           ) : (
             <i
               className="fas fa-search"
-              onClick={() => this.setState({ navbarOpen: !navbarOpen })}
-              onKeyDown={() => this.setState({ navbarOpen: !navbarOpen })}
+              onClick={() => this.setState({ searchOpen: !searchOpen })}
+              onKeyDown={() => this.setState({ searchOpen: !searchOpen })}
               role="button"
               tabIndex={0}
             />
           )
-
         }
-
         </div>
       </div>
     );

@@ -189,7 +189,11 @@ export default class MainVideo extends Component {
                   >
                     <img src={playButton} alt="play button" />
                   </button>
-                  <Image image={image} placeholder={placeholder} className="videoPlaceholder" />
+                  <Image
+                    src={image}
+                    placeholder={placeholder}
+                    className="videoPlaceholder"
+                  />
                 </Fragment>
               )}
             </div>

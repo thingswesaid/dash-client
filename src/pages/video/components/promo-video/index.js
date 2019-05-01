@@ -14,7 +14,7 @@ export default ({
       <p className="sectionTitle">POPULAR READING</p>
       <div className="imageContainer">
         <button className="image-container shadow" type="button">
-          <Image image={image} placeholder={placeholder} className="image" />
+          <Image src={image} placeholder={placeholder} />
         </button>
         <p className="title">{title}</p>
       </div>

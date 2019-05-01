@@ -107,7 +107,7 @@
 	transition: all .1s ease-in-out;
 }
 
-.merch .products .product .productImage {
+.merch .products .product img {
 	width: 40vw;
 	margin: 7px;
 }
@@ -130,7 +130,7 @@
 		display: initial;
 	}
 
-	.merch .products .product .productImage {
+	.merch .products .product img {
 		width: 25vw;
 	}
 }
@@ -146,7 +146,7 @@
 		-webkit-overflow-scrolling: touch;
 	}
 
-	.merch .products .product .productImage {
+	.merch .products .product img {
 		width: 15vw;
 		max-width: 190px;
 	}

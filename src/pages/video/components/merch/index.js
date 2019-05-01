@@ -54,7 +54,7 @@ export default class Merch extends Component {
             className="product"
             key={idGenerator()}
           >
-            <Image image={image} placeholder={placeholder} className="productImage" />
+            <Image src={image} placeholder={placeholder} />
           </a>
         ))}
       </Fragment>

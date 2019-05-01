@@ -17,7 +17,7 @@ export default ({ videos }) => {
           <a href={`/video/${id.slice(-5)}`} key={idGenerator()}>
             <div className="video">
               <div className="suggestedImageContainer">
-                <Image image={image} placeholder={placeholder} className="image" />
+                <Image src={image} placeholder={placeholder} />
               </div>
               <p>{title}</p>
             </div>

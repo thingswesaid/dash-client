@@ -11,10 +11,9 @@
 	padding: 0 20px;
 	background: rgba(255, 255, 255, 1);
 	transition: all .1s ease-in-out;
-	overflow: hidden;
 }
 
-.navbarOpen {
+.searchOpen {
 	height: 60px;
 }
 
@@ -23,6 +22,7 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
+	position: relative;
 }
 
 .navbarContainer .navBar img {
@@ -31,12 +31,12 @@
 
 .navbarContainer .navBar i {
 	color: white;
-	font-size: 10px;
+	font-size: 8px;
 	outline: none;
 	background: #57ffed;
 	border-radius: 50px;
-	width: 18px;
-	height: 18px;
+	width: 14px;
+	height: 14px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

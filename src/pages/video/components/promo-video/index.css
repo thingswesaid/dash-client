@@ -10,8 +10,6 @@
 }
 
 .promoVideo a {
-	text-decoration: none;
-	color: #535353;
 	text-align: center;
 }
 
@@ -27,6 +25,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	height: 215px;
 }
 
 .promoVideo .imageContainer button {
@@ -40,8 +39,8 @@
 	align-items: center;
 }
 
-.promoVideo .imageContainer .image {
-	height: 105%;
+.promoVideo .imageContainer img {
+	height: 111%;
 	position: absolute;
 }
 

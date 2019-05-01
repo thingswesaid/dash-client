@@ -1,5 +1,16 @@
-.placeholderBlur {
-	filter: blur(50px);
-	-webkit-filter: blur(50px);
-	backdrop-filter: blur(50px);
+.imageContainer {
+	overflow: hidden;
 }
+
+.placeholderBlur {
+	filter: blur(15px);
+	-webkit-filter: blur(15px);
+	backdrop-filter: blur(15px);
+}
+
+/* 
+	KEEP WORKING ON DROPDOWN 
+	MAKE IT WORK FOR DEKSTOP AS WELL
+	CHECK AGAIN DOUBLE QUERY ISSUE
+	CONSOLIDATE ALL QUERIES INTO ONE FOR VIDEO RENDER 
+*/
