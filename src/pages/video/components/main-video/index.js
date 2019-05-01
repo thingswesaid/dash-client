@@ -4,14 +4,15 @@ import YouTube from 'react-youtube';
 import classNames from 'classnames';
 import { toast as addNotification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
-import Image from '../../../../shared-components/image';
 
+import Image from '../../../../shared-components/image';
 import { getCookie } from '../../../../utils';
 import Modal from '../../../../shared-components/modal';
 import playButton from '../../../../assets/images/play-button.png';
 import labelExtended from '../../../../assets/images/label-extended.png';
 import labelPreview from '../../../../assets/images/label-preview.png';
 import emailExampleGif from '../../../../assets/images/email-example.gif';
+import universe from '../../../../assets/images/universe-bg.jpg';
 import { EMAIL_REGEX } from '../../../../constants';
 import './index.css';
 
@@ -192,7 +193,7 @@ export default class MainVideo extends Component {
                 </Fragment>
               )}
             </div>
-            <div className="payments">
+            <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
               <div className="videoPrice">ONLY $4.99</div>
               {/* TODO make amount dynamic */}
               <div className="emailField">
@@ -263,7 +264,7 @@ BACK
             }}
           >
             <p>
-WATCH
+              SWITCH TO
               {' '}
               {showPreview ? 'EXTENDED' : 'PREVIEW'}
             </p>

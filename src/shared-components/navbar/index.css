@@ -1,5 +1,5 @@
 .navbarContainer {
-	height: 50px;
+	height: 18px;
 	display: flex;
 	justify-content: start;
 	align-items: center;
@@ -8,24 +8,61 @@
 	width: 100vw;
 	z-index: 3;
 	border-bottom: 1px solid rgb(224, 226, 227);
-	padding: 0 8px;
+	padding: 0 20px;
 	background: rgba(255, 255, 255, 1);
+	transition: all .1s ease-in-out;
+	overflow: hidden;
 }
 
-.navBar {
+.navbarOpen {
+	height: 60px;
+}
+
+.navbarContainer .navBar {
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
-	margin: 0 auto;
-	min-width: 1100px;
+	width: 100%;
 }
 
-.navbarContainer img {
-	width: 100px;
+.navbarContainer .navBar img {
+	width: 40px;
+}
+
+.navbarContainer .navBar i {
+	color: white;
+	font-size: 10px;
+	outline: none;
+	background: #57ffed;
+	border-radius: 50px;
+	width: 18px;
+	height: 18px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navbarContainer .navBar i.fas.fa-times-circle {
+	font-size: 25px;
 }
 
 @media screen and (min-width: 970px) {
 	.navbarContainer {
 		background: rgba(255, 255, 255, .9);
+	}
+}
+
+@media screen and (min-width: 480px) {
+	.navbarContainer {
+		height: 50px;
+	}
+
+	.navbarContainer .navBar {
+		max-width: 1140px;
+    margin: 0 auto;
+	}
+
+	.navbarContainer .navBar img {
+		width: 100px;
 	}
 }

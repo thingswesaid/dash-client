@@ -1,4 +1,5 @@
 .placeholderBlur {
 	filter: blur(50px);
 	-webkit-filter: blur(50px);
+	backdrop-filter: blur(50px);
 }
