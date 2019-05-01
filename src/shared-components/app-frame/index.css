@@ -1,11 +1,11 @@
 .bodyPage {
 	max-width: 1400px;
-    margin: 0 auto;
+	margin: 0 auto;
+	padding-top: 70px;
 }
 
 .appFrame {
 	position: relative;  
-	margin-top: 70px;
 	overflow: hidden;
 }
 

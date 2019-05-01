@@ -1,5 +1,5 @@
 .cardsContainer {
-	background-color: transparent;
+	background: transparent;
 	perspective: 1000px;
 	width: 100%;
 	position: fixed;

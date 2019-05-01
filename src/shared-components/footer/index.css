@@ -1,0 +1,94 @@
+.footerContainer {
+	width: 100vw;
+	height: 190px;
+	background: #3D454D;
+	margin-top: 30px;
+}
+
+.footerContainer .footer {
+	max-width: 1000px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 35px 0 50px;
+	color: white;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.footerContainer .footer a {
+	text-decoration: none;
+	color: white;
+}
+
+.footerContainer .footer .firstSection,
+.footerContainer .footer .secondSection {
+	width: 49%;
+	padding: 0 20px;
+}
+
+.footerContainer .footer .firstSection {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.footerContainer .footer .firstSection {
+	font-size: 14px;
+}
+
+.footerContainer .footer .firstSection img {
+	width: 140px;
+	margin-left: -10px;
+}
+
+.footerContainer .footer .secondSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.footerContainer .footer .secondSection p {
+	font-size: 13px;
+	letter-spacing: 1px;
+	font-weight: 900;
+}
+
+.footerContainer .footer .secondSection .socials {
+	display: flex;
+	justify-content: space-evenly;
+	width: 230px;
+	margin-right: -25px;
+}
+
+.footerContainer .footer .secondSection .socials a i {
+	font-size: 28px;
+}
+
+@media screen and (max-width: 650px) {
+	.footerContainer {
+		height: 255px;
+	}
+
+	.footerContainer .footer {
+		flex-direction: column;
+		align-items: center;
+	}
+
+		.footerContainer .footer .firstSection,
+		.footerContainer .footer .secondSection {
+		align-items: center;
+	}
+	
+		.footerContainer .footer .firstSection {
+			height: 100%;
+		}
+
+		.footerContainer .footer .firstSection img { 
+			margin: 0;
+		}
+
+		.footerContainer .footer .secondSection .socials {
+			margin: 0;
+		}
+}

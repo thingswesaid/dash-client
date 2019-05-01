@@ -36,17 +36,13 @@ const mapper = {
 };
 
 // >>> buy video - then click to preview - then back to extended doesn't work
-// suggested video should not show current video (pass ID)
-// autoplay video on mobile
-// util.js published video select <<<
-// build Mobile view (copy youtube app layout - video fixed - label - suggested)
 // check user status and ip blocked before showing the page
-// look into teespring for api / display product (or just store image and link in DB)
-// find where to store images - cdn
+// transfer assets to wasabi and setup cloudflare
 // build other pages listed in router component
+// >>>> hide merch temp
 
 // MEMBERS early release (watch on youtube so people can like and comment)
-// Create and Mantain Facebook, IG to drive visits to videos in first 24 hours
+// Create and Mantain Facebook, IG + influencers to drive visits to videos in first 24 hours
 
 export default (props) => {
   const { videoId, userIp } = props;
@@ -81,6 +77,8 @@ export default (props) => {
           const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
           const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
 
+          const showMerch = false;
+
           return (
             <Fragment>
               <div className="page">
@@ -100,10 +98,13 @@ export default (props) => {
                 <SuggestedVideos videos={suggestedVideos} />
                 <Promo video={promoVideo} orientation="landscape" />
               </div>
-              <div className="bottomPage">
-                <Educational />
-                <Merch products={productsArray || []} types={productTypes} />
-              </div>
+              {showMerch ? (
+                <div className="bottomPage">
+                  <Educational />
+                  <Merch products={productsArray || []} types={productTypes} />
+                </div>
+              ) : ''
+              }
             </Fragment>
           );
         }}

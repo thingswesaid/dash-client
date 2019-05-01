@@ -1,16 +1,14 @@
 import React from 'react';
 import idGenerator from 'react-id-generator';
 import { Query } from 'react-apollo';
+
 import Image from '../../../../shared-components/image';
-
-
 import Loader from '../../../../shared-components/loader';
 import Error from '../../../../shared-components/error';
 import './index.css';
 
 import { LATEST_VIDEOS_QUERY } from '../../../../operations/queries';
 
-// show mosaic with all other videos - VIDEO NOT FOUND in the middle - can click on other videos
 export default () => (
   <Query query={LATEST_VIDEOS_QUERY} variables={{ quantity: 15 }}>
     {({ loading, error, data }) => {
