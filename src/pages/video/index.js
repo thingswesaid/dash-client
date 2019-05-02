@@ -41,6 +41,7 @@ const mapper = {
 // transfer assets to wasabi and setup cloudflare
 // build other pages listed in router component
 // >>>> hide merch temp
+// CHECK AGAIN DOUBLE QUERY ISSUE
 
 // MEMBERS early release (watch on youtube so people can like and comment)
 // Create and Mantain Facebook, IG + influencers to drive visits to videos in first 24 hours

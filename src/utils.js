@@ -20,3 +20,15 @@ export const sort = array => array.sort((a, b) => {
   // eslint-disable-next-line no-nested-ternary
   return (typeA < typeB) ? -1 : (typeA > typeB) ? 1 : 0;
 });
+
+export const getWindowHeight = (triggerHeight, component) => {
+  const { shrink } = component.state;
+  const distanceY = window.pageYOffset
+    || document.documentElement.scrollTop;
+  const shouldShrink = distanceY > triggerHeight;
+  if (shouldShrink && !shrink) {
+    component.setState({ shrink: true });
+  } else if (!shouldShrink && shrink) {
+    component.setState({ shrink: false });
+  }
+};

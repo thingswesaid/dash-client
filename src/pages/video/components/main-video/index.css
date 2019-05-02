@@ -3,9 +3,13 @@
 	perspective: 1000px;
 	width: 100%;
 	position: fixed;
-	top: 15px;
+	top: 50px;
 	z-index: 2;
 	height: 57vw;
+	transition: all .1s ease-in-out;
+}
+div.videoWrapper > div.cardsContainer.shrink {
+	top: 15px;
 }
 
 .videoContainer {
@@ -74,6 +78,7 @@
 	width: 208px;
 	height: 33px;
 	outline: none;
+	font-size: 16px;
 }
 
 .payments .emailField input::placeholder {
@@ -127,12 +132,10 @@
 .videoPlaceholder {
 	position: absolute;
 	height: 100%;
-	width: 100%;
 }
 
 .videoPlaceholder img {
 	height: 100%;
-	width: 100%;
 }
 
 .playButton {

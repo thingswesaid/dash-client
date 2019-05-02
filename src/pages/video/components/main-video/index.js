@@ -6,7 +6,7 @@ import { toast as addNotification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 
 import Image from '../../../../shared-components/image';
-import { getCookie } from '../../../../utils';
+import { getCookie, getWindowHeight } from '../../../../utils';
 import Modal from '../../../../shared-components/modal';
 import playButton from '../../../../assets/images/play-button.png';
 import labelExtended from '../../../../assets/images/label-extended.png';
@@ -15,6 +15,7 @@ import emailExampleGif from '../../../../assets/images/email-example.gif';
 import universe from '../../../../assets/images/universe-bg.jpg';
 import { EMAIL_REGEX } from '../../../../constants';
 import './index.css';
+
 
 export default class MainVideo extends Component {
   constructor(props) {
@@ -26,8 +27,21 @@ export default class MainVideo extends Component {
       showPayment: false,
       userCheck: false,
       showModal: false,
+      shrink: false,
       emailField: '',
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', () => {
+      getWindowHeight(20, this);
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', () => {
+      getWindowHeight(20, this);
+    });
   }
 
   checkUserVideoAccess() {
@@ -136,7 +150,7 @@ export default class MainVideo extends Component {
 
   render() {
     const {
-      videoOpen, showPreview, hasAccess, showPayment, userCheck, showModal,
+      videoOpen, showPreview, hasAccess, showPayment, userCheck, showModal, shrink,
     } = this.state;
 
     const {
@@ -163,7 +177,7 @@ export default class MainVideo extends Component {
           )
           : ''
 				}
-        <div className={classNames('cardsContainer', { showPayment })}>
+        <div className={classNames('cardsContainer', { showPayment, shrink })}>
           <div className="videoContainer">
             <div className="videoPlayer">
               <img src={videoLabel} className="videoLabel" alt="video label" />
@@ -198,7 +212,12 @@ export default class MainVideo extends Component {
               )}
             </div>
             <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
-              <div className="videoPrice">ONLY $4.99</div>
+              <div className="videoPrice">
+                ONLY
+                {' '}
+                $
+                {amount}
+              </div>
               {/* TODO make amount dynamic */}
               <div className="emailField">
                 <div className="alreadyPurchased">
@@ -213,7 +232,7 @@ export default class MainVideo extends Component {
                 </div>
                 <div>
                   <input
-                    placeholder="YOUR EMAIL ADDRESS"
+                    placeholder="Your Email Address"
                     onChange={this.emailFieldUpdate.bind(this)}
                     onKeyDown={(e) => { if (e.key === 'Enter') { this.findEmailForVideo(video, addUserIp); } }}
                   />

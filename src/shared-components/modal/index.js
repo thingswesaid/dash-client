@@ -8,8 +8,7 @@ export default ({
     className="modalContainer"
     onClick={onClick}
     onKeyDown={onClick}
-    role="button"
-    tabIndex={0}
+    role="presentation"
   >
     <div className="modal">
       <i className="fas fa-times-circle" />
