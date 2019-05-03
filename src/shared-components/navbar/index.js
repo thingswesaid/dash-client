@@ -27,8 +27,10 @@ export default class Navbar extends Component {
     });
   }
 
-  closeSearch = () => {
-    this.setState({ searchOpen: false });
+  toggleSearch = (bool) => {
+    const body = document.querySelector('body');
+    body.style.overflow = bool ? 'hidden' : 'initial';
+    this.setState({ searchOpen: bool });
   }
 
   render() {
@@ -40,36 +42,20 @@ export default class Navbar extends Component {
       <div className={classNames('navbarContainer', { searchOpen, shrink: shouldShrink })}>
         <div className="navBar">
           <img src={DashLogo} alt="dash in between logo" />
-          {searchOpen ? <Search close={this.closeSearch} searchOpen={searchOpen} /> : '' }
+          {searchOpen ? <Search close={this.toggleSearch} searchOpen={searchOpen} /> : '' }
           {searchOpen ? (
             <i
               className="fas fa-times-circle"
-              onClick={() => {
-                const body = document.querySelector('body');
-                body.style.overflow = "initial";
-                this.setState({ searchOpen: false })
-              }}
-              onKeyPress={() => {
-                const body = document.querySelector('body');
-                body.style.overflow = "initial";
-                this.setState({ searchOpen: false })
-              }}
+              onClick={() => { this.toggleSearch(false) }}
+              onKeyPress={() => { this.toggleSearch(false) }}
               role="button"
               tabIndex={0}
             />
           ) : (
             <i
               className="fas fa-search"
-              onClick={() => {
-                const body = document.querySelector('body');
-                body.style.overflow = "hidden";
-                this.setState({ searchOpen: true })
-              }}
-              onKeyPress={() => {
-                const body = document.querySelector('body');
-                body.style.overflow = "hidden";
-                this.setState({ searchOpen: true })
-              }}
+              onClick={() => { this.toggleSearch(true) }}
+              onKeyPress={() => { this.toggleSearch(true) }}
               role="button"
               tabIndex={0}
             />

@@ -37,8 +37,8 @@ export default ({ close }) => (
           </div>
           <div
             className="dropdownBackground"
-            onClick={close}
-            onKeyDown={close}
+            onClick={() => close(false)}
+            onKeyDown={() => close(false)}
             role="presentation"
           />
         </div>
