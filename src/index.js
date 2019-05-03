@@ -14,8 +14,8 @@ import VideoPage from './pages/video';
 
 import './index.css';
 
-const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/' });
-// const client = new ApolloClient({ uri: 'http://localhost:4000' });
+const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/', shouldBatch: true });
+// const client = new ApolloClient({ uri: 'http://localhost:4000', shouldBatch: true });
 
 const AppFrameWithData = withAppData(AppFrame);
 

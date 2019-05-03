@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React from 'react';
 import { Query } from 'react-apollo';
 import idGenerator from 'react-id-generator';
@@ -15,23 +16,24 @@ export default ({ close }) => (
       return (
         <div className="search">
           <input
+            autoFocus
             className="search"
             placeholder="taurus love april"
             onKeyUp={(e) => { refetch({ keywords: e.target.value }); }}
           />
           <div className="dropdown">
             {
-                  videos.map(({
-                    link, image, placeholder, title,
-                  }) => (
-                    <div className="item" key={idGenerator()}>
-                      <a href={link}>
-                        <Image src={image} placeholder={placeholder} className="itemContainer shadow" />
-                        <p>{title}</p>
-                      </a>
-                    </div>
-                  ))
-                }
+              videos.map(({
+                link, image, placeholder, title,
+              }) => (
+                <div className="item" key={idGenerator()}>
+                  <a href={link}>
+                    <Image src={image} placeholder={placeholder} className="itemContainer shadow" />
+                    <p>{title}</p>
+                  </a>
+                </div>
+              ))
+            }
           </div>
           <div
             className="dropdownBackground"

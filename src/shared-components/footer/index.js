@@ -10,7 +10,7 @@ export default () => (
         <a href="mailto:info@dashinbetween.com">Contact Us</a>
       </div>
       <div className="secondSection">
-        <p>FIND US ON</p>
+        <p>STAY CONNECTED</p>
         <div className="socials">
           <a href="https://www.socials.com" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-instagram" />

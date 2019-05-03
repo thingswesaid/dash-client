@@ -1,6 +1,7 @@
 .search {
 	width: 30%;
-  min-width: 220px;
+	min-width: 220px;
+	margin-left: -7%;
 }
 
 .search input {

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 
@@ -13,12 +12,7 @@ import Educational from './components/educational';
 import Merch from './components/merch';
 import './index.css';
 
-import {
-  getVideoQuery,
-  latestVideosQuery,
-  promoVideosQuery,
-  productsQuery,
-} from '../../operations/queries';
+import { videoPageQuery, productsQuery } from '../../operations/queries';
 import {
   addUserIpMutation,
   createAnonymousIpMutation,
@@ -26,21 +20,16 @@ import {
 } from '../../operations/mutations';
 
 const mapper = {
-  getVideoQuery,
-  latestVideosQuery,
-  promoVideosQuery,
+  videoPageQuery,
   productsQuery,
   addUserIpMutation,
   createAnonymousIpMutation,
   addUserToVideoMutation,
 };
 
-// CONSOLIDATE ALL QUERIES INTO ONE ENDPOINT (video + latest + promo + products)
 // >>> buy video - then click to preview - then back to extended doesn't work
 // check user status and ip blocked before showing the page
 // transfer assets to wasabi and setup cloudflare
-// build other pages listed in router component
-// >>>> hide merch temp
 // CHECK AGAIN DOUBLE QUERY ISSUE
 
 // MEMBERS early release (watch on youtube so people can like and comment)
@@ -52,63 +41,58 @@ export default (props) => {
     <Fragment>
       <Adopt mapper={mapper} id={videoId} ip={userIp}>
         {({
-          getVideoQuery: getVideo,
-          latestVideosQuery: latestVideos,
-          promoVideosQuery: promoVideos,
+          videoPageQuery: videoPage,
           productsQuery: products,
           addUserIpMutation: addUserIp,
           createAnonymousIpMutation: createAnonymousIp,
           addUserToVideoMutation: addUserToVideo,
         }) => {
-          const {
-            data: videoResp, loading, error, refetch,
-          } = getVideo;
+          try {
+            // TODO create query param to add to the url to see videos that are not published ?showNotPublished=true
+            const {
+              data, loading, error, refetch,
+            } = videoPage;
 
-          if (
-            videoResp.videos
-            && (!videoResp.videos.length || !videoResp.videos[0].published)
-          ) { return (<VideoNotFound />); }
-          // TODO create query param to add to the url to see videos that are not published ?showNotPublished=true
-          if (loading) { return <Loader />; }
-          if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
+            if (loading) { return <Loader />; }
+            if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
 
-          const video = videoResp.videos[0];
-          const { data: { latestVideos: suggestedVideos } } = latestVideos;
-          const { data: { promoVideos: promoVideosArray } } = promoVideos;
-          const { data: { products: productsArray } } = products;
-          const promoVideo = promoVideosArray ? promoVideosArray[Math.floor(Math.random() * promoVideosArray.length)] : {};
-          const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
+            const { videoPage: { video, latestVideos, promoVideo } } = data;
+            const { data: { products: productsArray } } = products;
+            const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
+            // return types from resolver
 
-          const showMerch = false;
+            const showMerch = false;
 
-          return (
-            <Fragment>
-              <div className="page">
-                <div className="videoWrapper">
-                  <MainVideo
-                    video={video}
-                    userIp={userIp}
-                    addUserIp={addUserIp}
-                    refetchVideo={refetch}
-                    addUserToVideo={addUserToVideo}
-                    createAnonymousIp={createAnonymousIp}
-                  />
-                  <div className="separator" />
-                  <Promo video={promoVideo} orientation="portrait" />
+            return (
+              <Fragment>
+                <div className="page">
+                  <div className="videoWrapper">
+                    <MainVideo
+                      video={video}
+                      userIp={userIp}
+                      addUserIp={addUserIp}
+                      refetchVideo={refetch}
+                      addUserToVideo={addUserToVideo}
+                      createAnonymousIp={createAnonymousIp}
+                    />
+                    <div className="separator" />
+                    <Promo video={promoVideo} orientation="portrait" />
+                  </div>
+                  <div className="mobileWrapper" />
+                  <SuggestedVideos videos={latestVideos} />
+                  <Promo video={promoVideo} orientation="landscape" />
                 </div>
-                <div className="mobileWrapper" />
-                <SuggestedVideos videos={suggestedVideos} />
-                <Promo video={promoVideo} orientation="landscape" />
-              </div>
-              {showMerch ? (
-                <div className="bottomPage">
-                  <Educational />
-                  <Merch products={productsArray || []} types={productTypes} />
-                </div>
-              ) : ''
-              }
-            </Fragment>
-          );
+                {showMerch ? (
+                  <div className="bottomPage">
+                    <Educational />
+                    <Merch products={productsArray || []} types={productTypes} />
+                  </div>
+                ) : ''}
+              </Fragment>
+            );
+          } catch (e) {
+            return (<VideoNotFound />);
+          }
         }}
       </Adopt>
     </Fragment>

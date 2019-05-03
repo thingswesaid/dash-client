@@ -40,19 +40,19 @@ export default class Navbar extends Component {
       <div className={classNames('navbarContainer', { searchOpen, shrink: shouldShrink })}>
         <div className="navBar">
           <img src={DashLogo} alt="dash in between logo" />
-          {searchOpen ? <Search close={this.closeSearch} /> : '' }
+          {searchOpen ? <Search close={this.closeSearch} searchOpen={searchOpen} /> : '' }
           {searchOpen ? (
             <i
               className="fas fa-times-circle"
               onClick={() => {
                 const body = document.querySelector('body');
                 body.style.overflow = "initial";
-                this.setState({ searchOpen: !searchOpen })
+                this.setState({ searchOpen: false })
               }}
               onKeyPress={() => {
                 const body = document.querySelector('body');
                 body.style.overflow = "initial";
-                this.setState({ searchOpen: !searchOpen })
+                this.setState({ searchOpen: false })
               }}
               role="button"
               tabIndex={0}
@@ -63,12 +63,12 @@ export default class Navbar extends Component {
               onClick={() => {
                 const body = document.querySelector('body');
                 body.style.overflow = "hidden";
-                this.setState({ searchOpen: !searchOpen })
+                this.setState({ searchOpen: true })
               }}
               onKeyPress={() => {
                 const body = document.querySelector('body');
                 body.style.overflow = "hidden";
-                this.setState({ searchOpen: !searchOpen })
+                this.setState({ searchOpen: true })
               }}
               role="button"
               tabIndex={0}

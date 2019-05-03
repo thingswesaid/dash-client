@@ -6,7 +6,7 @@ import './index.css';
 export default ({
   orientation,
   video: {
-    link, title, description, image, placeholder, banner, bannerSmall,
+    link, title, description, image, placeholder, banner, bannerMobile,
   },
 }) => (orientation === 'portrait' ? (
   <div className="promoVideo">
@@ -32,7 +32,7 @@ export default ({
       {matches => (matches ? (
         <img src={banner} alt="Dash in Between promo banner" />
       ) : (
-        <img src={bannerSmall} alt="Dash in Between promo banner" />
+        <img src={bannerMobile} alt="Dash in Between promo banner" />
       ))
           }
     </Media>
