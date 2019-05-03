@@ -15,6 +15,7 @@
     "graphql": "14.0.2",
     "http": "^0.0.0",
     "path": "^0.12.7",
+    "query-string": "^6.5.0",
     "react": "16.8.6",
     "react-adopt": "^0.6.0",
     "react-apollo": "2.5.4",

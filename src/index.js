@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
+import queryString from 'query-string';
 import {
   BrowserRouter as Router,
   Switch,
@@ -43,9 +44,13 @@ render((
               <Route
                 path="/video/:id"
                 render={
-                  ({ match: { params: { id } } }) => (
-                    <VideoPage videoId={id} userIp={userIp} />
-                  )
+                  ({ match, location: { search } }) => {
+                    const { showAll } = queryString.parse(search);
+                    const { params: { id } } = match;
+                    return (
+                      <VideoPage videoId={id} userIp={userIp} showAll={!!showAll} />
+                    );
+                  }
                 }
               />
             </Switch>

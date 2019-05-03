@@ -36,32 +36,31 @@ const mapper = {
 // Create and Mantain Facebook, IG + influencers to drive visits to videos in first 24 hours
 
 export default (props) => {
-  const { videoId, userIp } = props;
+  const { videoId, userIp, showAll } = props;
   return (
     <Fragment>
-      <Adopt mapper={mapper} id={videoId} ip={userIp}>
+      <Adopt mapper={mapper} id={videoId} ip={userIp} showAll={showAll}>
         {({
-          videoPageQuery: videoPage,
-          productsQuery: products,
+          videoPageQuery: videoPageData,
+          productsQuery: productsData,
           addUserIpMutation: addUserIp,
           createAnonymousIpMutation: createAnonymousIp,
           addUserToVideoMutation: addUserToVideo,
         }) => {
           try {
-            // TODO create query param to add to the url to see videos that are not published ?showNotPublished=true
             const {
               data, loading, error, refetch,
-            } = videoPage;
+            } = videoPageData;
 
             if (loading) { return <Loader />; }
             if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
-
             const { videoPage: { video, latestVideos, promoVideo } } = data;
-            const { data: { products: productsArray } } = products;
-            const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
+            const { data: { products: { items: products, types: productTypes } } } = productsData;
+            // fix this
+            // const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
             // return types from resolver
 
-            const showMerch = false;
+            const showMerch = true;
 
             return (
               <Fragment>
@@ -85,7 +84,7 @@ export default (props) => {
                 {showMerch ? (
                   <div className="bottomPage">
                     <Educational />
-                    <Merch products={productsArray || []} types={productTypes} />
+                    <Merch products={products || []} types={productTypes} />
                   </div>
                 ) : ''}
               </Fragment>

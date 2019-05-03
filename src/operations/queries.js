@@ -3,8 +3,8 @@ import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
 export const VIDEO_PAGE_QUERY = gql` 
-  query VideoPageQuery($id: ID!) {
-    videoPage(id: $id) {
+  query VideoPageQuery($id: ID!, $showAll: Boolean) {
+    videoPage(id: $id, showAll: $showAll) {
       video {
         id
         name
@@ -90,18 +90,21 @@ export const USERIP_QUERY = gql`
 export const PRODUCT_QUERY = gql` 
   query ProductsQuery($type: String) {
     products(type: $type) {
-      link
-      name
-      description
-      image
-      placeholder
-      type
+      types
+      items {
+        link
+        name
+        description
+        image
+        placeholder
+        type
+      }
     }
   }
 `;
 
-export const videoPageQuery = ({ render, id }) => (
-  <Query query={VIDEO_PAGE_QUERY} variables={{ id }}>
+export const videoPageQuery = ({ render, id, showAll }) => (
+  <Query query={VIDEO_PAGE_QUERY} variables={{ id, showAll }}>
     {render}
   </Query>
 );
