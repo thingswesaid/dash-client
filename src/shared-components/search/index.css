@@ -1,7 +1,7 @@
 .search {
 	width: 30%;
-	min-width: 220px;
-	margin-left: -7%;
+	min-width: 180px;
+	margin-left: 0;
 }
 
 .search input {
@@ -78,4 +78,17 @@
 
 .search .dropdown .item a p {
 	font-size: 12px;
+}
+
+@media screen and (min-width: 400px) {
+	.search {
+		min-width: 220px;
+	}
+}
+
+@media screen and (min-width: 700px) {
+	.search {
+		min-width: 220px;
+		margin-left: -7%;
+	}
 }

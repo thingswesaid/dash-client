@@ -45,33 +45,9 @@ export const VIDEO_PAGE_QUERY = gql`
   }
 `;
 
-export const VIDEO_QUERY = gql` 
-  query VideoQuery($id: ID) {
-    videos(id: $id) {
-      id
-      name
-      link
-      preview
-      image
-      placeholder
-      published
-      amount
-      start
-      type
-      familyId
-      users {
-        id
-        email
-        ips
-        status
-      }
-    }
-  }
-`;
-
 export const SEARCH_QUERY = gql` 
-  query VideoQuery($keywords: String!) {
-    videos(keywords: $keywords) {
+  query SearchQuery($keywords: String!, $skip: Boolean!) {
+    videos(keywords: $keywords) @skip(if: $skip) {
       id
       link
       image
@@ -105,6 +81,12 @@ export const PRODUCT_QUERY = gql`
 
 export const videoPageQuery = ({ render, id, showAll }) => (
   <Query query={VIDEO_PAGE_QUERY} variables={{ id, showAll }}>
+    {render}
+  </Query>
+);
+
+export const searchQuery = ({ render, keywords = '' }) => (
+  <Query query={SEARCH_QUERY} variables={{ keywords }}>
     {render}
   </Query>
 );

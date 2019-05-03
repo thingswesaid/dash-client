@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 
-import { sort } from '../../utils';
 import MainVideo from './components/main-video';
 import Promo from './components/promo-video';
 import SuggestedVideos from './components/suggested-videos';
@@ -9,10 +8,10 @@ import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import VideoNotFound from './components/video-not-found';
 import Educational from './components/educational';
-import Merch from './components/merch';
+// import Merch from './components/merch';
 import './index.css';
 
-import { videoPageQuery, productsQuery } from '../../operations/queries';
+import { videoPageQuery } from '../../operations/queries';
 import {
   addUserIpMutation,
   createAnonymousIpMutation,
@@ -21,7 +20,7 @@ import {
 
 const mapper = {
   videoPageQuery,
-  productsQuery,
+  // productsQuery,
   addUserIpMutation,
   createAnonymousIpMutation,
   addUserToVideoMutation,
@@ -42,25 +41,18 @@ export default (props) => {
       <Adopt mapper={mapper} id={videoId} ip={userIp} showAll={showAll}>
         {({
           videoPageQuery: videoPageData,
-          productsQuery: productsData,
           addUserIpMutation: addUserIp,
           createAnonymousIpMutation: createAnonymousIp,
           addUserToVideoMutation: addUserToVideo,
         }) => {
           try {
-            const {
-              data, loading, error, refetch,
-            } = videoPageData;
+            const { data, loading, error } = videoPageData;
 
             if (loading) { return <Loader />; }
             if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
             const { videoPage: { video, latestVideos, promoVideo } } = data;
-            const { data: { products: { items: products, types: productTypes } } } = productsData;
-            // fix this
-            // const productTypes = productsArray ? sort([...new Set(productsArray.map(product => product.type))]) : [];
-            // return types from resolver
-
-            const showMerch = true;
+            // const { data: { products: { items: products, types: productTypes } } } = productsData;
+            const showMerch = false;
 
             return (
               <Fragment>
@@ -70,7 +62,6 @@ export default (props) => {
                       video={video}
                       userIp={userIp}
                       addUserIp={addUserIp}
-                      refetchVideo={refetch}
                       addUserToVideo={addUserToVideo}
                       createAnonymousIp={createAnonymousIp}
                     />
@@ -84,7 +75,7 @@ export default (props) => {
                 {showMerch ? (
                   <div className="bottomPage">
                     <Educational />
-                    <Merch products={products || []} types={productTypes} />
+                    {/* <Merch products={products || []} types={productTypes} /> */}
                   </div>
                 ) : ''}
               </Fragment>

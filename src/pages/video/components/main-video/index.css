@@ -1,3 +1,35 @@
+.loaderContainer {
+	width: 100vw;
+	height: 100vh;
+	background: #000000c7;
+	z-index: 999;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+  font-weight: bold;
+}
+
+.loaderContainer .content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.loaderContainer .content p:first-of-type {
+	font-size: 25px;
+	margin: 0;
+}
+
+.loaderContainer .content img {
+	width: 60px;
+}
+
 .cardsContainer {
 	background: transparent;
 	perspective: 1000px;

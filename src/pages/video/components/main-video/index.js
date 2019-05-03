@@ -14,8 +14,8 @@ import labelPreview from '../../../../assets/images/label-preview.png';
 import emailExampleGif from '../../../../assets/images/email-example.gif';
 import universe from '../../../../assets/images/universe-bg.jpg';
 import { EMAIL_REGEX } from '../../../../constants';
+import heart from '../../../../assets/gifs/heart.gif';
 import './index.css';
-
 
 export default class MainVideo extends Component {
   constructor(props) {
@@ -29,6 +29,7 @@ export default class MainVideo extends Component {
       showModal: false,
       shrink: false,
       emailField: '',
+      loading: false,
     };
   }
 
@@ -49,9 +50,15 @@ export default class MainVideo extends Component {
       props: { userIp, video: { users }, addUserIp },
       state: { emailField },
     } = this;
+
     const cookieEmail = getCookie('dash-user-email');
+    const coookieRecentOrder = getCookie('dash-recent-order');
     const user = users.filter(({ email }) => email === cookieEmail || email === emailField)[0];
-    if (!user) {
+
+    if (coookieRecentOrder) {
+      this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
+      return user || undefined;
+    } if (!user) {
       this.setState({ showPayment: true, videoOpen: false });
       return undefined;
     }
@@ -91,9 +98,8 @@ export default class MainVideo extends Component {
     return undefined;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async processPayment(payment, videoId, addUserToVideo) {
-    const { userIp, refetchVideo } = this.props;
+    const { userIp } = this.props;
     const {
       id: paymentId,
       payer: {
@@ -126,6 +132,7 @@ export default class MainVideo extends Component {
     });
 
     document.cookie = `dash-user-email=${email};`;
+    document.cookie = 'dash-recent-order=true';
 
     this.setState({
       hasAccess: true,
@@ -133,7 +140,6 @@ export default class MainVideo extends Component {
       showPreview: false,
       showPayment: false,
     });
-    await refetchVideo();
     return undefined;
   }
 
@@ -150,7 +156,7 @@ export default class MainVideo extends Component {
 
   render() {
     const {
-      videoOpen, showPreview, hasAccess, showPayment, userCheck, showModal, shrink,
+      videoOpen, showPreview, hasAccess, showPayment, userCheck, showModal, shrink, loading,
     } = this.state;
 
     const {
@@ -176,7 +182,18 @@ export default class MainVideo extends Component {
             />
           )
           : ''
-				}
+        }
+        {loading
+          ? (
+            <div className="loaderContainer">
+              <div className="content">
+                <img src={heart} alt="Dash in Between Loading" />
+                <p>Thank you for your purchase!</p>
+                <p>We are processing your payment</p>
+              </div>
+            </div>
+          ) : ''}
+        {/* will be replaced by Loader component */}
         <div className={classNames('cardsContainer', { showPayment, shrink })}>
           <div className="videoContainer">
             <div className="videoPlayer">
@@ -243,8 +260,10 @@ export default class MainVideo extends Component {
                 <PayPalButton
                   amount={amount}
                   onApprove={async (_data, actions) => {
+                    this.setState({ loading: true });
                     const payment = await actions.order.capture();
                     this.processPayment(payment, queryVideoId, addUserToVideo);
+                    this.setState({ loading: false });
                   }}
                   options={{
                     // TODO from process.env
