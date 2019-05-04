@@ -5,6 +5,14 @@ import classNames from 'classnames';
 import { toast as addNotification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 
+import {
+  EMAIL_NOT_VALID,
+  EMAIL_NOT_FOUND,
+  PAYMENT_ERROR,
+  COOKIE_EMAIL,
+  COOKIE_RECENT_ORDER,
+  EMAIL_REGEX,
+} from '../../../../constants';
 import Image from '../../../../shared-components/image';
 import { getCookie, getWindowHeight } from '../../../../utils';
 import Modal from '../../../../shared-components/modal';
@@ -13,7 +21,7 @@ import labelExtended from '../../../../assets/images/label-extended.png';
 import labelPreview from '../../../../assets/images/label-preview.png';
 import emailExampleGif from '../../../../assets/images/email-example.gif';
 import universe from '../../../../assets/images/universe-bg.jpg';
-import { EMAIL_REGEX } from '../../../../constants';
+
 import heart from '../../../../assets/gifs/heart.gif';
 import './index.css';
 
@@ -51,8 +59,8 @@ export default class MainVideo extends Component {
       state: { emailField },
     } = this;
 
-    const cookieEmail = getCookie('dash-user-email');
-    const coookieRecentOrder = getCookie('dash-recent-order');
+    const cookieEmail = getCookie(COOKIE_EMAIL);
+    const coookieRecentOrder = getCookie(COOKIE_RECENT_ORDER);
     const user = users.filter(({ email }) => email === cookieEmail || email === emailField)[0];
 
     if (coookieRecentOrder) {
@@ -77,11 +85,11 @@ export default class MainVideo extends Component {
 
   findEmailForVideo() {
     const { emailField } = this.state;
-    const cookieEmail = getCookie('dash-user-email');
+    const cookieEmail = getCookie(COOKIE_EMAIL);
     const valid = EMAIL_REGEX.test(String(emailField).toLowerCase());
     if (!valid) {
       return addNotification.info(
-        'Email format not valid.', // TODO move to constants
+        EMAIL_NOT_VALID,
         { className: 'notification notificationError' },
       );
     }
@@ -89,11 +97,11 @@ export default class MainVideo extends Component {
     const user = this.checkUserVideoAccess();
     if (!user) {
       return addNotification(
-        'Email not found. Select your payment method below.',
+        EMAIL_NOT_FOUND,
         { className: 'notification' },
       );
     } if (cookieEmail !== emailField) {
-      document.cookie = `dash-user-email=${emailField};`;
+      document.cookie = `${COOKIE_EMAIL}=${emailField};`;
     }
     return undefined;
   }
@@ -112,7 +120,7 @@ export default class MainVideo extends Component {
 
     if (status !== 'COMPLETED') {
       return addNotification.info(
-        'There was an error with the payment. Please try again later.',
+        PAYMENT_ERROR,
         { className: 'notification notificationError' },
       );
     }
@@ -131,8 +139,8 @@ export default class MainVideo extends Component {
       },
     });
 
-    document.cookie = `dash-user-email=${email};`;
-    document.cookie = 'dash-recent-order=true';
+    document.cookie = `${COOKIE_EMAIL}=${email};`;
+    document.cookie = `${COOKIE_RECENT_ORDER}=true`;
 
     this.setState({
       hasAccess: true,
@@ -146,7 +154,7 @@ export default class MainVideo extends Component {
   cfh() {
     const { emailField } = this.state;
     const { userIp, video: { users }, createAnonymousIp } = this.props;
-    const cookieEmail = getCookie('dash-user-email');
+    const cookieEmail = getCookie(COOKIE_EMAIL);
     const user = users.filter(({ email }) => email === cookieEmail || email === emailField)[0];
     if (!user) {
       createAnonymousIp(userIp);
@@ -169,7 +177,7 @@ export default class MainVideo extends Component {
     const videoLabel = showPreview ? labelPreview : labelExtended;
 
     if (hasAccess && !userCheck) { this.cfh(); }
-    // TODO move Modal text to constants
+    console.log('envs >>> ', process.env);
     return (
       <Fragment>
         { showModal
@@ -235,7 +243,6 @@ export default class MainVideo extends Component {
                 $
                 {amount}
               </div>
-              {/* TODO make amount dynamic */}
               <div className="emailField">
                 <div className="alreadyPurchased">
                   <p>ALREADY PURCHASED?</p>
