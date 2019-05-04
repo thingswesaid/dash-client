@@ -21,7 +21,7 @@ const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com
 const AppFrameWithData = withAppData(AppFrame);
 deleteCookie('dash-recent-order');
 
-// add
+// Homepage with search bar
 // 404 page
 // unsubscribe email page
 // terms and conditions page (content centered with universe icons on the sides)

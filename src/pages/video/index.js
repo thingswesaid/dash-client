@@ -27,12 +27,11 @@ const mapper = {
 };
 
 // >>> buy video - then click to preview - then back to extended doesn't work
+// can't select videos from dropdown on mobile
 // check user status and ip blocked before showing the page
 // transfer assets to wasabi and setup cloudflare
 // CHECK AGAIN DOUBLE QUERY ISSUE
 
-// MEMBERS early release (watch on youtube so people can like and comment)
-// Create and Mantain Facebook, IG + influencers to drive visits to videos in first 24 hours
 
 export default (props) => {
   const { videoId, userIp, showAll } = props;

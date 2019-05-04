@@ -11,7 +11,7 @@ export default ({ close, fetchVideos, videos = [] }) => (
       autoFocus
       className="search"
       placeholder="taurus love april"
-      onKeyUp={(e) => { fetchVideos({ keywords: e.target.value, skip: false }); }}
+      onKeyUp={(e) => { fetchVideos({ keywords: e.target.value.toLowerCase(), skip: false }); }}
     />
     <div className="dropdown">
       {
