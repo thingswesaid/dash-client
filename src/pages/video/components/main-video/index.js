@@ -177,7 +177,7 @@ export default class MainVideo extends Component {
     const videoLabel = showPreview ? labelPreview : labelExtended;
 
     if (hasAccess && !userCheck) { this.cfh(); }
-    console.log('envs >>> ', process.env);
+
     return (
       <Fragment>
         { showModal
@@ -273,8 +273,7 @@ export default class MainVideo extends Component {
                     this.setState({ loading: false });
                   }}
                   options={{
-                    // TODO from process.env
-                    clientId: 'AVYEH5XBfGFK5w3jgYL0HJWYrX5OleyMe31cugWyj7HC8nY4C2VYk-INYGqzmqB9ecJyQpe2cb5khiD-',
+                    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID_SANDBOX,
                   }}
                 />
               </div>
