@@ -33,7 +33,6 @@ export default class MainVideo extends Component {
       videoOpen: false,
       showPreview: false,
       showPayment: false,
-      userCheck: false,
       showModal: false,
       shrink: false,
       emailField: '',
@@ -151,20 +150,9 @@ export default class MainVideo extends Component {
     return undefined;
   }
 
-  cfh() {
-    const { emailField } = this.state;
-    const { userIp, video: { users }, createAnonymousIp } = this.props;
-    const cookieEmail = getCookie(COOKIE_EMAIL);
-    const user = users.filter(({ email }) => email === cookieEmail || email === emailField)[0];
-    if (!user) {
-      createAnonymousIp(userIp);
-    }
-    this.setState({ userCheck: true });
-  }
-
   render() {
     const {
-      videoOpen, showPreview, hasAccess, showPayment, userCheck, showModal, shrink, loading,
+      videoOpen, showPreview, hasAccess, showPayment, showModal, shrink, loading,
     } = this.state;
 
     const {
@@ -175,8 +163,6 @@ export default class MainVideo extends Component {
       id: queryVideoId, image, placeholder, link, preview, start, amount,
     } = video;
     const videoLabel = showPreview ? labelPreview : labelExtended;
-
-    if (hasAccess && !userCheck) { this.cfh(); }
 
     return (
       <Fragment>

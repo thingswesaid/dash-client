@@ -18,14 +18,6 @@ const ADD_USER_IP_MUTATION = gql`
   }
 `;
 
-export const CREATE_ANONYMOUS_IP_MUTATION = gql`
-  mutation createAnonymousIpMutation($ip: String!) {
-    createAnonymousIp(ip: $ip) {
-      ip
-    }
-  }
-`;
-
 const ADD_USER_TO_VIDEO_MUTATION = gql`
   mutation addUserToVideoMutation(
     $email: String!, 
@@ -64,12 +56,6 @@ export const addUserToVideoMutation = ({ render }) => (
 
 export const createUserMutation = ({ render, ip, email }) => (
   <Mutation mutation={CREATE_USER_MUTATION} variables={{ ip, email }}>
-    {render}
-  </Mutation>
-);
-
-export const createAnonymousIpMutation = ({ render, ip }) => (
-  <Mutation mutation={CREATE_ANONYMOUS_IP_MUTATION} variables={{ ip }}>
     {render}
   </Mutation>
 );

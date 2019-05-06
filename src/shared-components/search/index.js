@@ -16,10 +16,10 @@ export default ({ close, fetchVideos, videos = [] }) => (
     <div className="dropdown">
       {
         videos.map(({
-          link, image, placeholder, title,
+          id, image, placeholder, title,
         }) => (
           <div className="item" key={idGenerator()}>
-            <a href={link}>
+            <a href={`/video/${id.slice(-5)}`}>
               <Image src={image} placeholder={placeholder} className="itemContainer shadow" />
               <p>{title}</p>
             </a>

@@ -14,7 +14,6 @@ import './index.css';
 import { videoPageQuery } from '../../operations/queries';
 import {
   addUserIpMutation,
-  createAnonymousIpMutation,
   addUserToVideoMutation,
 } from '../../operations/mutations';
 
@@ -22,38 +21,42 @@ const mapper = {
   videoPageQuery,
   // productsQuery,
   addUserIpMutation,
-  createAnonymousIpMutation,
   addUserToVideoMutation,
 };
 
-// >>> buy video - then click to preview - then back to extended doesn't work
-// can't select videos from dropdown on mobile
-// check user status and ip blocked before showing the page
+// Apollo caching
+// createAnonymousIP create if doesn't exist UPSERT (add count and add one everytime attempt to upsert)
 // transfer assets to wasabi and setup cloudflare
-// CHECK AGAIN DOUBLE QUERY ISSUE
-
 
 export default (props) => {
-  const { videoId, userIp, showAll } = props;
+  const {
+    videoId, userIp, cookieEmail, showAll,
+  } = props;
+
   return (
     <Fragment>
-      <Adopt mapper={mapper} id={videoId} ip={userIp} showAll={showAll}>
+      <Adopt mapper={mapper} id={videoId} ip={userIp} email={cookieEmail} showAll={showAll}>
         {({
           videoPageQuery: videoPageData,
           addUserIpMutation: addUserIp,
-          createAnonymousIpMutation: createAnonymousIp,
           addUserToVideoMutation: addUserToVideo,
         }) => {
           try {
             const { data, loading, error } = videoPageData;
 
+
             if (loading) { return <Loader />; }
             if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
-            const { videoPage: { video, latestVideos, promoVideo } } = data;
+            const {
+              videoPage: {
+                video, latestVideos, promoVideo, userActive,
+              },
+            } = data;
+
             // const { data: { products: { items: products, types: productTypes } } } = productsData;
             const showMerch = false;
 
-            return (
+            return userActive ? (
               <Fragment>
                 <div className="page">
                   <div className="videoWrapper">
@@ -62,7 +65,6 @@ export default (props) => {
                       userIp={userIp}
                       addUserIp={addUserIp}
                       addUserToVideo={addUserToVideo}
-                      createAnonymousIp={createAnonymousIp}
                     />
                     <div className="separator" />
                     <Promo video={promoVideo} orientation="portrait" />
@@ -78,6 +80,8 @@ export default (props) => {
                   </div>
                 ) : ''}
               </Fragment>
+            ) : (
+              <div>NOT ACTIVE</div>
             );
           } catch (e) {
             return (<VideoNotFound />);

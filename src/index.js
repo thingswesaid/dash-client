@@ -14,6 +14,7 @@ import AppFrame from './shared-components/app-frame';
 import VideoPage from './pages/video';
 import { deleteCookie } from './utils';
 
+
 import './index.css';
 
 const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/', shouldBatch: true });
@@ -40,7 +41,7 @@ render((
     <Router>
       <AppFrameWithData>
         <AppContext.Consumer>
-          {({ userIp }) => (
+          {({ userIp, cookieEmail }) => (
             <Switch>
               <Route
                 path="/video/:id"
@@ -49,7 +50,7 @@ render((
                     const { showAll } = queryString.parse(search);
                     const { params: { id } } = match;
                     return (
-                      <VideoPage videoId={id} userIp={userIp} showAll={!!showAll} />
+                      <VideoPage videoId={id} userIp={userIp} cookieEmail={cookieEmail} showAll={!!showAll} />
                     );
                   }
                 }
