@@ -23,9 +23,6 @@ const mapper = {
   addUserToVideoMutation,
 };
 
-// Apollo caching
-// transfer assets to wasabi and setup cloudflare
-
 export default (props) => {
   const {
     videoId, userIp, cookieEmail, showAll,

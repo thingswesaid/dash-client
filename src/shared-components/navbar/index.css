@@ -49,8 +49,9 @@
 		height: 15px;
 	}
 	
-	div.navbarContainer.shrink > div > img {
-		width: 40px;
+	div.navbarContainer.shrink > div > a > img {
+		width: 37px;
+    margin-top: 5px;
 	}
 	
 	div.navbarContainer.shrink > div > i {

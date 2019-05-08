@@ -142,6 +142,7 @@ div.videoWrapper > div.cardsContainer.shrink {
 }
 
 .payments .price {
+	transform: rotate(-15deg);
 	color: #8a5b8a;
 	font-family: sans-serif;
 	margin-right: 240px;

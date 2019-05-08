@@ -38,12 +38,12 @@
 .suggestedImageContainer {
 	overflow: hidden;
 	border-radius: 10px;
-	min-width: 170px;
+	height: 28vw;
 }
 
 
 .suggestion .video .suggestedImageContainer img {
-	height: 95px;
+	height: 28vw;
 	border-radius: 3px;
 	opacity: .9;
 	cursor: pointer;
@@ -67,6 +67,14 @@
 	font-weight: 100;
 	max-width: 155px;
 }
+
+@media screen and (min-width: 500px) {
+	.suggestion .video .suggestedImageContainer img,
+	.suggestion .video .suggestedImageContainer {
+		height: 95px;
+	}
+}
+
 
 @media screen and (min-width: 730px) and (max-width: 969px) {
 	.suggestion {

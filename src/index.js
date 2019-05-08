@@ -10,11 +10,11 @@ import {
 } from 'react-router-dom';
 
 import { withAppData, AppContext } from './shared-components/with-app-data';
+import { deleteCookie } from './utils';
 import AppFrame from './shared-components/app-frame';
 import HomePage from './pages/homepage';
 import VideoPage from './pages/video';
 import TermsPage from './pages/terms';
-import { deleteCookie } from './utils';
 
 import './index.css';
 
@@ -25,11 +25,9 @@ const client = new ApolloClient({ uri, shouldBatch: true });
 const AppFrameWithData = withAppData(AppFrame);
 deleteCookie('dash-recent-order');
 
-// Homepage with search bar
-// unsubscribe email page
-// terms and conditions page (content centered with universe icons on the sides)
 // fully test on all browsers
-
+// set dashinbetween.com domain
+// Apollo caching
 
 render((
   <ApolloProvider client={client}>
@@ -41,11 +39,7 @@ render((
               <Route
                 path="/"
                 exact
-                render={
-                  () => (
-                    <HomePage />
-                  )
-                }
+                render={() => (<HomePage />)}
               />
               <Route
                 path="/video/:id"
@@ -66,11 +60,7 @@ render((
               />
               <Route
                 path="/terms"
-                render={
-                  () => (
-                    <TermsPage />
-                  )
-                }
+                render={() => (<TermsPage />)}
               />
             </Switch>
           )}

@@ -235,7 +235,10 @@ export default class MainVideo extends Component {
             </div>
             <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
               <div className="title">CHECKOUT</div>
-              <div className="price">$4.99</div>
+              <div className="price">
+$
+                {amount}
+              </div>
               <div className="payPalWrapper">
                 <PayPalButton
                   amount={amount}
