@@ -6,8 +6,8 @@ export default () => (
     <div className="footer">
       <div className="firstSection">
         <img src="https://res.cloudinary.com/dw4v960db/image/upload/v1556328141/dashinbetween.png" alt="Dash in Between logo" />
-        <a href="/findithere">Terms of Service</a>
-        <a href="mailto:info@dashinbetween.com">Contact Us</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="mailto:info@dashinbetween.com" target="_blank" rel="noopener noreferrer">Contact Us</a>
       </div>
       <div className="secondSection">
         <p>STAY CONNECTED</p>

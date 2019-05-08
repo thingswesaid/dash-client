@@ -93,10 +93,6 @@ div.videoWrapper > div.cardsContainer.shrink {
 	transition: all .3s ease-in-out;
 }
 
-.payments .emailField {
-	margin-bottom: -20px;
-}
-
 .payments .emailField p {
 	color: white;
 	font-size: 10px;
@@ -139,10 +135,21 @@ div.videoWrapper > div.cardsContainer.shrink {
 	font-weight: 500;
 }
 
-.videoPrice {
+.payments .title {
 	color: white;
-	border-bottom: 1px solid white;
-	padding: 7px;
+	font-weight: bold;
+	margin-bottom: -20px;
+}
+
+.payments .price {
+	color: #8a5b8a;
+	font-family: sans-serif;
+	margin-right: 240px;
+	margin-bottom: -35px;
+	background: white;
+	padding: 5px 15px;
+	border-radius: 50px;
+	font-size: 15px;
 }
 
 .payPalWrapper {
@@ -223,7 +230,7 @@ div.videoWrapper > div.cardsContainer.shrink {
 .alreadyPurchased {
 	display: flex;
 	align-items: center;
-	margin-bottom: 2px;
+	margin-bottom: 4px;
 }
 
 .alreadyPurchased i {
@@ -231,6 +238,14 @@ div.videoWrapper > div.cardsContainer.shrink {
 	margin: 0 6px;
 	font-size: 11px;
 	cursor: pointer;
+	margin: 0 6px 2px;
+	font-size: 13px;
+}
+
+.payments .paymentSeparator {
+	border-bottom: 1px solid white;
+	width: 225px;
+	margin-bottom: -10px;
 }
 
 @media screen and (min-width: 480px) {

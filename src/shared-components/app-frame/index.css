@@ -10,7 +10,6 @@
 }
 
 .notification {
-	border-radius: 15px;
 	overflow: hidden;
 	text-align: center;
 	color: #6e6e6e;
@@ -26,4 +25,8 @@
 	background: #76ed79;
 }
 
-
+@media screen and (min-width: 481px) {
+	.notification {
+		border-radius: 15px;
+	}
+}

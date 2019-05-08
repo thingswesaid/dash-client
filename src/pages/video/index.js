@@ -6,7 +6,6 @@ import Promo from './components/promo-video';
 import SuggestedVideos from './components/suggested-videos';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
-import VideoNotFound from './components/video-not-found';
 import Educational from './components/educational';
 // import Merch from './components/merch';
 import './index.css';
@@ -25,7 +24,6 @@ const mapper = {
 };
 
 // Apollo caching
-// createAnonymousIP create if doesn't exist UPSERT (add count and add one everytime attempt to upsert)
 // transfer assets to wasabi and setup cloudflare
 
 export default (props) => {
@@ -44,9 +42,8 @@ export default (props) => {
           try {
             const { data, loading, error } = videoPageData;
 
-
             if (loading) { return <Loader />; }
-            if (error) { return <Error error={error} />; } /* TODO log to sumo or similar */
+            if (error) { return <Error message="Sorry! An error has occurred." />; }
             const {
               videoPage: {
                 video, latestVideos, promoVideo, userActive,
@@ -81,10 +78,10 @@ export default (props) => {
                 ) : ''}
               </Fragment>
             ) : (
-              <div>NOT ACTIVE</div>
+              <Error message="Account not active. If you think this is a mistake contact us right away." />
             );
           } catch (e) {
-            return (<VideoNotFound />);
+            return (<Error message="Video not found." />);
           }
         }}
       </Adopt>

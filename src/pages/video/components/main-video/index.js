@@ -8,6 +8,7 @@ import { PayPalButton } from 'react-paypal-button-v2';
 import {
   EMAIL_NOT_VALID,
   EMAIL_NOT_FOUND,
+  ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
   COOKIE_EMAIL,
   COOKIE_RECENT_ORDER,
@@ -16,6 +17,7 @@ import {
 import Image from '../../../../shared-components/image';
 import { getCookie, getWindowHeight } from '../../../../utils';
 import Modal from '../../../../shared-components/modal';
+import Loader from '../../../../shared-components/loader';
 import playButton from '../../../../assets/images/play-button.png';
 import labelExtended from '../../../../assets/images/label-extended.png';
 import labelPreview from '../../../../assets/images/label-preview.png';
@@ -60,7 +62,10 @@ export default class MainVideo extends Component {
 
     const cookieEmail = getCookie(COOKIE_EMAIL);
     const coookieRecentOrder = getCookie(COOKIE_RECENT_ORDER);
-    const user = users.filter(({ email }) => email === cookieEmail || email === emailField)[0];
+    const emailOne = emailField ? emailField.toLowerCase() : '';
+    const emailTwo = cookieEmail ? cookieEmail.toLowerCase() : '';
+    // KEEP WORKING ON THIS
+    const user = users.filter(({ email }) => email === emailField || email === cookieEmail)[0];
 
     if (coookieRecentOrder) {
       this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
@@ -73,6 +78,13 @@ export default class MainVideo extends Component {
     if (!hasIp) {
       const { ips, email } = user;
       addUserIp({ variables: { email, ips: [...ips, userIp] } });
+    }
+
+    if (!user.active) {
+      return addNotification.error(
+        ACCOUNT_SUSPENDED,
+        { className: 'notification notificationError' },
+      );
     }
     this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
     return user;
@@ -152,12 +164,11 @@ export default class MainVideo extends Component {
 
   render() {
     const {
-      videoOpen, showPreview, hasAccess, showPayment, showModal, shrink, loading,
-    } = this.state;
-
-    const {
-      video, addUserToVideo, addUserIp,
-    } = this.props;
+      state: {
+        videoOpen, showPreview, hasAccess, showPayment, showModal, shrink, loading,
+      },
+      props: { video, addUserToVideo, addUserIp },
+    } = this;
 
     const {
       id: queryVideoId, image, placeholder, link, preview, start, amount,
@@ -179,15 +190,15 @@ export default class MainVideo extends Component {
         }
         {loading
           ? (
-            <div className="loaderContainer">
-              <div className="content">
-                <img src={heart} alt="Dash in Between Loading" />
-                <p>Thank you for your purchase!</p>
-                <p>We are processing your payment</p>
-              </div>
-            </div>
+            <Loader
+              custom
+              classContainer="loaderContainer"
+              classContent="content"
+              image={heart}
+              title="Thank you for your purchase!"
+              description="We are processing your payment"
+            />
           ) : ''}
-        {/* will be replaced by Loader component */}
         <div className={classNames('cardsContainer', { showPayment, shrink })}>
           <div className="videoContainer">
             <div className="videoPlayer">
@@ -223,12 +234,23 @@ export default class MainVideo extends Component {
               )}
             </div>
             <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
-              <div className="videoPrice">
-                ONLY
-                {' '}
-                $
-                {amount}
+              <div className="title">CHECKOUT</div>
+              <div className="price">$4.99</div>
+              <div className="payPalWrapper">
+                <PayPalButton
+                  amount={amount}
+                  onApprove={async (_data, actions) => {
+                    this.setState({ loading: true });
+                    const payment = await actions.order.capture();
+                    this.processPayment(payment, queryVideoId, addUserToVideo);
+                    this.setState({ loading: false });
+                  }}
+                  options={{
+                    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID_SANDBOX,
+                  }}
+                />
               </div>
+              <div className="paymentSeparator" />
               <div className="emailField">
                 <div className="alreadyPurchased">
                   <p>ALREADY PURCHASED?</p>
@@ -248,20 +270,6 @@ export default class MainVideo extends Component {
                   />
                   <button type="submit" onClick={() => { this.findEmailForVideo(video, addUserIp); }}>GO</button>
                 </div>
-              </div>
-              <div className="payPalWrapper">
-                <PayPalButton
-                  amount={amount}
-                  onApprove={async (_data, actions) => {
-                    this.setState({ loading: true });
-                    const payment = await actions.order.capture();
-                    this.processPayment(payment, queryVideoId, addUserToVideo);
-                    this.setState({ loading: false });
-                  }}
-                  options={{
-                    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID_SANDBOX,
-                  }}
-                />
               </div>
               <button
                 type="button"

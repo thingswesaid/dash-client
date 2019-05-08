@@ -12,13 +12,14 @@ import {
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import AppFrame from './shared-components/app-frame';
 import VideoPage from './pages/video';
+import TermsPage from './pages/terms';
 import { deleteCookie } from './utils';
 
 
 import './index.css';
 
-const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/', shouldBatch: true });
-// const client = new ApolloClient({ uri: 'http://localhost:4000', shouldBatch: true });
+// const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/', shouldBatch: true });
+const client = new ApolloClient({ uri: 'http://localhost:4000', shouldBatch: true });
 const AppFrameWithData = withAppData(AppFrame);
 deleteCookie('dash-recent-order');
 
@@ -53,6 +54,14 @@ render((
                       <VideoPage videoId={id} userIp={userIp} cookieEmail={cookieEmail} showAll={!!showAll} />
                     );
                   }
+                }
+              />
+              <Route
+                path="/terms"
+                render={
+                  () => (
+                    <TermsPage />
+                  )
                 }
               />
             </Switch>

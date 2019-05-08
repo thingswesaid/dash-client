@@ -1,0 +1,41 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.error img {
+  width: 40%;
+}
+
+.error .content {
+  text-align: center;
+}
+
+.error .content .line {
+  border-bottom: 1px solid gray;
+  margin-bottom: 15px;
+}
+
+.error .content p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3a3939;
+  letter-spacing: 1px;
+  max-width: 315px;
+}
+
+.error .content button {
+  background: #57ffed;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 580px) {
+	.error {
+		flex-direction: row;
+	}
+}
