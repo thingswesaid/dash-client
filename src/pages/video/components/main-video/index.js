@@ -91,7 +91,7 @@ export default class MainVideo extends Component {
   }
 
   emailFieldUpdate(event) {
-    this.setState({ emailField: event.target.value });
+    this.setState({ emailField: event.target.value.toLowerCase() });
   }
 
   findEmailForVideo() {
@@ -140,7 +140,7 @@ export default class MainVideo extends Component {
 
     addUserToVideo({
       variables: {
-        email,
+        email: email.toLowerCase(),
         ips: [userIp],
         videoId,
         phone: phoneNumber,
@@ -150,7 +150,7 @@ export default class MainVideo extends Component {
       },
     });
 
-    document.cookie = `${COOKIE_EMAIL}=${email};`;
+    document.cookie = `${COOKIE_EMAIL}=${email.toLowerCase()};`;
     document.cookie = `${COOKIE_RECENT_ORDER}=true`;
 
     this.setState({
@@ -236,7 +236,7 @@ export default class MainVideo extends Component {
             <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
               <div className="title">CHECKOUT</div>
               <div className="price">
-$
+              $
                 {amount}
               </div>
               <div className="payPalWrapper">

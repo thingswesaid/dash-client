@@ -25,7 +25,6 @@ const client = new ApolloClient({ uri, shouldBatch: true });
 const AppFrameWithData = withAppData(AppFrame);
 deleteCookie('dash-recent-order');
 
-// fully test on all browsers
 // set dashinbetween.com domain
 // Apollo caching
 

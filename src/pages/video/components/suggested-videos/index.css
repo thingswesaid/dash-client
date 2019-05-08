@@ -39,6 +39,7 @@
 	overflow: hidden;
 	border-radius: 10px;
 	height: 28vw;
+	transition: all .1s ease-in-out;
 }
 
 
@@ -47,17 +48,16 @@
 	border-radius: 3px;
 	opacity: .9;
 	cursor: pointer;
-	transition: all .1s ease-in-out;
 }
 
-.suggestion .video .suggestedImageContainer img:hover {
+.suggestion .video .suggestedImageContainer:hover {
 	opacity: 1;
 	transform: scale(1.02);
 }
 
-.suggestion .video .suggestedImageContainer img:active {
+.suggestion .video .suggestedImageContainer:active {
   opacity: 1;
-	transform: scale(0.95);
+	transform: scale(0.99);
 }
 
 .suggestion .video p {
