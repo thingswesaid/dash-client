@@ -18,13 +18,14 @@ import { deleteCookie } from './utils';
 
 import './index.css';
 
-// const client = new ApolloClient({ uri: 'https://dash-prisma-client.herokuapp.com/', shouldBatch: true });
-const client = new ApolloClient({ uri: 'http://localhost:4000', shouldBatch: true });
+const uri = process.env.NODE_ENV === 'production'
+  ? process.env.REACT_APP_APOLLO_URI : 'http://localhost:4000';
+
+const client = new ApolloClient({ uri, shouldBatch: true });
 const AppFrameWithData = withAppData(AppFrame);
 deleteCookie('dash-recent-order');
 
 // Homepage with search bar
-// 404 page
 // unsubscribe email page
 // terms and conditions page (content centered with universe icons on the sides)
 // emails page (if it's possible to serve them from this site)
