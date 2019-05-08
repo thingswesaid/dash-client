@@ -11,10 +11,10 @@ import {
 
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import AppFrame from './shared-components/app-frame';
+import HomePage from './pages/homepage';
 import VideoPage from './pages/video';
 import TermsPage from './pages/terms';
 import { deleteCookie } from './utils';
-
 
 import './index.css';
 
@@ -28,14 +28,7 @@ deleteCookie('dash-recent-order');
 // Homepage with search bar
 // unsubscribe email page
 // terms and conditions page (content centered with universe icons on the sides)
-// emails page (if it's possible to serve them from this site)
-// email your account has been suspended, too many ips using it - contact us info@dashinbetween.com
-// email new videos
-// email we'll answer ASAP
-// build search component - elastic search video names
-
 // fully test on all browsers
-// build recommendation engine
 
 
 render((
@@ -45,6 +38,15 @@ render((
         <AppContext.Consumer>
           {({ userIp, cookieEmail }) => (
             <Switch>
+              <Route
+                path="/"
+                exact
+                render={
+                  () => (
+                    <HomePage />
+                  )
+                }
+              />
               <Route
                 path="/video/:id"
                 render={

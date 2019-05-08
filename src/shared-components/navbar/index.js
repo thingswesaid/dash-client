@@ -34,21 +34,16 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const { state: { searchOpen, shrink }, props: { fetchVideos, videos } } = this;
+    const { searchOpen, shrink } = this.state;
     const shouldShrink = shrink && !searchOpen;
 
     return (
       <div className={classNames('navbarContainer', { searchOpen, shrink: shouldShrink })}>
         <div className="navBar">
+        <a href='/'>
           <img src={DashLogo} alt="dash in between logo" />
-          {searchOpen ? 
-            <Search 
-              close={this.toggleSearch} 
-              searchOpen={searchOpen} 
-              fetchVideos={fetchVideos} 
-              videos={videos}
-            /> : '' 
-          }
+        </a>
+          {searchOpen ? <Search close={this.toggleSearch} searchOpen={searchOpen} /> : '' }
           {searchOpen ? (
             <i
               className="fas fa-times-circle"
