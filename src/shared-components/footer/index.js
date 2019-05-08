@@ -12,18 +12,18 @@ export default () => (
       <div className="secondSection">
         <p>STAY CONNECTED</p>
         <div className="socials">
-          <a href="https://www.socials.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/dash.inbetween/?hl=en" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-instagram" />
           </a>
-          <a href="https://swww.socials.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.youtube.com/channel/UCXijIQQdb6XX8zhPJWAxPHQ/" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-youtube" />
+          </a>
+          {/* <a href="https://swww.socials.com" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-facebook-square" />
           </a>
           <a href="https://swww.socials.com" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-tumblr-square" />
-          </a>
-          <a href="https://swww.socials.com" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-youtube" />
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

@@ -52,7 +52,12 @@ render((
                     const { showAll } = queryString.parse(search);
                     const { params: { id } } = match;
                     return (
-                      <VideoPage videoId={id} userIp={userIp} cookieEmail={cookieEmail} showAll={!!showAll} />
+                      <VideoPage
+                        videoId={id}
+                        userIp={userIp}
+                        cookieEmail={cookieEmail}
+                        showAll={!!showAll}
+                      />
                     );
                   }
                 }

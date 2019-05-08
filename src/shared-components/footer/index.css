@@ -56,7 +56,7 @@
 .footerContainer .footer .secondSection .socials {
 	display: flex;
 	justify-content: space-evenly;
-	width: 230px;
+	width: 120px;
 	margin-right: -25px;
 }
 
