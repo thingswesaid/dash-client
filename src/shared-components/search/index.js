@@ -12,7 +12,7 @@ const mapper = {
 };
 
 export default ({ close }) => (
-  <Adopt mapper={mapper} variables={{ skip: true }}>
+  <Adopt mapper={mapper} variables={{ skip: false }}>
     {({
       searchQuery: searchData,
     }) => {
