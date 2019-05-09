@@ -62,9 +62,6 @@ export default class MainVideo extends Component {
 
     const cookieEmail = getCookie(COOKIE_EMAIL);
     const coookieRecentOrder = getCookie(COOKIE_RECENT_ORDER);
-    const emailOne = emailField ? emailField.toLowerCase() : '';
-    const emailTwo = cookieEmail ? cookieEmail.toLowerCase() : '';
-    // KEEP WORKING ON THIS
     const user = users.filter(({ email }) => email === emailField || email === cookieEmail)[0];
 
     if (coookieRecentOrder) {
@@ -241,7 +238,17 @@ export default class MainVideo extends Component {
               </div>
               <div className="payPalWrapper">
                 <PayPalButton
-                  amount={amount}
+                  createOrder={(data, actions) => actions.order.create({
+                    purchase_units: [{
+                      amount: {
+                        currency_code: 'USD',
+                        value: amount,
+                      },
+                    }],
+                    application_context: {
+                      shipping_preference: 'NO_SHIPPING',
+                    },
+                  })}
                   onApprove={async (_data, actions) => {
                     this.setState({ loading: true });
                     const payment = await actions.order.capture();
@@ -281,8 +288,7 @@ export default class MainVideo extends Component {
                   this.setState({ showPayment: false, videoOpen: false });
                 }}
               >
-BACK
-
+                BACK
               </button>
             </div>
           </div>

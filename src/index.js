@@ -9,6 +9,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { COOKIE_RECENT_ORDER } from './constants';
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import { deleteCookie } from './utils';
 import AppFrame from './shared-components/app-frame';
@@ -23,9 +24,7 @@ const uri = process.env.NODE_ENV === 'production'
 
 const client = new ApolloClient({ uri, shouldBatch: true });
 const AppFrameWithData = withAppData(AppFrame);
-deleteCookie('dash-recent-order');
-
-// Apollo caching
+deleteCookie(COOKIE_RECENT_ORDER);
 
 render((
   <ApolloProvider client={client}>
