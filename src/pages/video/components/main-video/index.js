@@ -256,7 +256,9 @@ export default class MainVideo extends Component {
                     this.setState({ loading: false });
                   }}
                   options={{
-                    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID_SANDBOX,
+                    clientId: process.env.NODE_ENV === 'production'
+                      ? process.env.REACT_APP_PAYPAL_CLIENT_ID
+                      : process.env.REACT_APP_PAYPAL_CLIENT_ID_SANDBOX,
                   }}
                 />
               </div>
