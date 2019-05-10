@@ -276,7 +276,7 @@ export default class MainVideo extends Component {
                 </div>
                 <div>
                   <input
-                    placeholder="Your Email Address"
+                    placeholder="Enter Your Email Address"
                     onChange={this.emailFieldUpdate.bind(this)}
                     onKeyDown={(e) => { if (e.key === 'Enter') { this.findEmailForVideo(video, addUserIp); } }}
                   />

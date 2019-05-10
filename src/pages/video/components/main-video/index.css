@@ -93,9 +93,13 @@ div.videoWrapper > div.cardsContainer.shrink {
 	transition: all .3s ease-in-out;
 }
 
+.payments .emailField {
+	margin-bottom: 20px;
+}
+
 .payments .emailField p {
 	color: white;
-	font-size: 10px;
+	font-size: 13px;
 	margin: 0 0 1px 3px;
 }
 
@@ -146,7 +150,7 @@ div.videoWrapper > div.cardsContainer.shrink {
 	color: #8a5b8a;
 	font-family: sans-serif;
 	margin-right: 240px;
-	margin-bottom: -44px;
+	margin-bottom: -39px;
 	background: white;
 	padding: 5px 15px;
 	border-radius: 50px;
@@ -241,13 +245,12 @@ div.videoWrapper > div.cardsContainer.shrink {
 	font-size: 11px;
 	cursor: pointer;
 	margin: 0 6px 2px;
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .payments .paymentSeparator {
 	border-bottom: 1px solid white;
 	width: 225px;
-	margin-bottom: -10px;
 }
 
 @media screen and (min-width: 480px) {
