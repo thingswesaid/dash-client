@@ -72,7 +72,7 @@ export default class MainVideo extends Component {
       return undefined;
     }
     const hasIp = user.ips.includes(userIp);
-    if (!hasIp) {
+    if (!!userIp && !hasIp) {
       const { ips, email } = user;
       addUserIp({ variables: { email, ips: [...ips, userIp] } });
     }
@@ -134,11 +134,12 @@ export default class MainVideo extends Component {
     }
 
     const phoneNumber = phone ? phone.phone_number.national_number : undefined;
+    const ip = userIp || 'IP-NOT-RECEIVED';
 
     addUserToVideo({
       variables: {
         email: email.toLowerCase(),
-        ips: [userIp],
+        ips: [ip],
         videoId,
         phone: phoneNumber,
         firstName,

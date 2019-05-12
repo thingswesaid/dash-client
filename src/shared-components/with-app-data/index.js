@@ -19,7 +19,7 @@ export function withAppData(WrappedComponent) {
         <Query query={USERIP_QUERY}>
           {({ data, loading, error }) => {
             if (loading) { return <Loader />; }
-            if (error) { return <Error error={error} />; } /* log to sumo or similar */
+            if (error) { return <Error message="Sorry! An error has occurred." />; } /* log to sumo or similar */
             const { userIp } = data;
             return (
               <AppContext.Provider value={{ ...this.state, ...{ userIp, cookieEmail } }}>
