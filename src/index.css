@@ -2,8 +2,8 @@
 @import 'https://fonts.googleapis.com/css?family=Raleway:300,400';
 
 @font-face {
-  font-family: 'Raleway', sans-serif;
-  src: url('./assets/fonts/tagliner.ttf');
+  font-family: 'tagliner';
+  src: url('https://s3.us-west-1.wasabisys.com/fonts/tagliner.ttf') format('truetype');
 }
 
 body {
