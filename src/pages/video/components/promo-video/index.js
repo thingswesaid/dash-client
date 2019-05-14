@@ -3,6 +3,7 @@ import Media from 'react-media';
 import Image from '../../../../shared-components/image';
 import './index.css';
 
+
 export default ({
   orientation,
   video: {

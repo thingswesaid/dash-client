@@ -5,8 +5,6 @@ import classNames from 'classnames';
 import { toast as addNotification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 
-// Promo video same sign different reading (love)
-
 import {
   EMAIL_NOT_VALID,
   EMAIL_NOT_FOUND,

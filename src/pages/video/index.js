@@ -60,12 +60,12 @@ export default (props) => {
                       addUserIp={addUserIp}
                       addUserToVideo={addUserToVideo}
                     />
-                    <div className="separator" />
-                    <Promo video={promoVideo} orientation="portrait" />
+                    {promoVideo ? <div className="separator" /> : ''}
+                    {promoVideo ? <Promo video={promoVideo} orientation="portrait" /> : ''}
                   </div>
                   <div className="mobileWrapper" />
-                  <SuggestedVideos videos={latestVideos} />
-                  <Promo video={promoVideo} orientation="landscape" />
+                  {latestVideos ? <SuggestedVideos videos={latestVideos} /> : ''}
+                  {promoVideo ? <Promo video={promoVideo} orientation="landscape" /> : ''}
                 </div>
                 {showMerch ? (
                   <div className="bottomPage">
