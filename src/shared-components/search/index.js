@@ -24,7 +24,7 @@ export default ({ close }) => (
           <input
             autoFocus
             className="search"
-            placeholder="taurus love april"
+            placeholder="zodiac sign"
             onKeyUp={(e) => {
               fetchVideos({ keywords: e.target.value.toLowerCase(), skip: false });
             }}
