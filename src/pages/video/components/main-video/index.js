@@ -232,7 +232,7 @@ export default class MainVideo extends Component {
               )}
             </div>
             <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
-              <div className="title">CHECKOUT</div>
+              <div className="title">30 SECOND CHECKOUT</div>
               <div className="price">
               $
                 {amount}
