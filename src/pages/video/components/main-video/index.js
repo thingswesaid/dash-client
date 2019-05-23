@@ -4,6 +4,7 @@ import YouTube from 'react-youtube';
 import classNames from 'classnames';
 import { toast as addNotification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
+import * as Sentry from '@sentry/browser';
 
 import {
   EMAIL_NOT_VALID,
@@ -156,6 +157,13 @@ export default class MainVideo extends Component {
       document.cookie = `${COOKIE_EMAIL}=${email.toLowerCase()};`;
       document.cookie = `${COOKIE_RECENT_ORDER}=true`;
 
+      Sentry.captureMessage(`
+        MAIN-VIDEO:processPayment:success
+        EMAIL: ${email}
+        STATUS: ${status}
+        VIDEO-ID: ${videoId}
+      `);
+
       this.setState({
         hasAccess: true,
         videoOpen: true,
@@ -164,11 +172,12 @@ export default class MainVideo extends Component {
         loading: false,
       });
       return undefined;
-    } catch (e) {
+    } catch (error) {
       addNotification.info(
         PAYMENT_ERROR,
         { className: 'notification notificationError' },
       );
+      Sentry.captureException('MAIN-VIDEO:processPayment:error', error);
       return this.setState({ loading: false });
     }
   }
@@ -268,11 +277,12 @@ export default class MainVideo extends Component {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
                       this.processPayment(payment, queryVideoId, createOrder);
-                    } catch (e) {
+                    } catch (error) {
                       addNotification.info(
                         PAYMENT_ERROR,
                         { className: 'notification notificationError' },
                       );
+                      Sentry.captureException('MAIN-VIDEO:onApprove', error);
                       return this.setState({ loading: false });
                     }
                   }}

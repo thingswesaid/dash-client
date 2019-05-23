@@ -77,7 +77,7 @@ export default (props) => {
             ) : (
               <Error message="Account not active. If you think this is a mistake contact us right away." />
             );
-          } catch (e) {
+          } catch (error) {
             return (<Error message="Video not found." />);
           }
         }}
