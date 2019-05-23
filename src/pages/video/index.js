@@ -40,7 +40,7 @@ export default (props) => {
             const { data, loading, error } = videoPageData;
 
             if (loading) { return <Loader />; }
-            if (error) { return <Error message="Sorry! An error has occurred." />; }
+            if (error) { return <Error message="We will be right back!" />; }
             const {
               videoPage: {
                 video, latestVideos, promoVideo, userActive,

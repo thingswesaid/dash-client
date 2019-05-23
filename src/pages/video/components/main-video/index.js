@@ -117,14 +117,17 @@ export default class MainVideo extends Component {
   async processPayment(payment, videoId, addUserToVideo) {
     const { userIp } = this.props;
     const {
-      id: paymentId,
       payer: {
         email_address: email,
         name: { given_name: firstName, surname: lastName },
         phone,
       },
+      purchase_units: purchase,
       status,
     } = payment;
+
+    const { payments: { captures } } = purchase[0];
+    const { id: paymentId } = captures[0];
 
     if (status !== 'COMPLETED') {
       return addNotification.info(
@@ -135,7 +138,6 @@ export default class MainVideo extends Component {
 
     const phoneNumber = phone ? phone.phone_number.national_number : undefined;
     const ip = userIp || 'IP-NOT-RECEIVED';
-
     addUserToVideo({
       variables: {
         email: email.toLowerCase(),
