@@ -157,17 +157,11 @@ export default class MainVideo extends Component {
       document.cookie = `${COOKIE_EMAIL}=${email.toLowerCase()};`;
       document.cookie = `${COOKIE_RECENT_ORDER}=true`;
 
-      Sentry.captureMessage(`
-        MAIN-VIDEO:processPayment:success
-        EMAIL: ${email}
-        STATUS: ${status}
-        VIDEO-ID: ${videoId}
-      `);
-
       transactionToAnalytics(dataLayer, {
         videoName,
         videoId,
         amount,
+        paymentId,
       });
 
       this.setState({

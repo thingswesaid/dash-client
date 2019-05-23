@@ -20,10 +20,18 @@ export const getWindowHeight = (triggerHeight, component) => {
 };
 
 export const transactionToAnalytics = (dataLayer, transaction) => {
-  const { videoId, videoName, amount } = transaction;
+  const {
+    videoId, videoName, amount, paymentId,
+  } = transaction;
   dataLayer.push({
     ecommerce: {
       purchase: {
+        actionField: {
+          id: paymentId,
+          affiliation: 'Video Page',
+          revenue: amount,
+          coupon: '', // implement PromoCode
+        },
         products: [{
           name: videoName,
           id: videoId,
