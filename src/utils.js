@@ -18,3 +18,21 @@ export const getWindowHeight = (triggerHeight, component) => {
     component.setState({ shrink: false });
   }
 };
+
+export const transactionToAnalytics = (dataLayer, transaction) => {
+  const { videoId, videoName, amount } = transaction;
+  dataLayer.push({
+    ecommerce: {
+      purchase: {
+        products: [{
+          name: videoName,
+          id: videoId,
+          price: amount,
+          category: 'video',
+          quantity: 1,
+          coupon: '', // implement PromoCode
+        }],
+      },
+    },
+  });
+};

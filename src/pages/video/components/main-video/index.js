@@ -16,7 +16,7 @@ import {
   EMAIL_REGEX,
 } from '../../../../constants';
 import Image from '../../../../shared-components/image';
-import { getCookie, getWindowHeight } from '../../../../utils';
+import { getCookie, getWindowHeight, transactionToAnalytics } from '../../../../utils';
 import Modal from '../../../../shared-components/modal';
 import Loader from '../../../../shared-components/loader';
 import playButton from '../../../../assets/images/play-button.png';
@@ -115,7 +115,7 @@ export default class MainVideo extends Component {
     return undefined;
   }
 
-  async processPayment(payment, videoId, createOrder) {
+  async processPayment(payment, videoId, amount, videoName, createOrder) {
     try {
       const { userIp } = this.props;
       const {
@@ -164,6 +164,12 @@ export default class MainVideo extends Component {
         VIDEO-ID: ${videoId}
       `);
 
+      transactionToAnalytics(dataLayer, {
+        videoName,
+        videoId,
+        amount,
+      });
+
       this.setState({
         hasAccess: true,
         videoOpen: true,
@@ -191,7 +197,7 @@ export default class MainVideo extends Component {
     } = this;
 
     const {
-      id: queryVideoId, image, placeholder, link, preview, start, amount,
+      id: queryVideoId, name, image, placeholder, link, preview, start, amount,
     } = video;
     const videoLabel = showPreview ? labelPreview : labelExtended;
 
@@ -276,7 +282,7 @@ export default class MainVideo extends Component {
                     try {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
-                      this.processPayment(payment, queryVideoId, createOrder);
+                      this.processPayment(payment, queryVideoId, amount, name, createOrder);
                     } catch (error) {
                       addNotification.info(
                         PAYMENT_ERROR,
