@@ -13,14 +13,14 @@ import './index.css';
 import { videoPageQuery } from '../../operations/queries';
 import {
   addUserIpMutation,
-  addUserToVideoMutation,
+  createOrderMutation,
 } from '../../operations/mutations';
 
 const mapper = {
   videoPageQuery,
   // productsQuery,
   addUserIpMutation,
-  addUserToVideoMutation,
+  createOrderMutation,
 };
 
 export default (props) => {
@@ -34,7 +34,7 @@ export default (props) => {
         {({
           videoPageQuery: videoPageData,
           addUserIpMutation: addUserIp,
-          addUserToVideoMutation: addUserToVideo,
+          createOrderMutation: createOrder,
         }) => {
           try {
             const { data, loading, error } = videoPageData;
@@ -58,7 +58,7 @@ export default (props) => {
                       video={video}
                       userIp={userIp}
                       addUserIp={addUserIp}
-                      addUserToVideo={addUserToVideo}
+                      createOrder={createOrder}
                     />
                     {promoVideo ? <div className="separator" /> : ''}
                     {promoVideo ? <Promo video={promoVideo} orientation="portrait" /> : ''}

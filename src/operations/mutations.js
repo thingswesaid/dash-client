@@ -18,8 +18,8 @@ const ADD_USER_IP_MUTATION = gql`
   }
 `;
 
-const ADD_USER_TO_VIDEO_MUTATION = gql`
-  mutation addUserToVideoMutation(
+const CREATE_ORDER_MUTATION = gql`
+  mutation createOrderMutation(
     $email: String!, 
     $ips: [String], 
     $videoId: String!, 
@@ -28,7 +28,7 @@ const ADD_USER_TO_VIDEO_MUTATION = gql`
     $lastName: String,
     $paymentId: String!
   ) {
-    addUserToVideo(
+    createOrder(
       email: $email, 
       ips: $ips, 
       videoId: $videoId, 
@@ -48,8 +48,8 @@ export const addUserIpMutation = ({ render }) => (
   </Mutation>
 );
 
-export const addUserToVideoMutation = ({ render }) => (
-  <Mutation mutation={ADD_USER_TO_VIDEO_MUTATION}>
+export const createOrderMutation = ({ render }) => (
+  <Mutation mutation={CREATE_ORDER_MUTATION}>
     {render}
   </Mutation>
 );

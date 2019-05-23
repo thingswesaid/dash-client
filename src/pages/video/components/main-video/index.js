@@ -114,7 +114,7 @@ export default class MainVideo extends Component {
     return undefined;
   }
 
-  async processPayment(payment, videoId, addUserToVideo) {
+  async processPayment(payment, videoId, createOrder) {
     const { userIp } = this.props;
     const {
       payer: {
@@ -138,7 +138,7 @@ export default class MainVideo extends Component {
 
     const phoneNumber = phone ? phone.phone_number.national_number : undefined;
     const ip = userIp || 'IP-NOT-RECEIVED';
-    addUserToVideo({
+    createOrder({
       variables: {
         email: email.toLowerCase(),
         ips: [ip],
@@ -167,7 +167,7 @@ export default class MainVideo extends Component {
       state: {
         videoOpen, showPreview, hasAccess, showPayment, showModal, shrink, loading,
       },
-      props: { video, addUserToVideo, addUserIp },
+      props: { video, createOrder, addUserIp },
     } = this;
 
     const {
@@ -255,7 +255,7 @@ export default class MainVideo extends Component {
                   onApprove={async (_data, actions) => {
                     this.setState({ loading: true });
                     const payment = await actions.order.capture();
-                    this.processPayment(payment, queryVideoId, addUserToVideo);
+                    this.processPayment(payment, queryVideoId, createOrder);
                     this.setState({ loading: false });
                   }}
                   options={{
