@@ -115,51 +115,62 @@ export default class MainVideo extends Component {
   }
 
   async processPayment(payment, videoId, createOrder) {
-    const { userIp } = this.props;
-    const {
-      payer: {
-        email_address: email,
-        name: { given_name: firstName, surname: lastName },
-        phone,
-      },
-      purchase_units: purchase,
-      status,
-    } = payment;
+    try {
+      const { userIp } = this.props;
+      const {
+        payer: {
+          email_address: email,
+          name: { given_name: firstName, surname: lastName },
+          phone,
+        },
+        purchase_units: purchase,
+        status,
+      } = payment;
 
-    const { payments: { captures } } = purchase[0];
-    const { id: paymentId } = captures[0];
+      const { payments: { captures } } = purchase[0];
+      const { id: paymentId } = captures[0];
 
-    if (status !== 'COMPLETED') {
-      return addNotification.info(
+      if (status !== 'COMPLETED') {
+        addNotification.info(
+          PAYMENT_ERROR,
+          { className: 'notification notificationError' },
+        );
+        return this.setState({ loading: false });
+      }
+
+      const phoneNumber = phone ? phone.phone_number.national_number : undefined;
+      const ip = userIp || 'IP-NOT-RECEIVED';
+
+      createOrder({
+        variables: {
+          email: email.toLowerCase(),
+          ips: [ip],
+          videoId,
+          phone: phoneNumber,
+          firstName,
+          lastName,
+          paymentId,
+        },
+      });
+
+      document.cookie = `${COOKIE_EMAIL}=${email.toLowerCase()};`;
+      document.cookie = `${COOKIE_RECENT_ORDER}=true`;
+
+      this.setState({
+        hasAccess: true,
+        videoOpen: true,
+        showPreview: false,
+        showPayment: false,
+        loading: false,
+      });
+      return undefined;
+    } catch (e) {
+      addNotification.info(
         PAYMENT_ERROR,
         { className: 'notification notificationError' },
       );
+      return this.setState({ loading: false });
     }
-
-    const phoneNumber = phone ? phone.phone_number.national_number : undefined;
-    const ip = userIp || 'IP-NOT-RECEIVED';
-    createOrder({
-      variables: {
-        email: email.toLowerCase(),
-        ips: [ip],
-        videoId,
-        phone: phoneNumber,
-        firstName,
-        lastName,
-        paymentId,
-      },
-    });
-
-    document.cookie = `${COOKIE_EMAIL}=${email.toLowerCase()};`;
-    document.cookie = `${COOKIE_RECENT_ORDER}=true`;
-
-    this.setState({
-      hasAccess: true,
-      videoOpen: true,
-      showPreview: false,
-      showPayment: false,
-    });
-    return undefined;
   }
 
   render() {
@@ -253,10 +264,17 @@ export default class MainVideo extends Component {
                     },
                   })}
                   onApprove={async (_data, actions) => {
-                    this.setState({ loading: true });
-                    const payment = await actions.order.capture();
-                    this.processPayment(payment, queryVideoId, createOrder);
-                    this.setState({ loading: false });
+                    try {
+                      this.setState({ loading: true });
+                      const payment = await actions.order.capture();
+                      this.processPayment(payment, queryVideoId, createOrder);
+                    } catch (e) {
+                      addNotification.info(
+                        PAYMENT_ERROR,
+                        { className: 'notification notificationError' },
+                      );
+                      return this.setState({ loading: false });
+                    }
                   }}
                   options={{
                     clientId: process.env.NODE_ENV === 'production'
