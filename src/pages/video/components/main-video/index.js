@@ -293,7 +293,7 @@ export default class MainVideo extends Component {
                   this.setState({ showPayment: false, videoOpen: false });
                 }}
               >
-                BACK
+                CLOSE
               </button>
             </div>
           </div>
