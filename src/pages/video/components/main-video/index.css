@@ -145,6 +145,14 @@ div.videoWrapper > div.cardsContainer.shrink {
 	font-size: 14px;
 }
 
+.payPalWrapper {
+	width: 251px;
+	background: rgba(255, 255, 255, .5);
+  padding: 10px;
+	border-radius: 5px;
+	position: relative;
+}
+
 .payments .price {
 	transform: rotate(-18deg);
 	color: #8a5b8a;
@@ -155,13 +163,9 @@ div.videoWrapper > div.cardsContainer.shrink {
 	border-radius: 50px;
 	font-size: 15px;
 	z-index: 101;
-}
-
-.payPalWrapper {
-	width: 251px;
-	background: rgba(255, 255, 255, .5);
-  padding: 10px;
-  border-radius: 5px;
+	position: absolute;
+	left: -30px;
+	top: 3px;
 }
 
 .videoLabel {
