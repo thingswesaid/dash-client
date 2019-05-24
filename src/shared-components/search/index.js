@@ -12,7 +12,7 @@ const mapper = {
 };
 
 export default ({ close }) => (
-  <Adopt mapper={mapper} variables={{ skip: false }}>
+  <Adopt mapper={mapper}>
     {({
       searchQuery: searchData,
     }) => {
@@ -26,7 +26,7 @@ export default ({ close }) => (
             className="search"
             placeholder="zodiac sign"
             onKeyUp={(e) => {
-              fetchVideos({ keywords: e.target.value.toLowerCase(), skip: false });
+              fetchVideos({ keywords: e.target.value.toLowerCase() });
             }}
           />
           <div className="dropdown">

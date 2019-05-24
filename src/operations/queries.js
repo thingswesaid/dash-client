@@ -47,8 +47,8 @@ export const VIDEO_PAGE_QUERY = gql`
 `;
 
 export const SEARCH_QUERY = gql` 
-  query SearchQuery($keywords: String!, $skip: Boolean!) {
-    videos(keywords: $keywords) @skip(if: $skip) {
+  query SearchQuery($keywords: String!) {
+    videos(keywords: $keywords) {
       id
       link
       image
