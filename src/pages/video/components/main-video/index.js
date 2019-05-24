@@ -282,7 +282,7 @@ export default class MainVideo extends Component {
                         PAYMENT_ERROR,
                         { className: 'notification notificationError' },
                       );
-                      Sentry.captureException('MAIN-VIDEO:onApprove', error);
+                      Sentry.captureException(`MAIN-VIDEO:onApprove - ${error}`);
                       return this.setState({ loading: false });
                     }
                   }}
