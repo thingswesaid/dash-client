@@ -40,6 +40,7 @@
 	height: 57vw;
 	transition: all .1s ease-in-out;
 }
+
 div.videoWrapper > div.cardsContainer.shrink {
 	top: 15px;
 }
@@ -55,6 +56,12 @@ div.videoWrapper > div.cardsContainer.shrink {
 
 .showPayment .videoContainer {	
   transform: rotateY(180deg);
+}
+
+.videoBackButton {
+	color: white;
+	cursor: pointer;
+	font-weight: 500;
 }
 
 .videoPlayer {
@@ -93,50 +100,11 @@ div.videoWrapper > div.cardsContainer.shrink {
 	transition: all .3s ease-in-out;
 }
 
-.payments .emailField {
-	margin-bottom: 20px;
-}
-
-.payments .emailField p {
+.payments .closeButton {
 	color: white;
-	font-size: 13px;
-	margin: 0 0 1px 3px;
-}
-
-.payments .emailField input {
-	border-radius: 5px;
-	border: 1px solid gray;
-	padding: 5px 10px;
-	width: 208px;
-	height: 33px;
-	outline: none;
-	font-size: 16px;
-}
-
-.payments .emailField input::placeholder {
-	color: lightgray;
-}
-
-.payments .emailField input:focus {
-	border: 2px solid #f7c556;
-}
-
-.payments .emailField button {
-	background: white;
-	padding: 9px;
-	margin-left: 10px;
-	border-radius: 3px;
-	color: #8a5b8a;
-}
-
-.videoBackButton {
-	color: #8a5b8a;
-	border: 1px solid white;
-	border-radius: 8px;
-	padding: 11px 20px;
 	cursor: pointer;
-	background: white;
 	font-weight: 500;
+	background: transparent; 
 }
 
 .payments .title {
@@ -234,21 +202,6 @@ div.videoWrapper > div.cardsContainer.shrink {
 	content: "\f144";
 	font-size: 20px;
 	color: lightgray;
-}
-
-.alreadyPurchased {
-	display: flex;
-	align-items: center;
-	margin-bottom: 4px;
-}
-
-.alreadyPurchased i {
-	color: white;
-	margin: 0 6px;
-	font-size: 11px;
-	cursor: pointer;
-	margin: 0 6px 2px;
-	font-size: 14px;
 }
 
 .payments .paymentSeparator {

@@ -45,16 +45,20 @@ button {
 }
 
 button:hover {
-  opacity: 1;
-	transform: scale(1.02);
+  opacity: .9;
 }
 
 button:active {
   opacity: 1;
-	transform: scale(0.98);
+	transform: scale(0.99);
 }
 
 a {
   text-decoration: none;
 	color: #535353;
+}
+
+.ReactModalPortal > div {
+  z-index: 2;
+  background: #00000082 !important;
 }

@@ -51,8 +51,7 @@
 }
 
 .suggestion .video .suggestedImageContainer:hover {
-	opacity: 1;
-	transform: scale(1.02);
+	opacity: .9;
 }
 
 .suggestion .video .suggestedImageContainer:active {

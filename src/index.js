@@ -24,7 +24,9 @@ import TermsPage from './pages/terms';
 import './index.css';
 
 
-Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DNS });
+if (process.env.NODE_ENV === 'production') {
+  Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DNS });
+}
 
 const uri = process.env.NODE_ENV === 'production'
   ? process.env.REACT_APP_APOLLO_URI : 'http://localhost:4000';

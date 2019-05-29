@@ -7,24 +7,19 @@ import { PayPalButton } from 'react-paypal-button-v2';
 import * as Sentry from '@sentry/browser';
 
 import {
-  EMAIL_NOT_VALID,
-  EMAIL_NOT_FOUND,
   ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
   COOKIE_EMAIL,
   COOKIE_RECENT_ORDER,
-  EMAIL_REGEX,
 } from '../../../../constants';
 import Image from '../../../../shared-components/image';
+import CallToAction from '../call-to-action';
 import { getCookie, getWindowHeight, transactionToAnalytics } from '../../../../utils';
-import Modal from '../../../../shared-components/modal';
 import Loader from '../../../../shared-components/loader';
 import playButton from '../../../../assets/images/play-button.png';
 import labelExtended from '../../../../assets/images/label-extended.png';
 import labelPreview from '../../../../assets/images/label-preview.png';
-import emailExampleGif from '../../../../assets/images/email-example.gif';
 import universe from '../../../../assets/images/universe-bg.jpg';
-
 import heart from '../../../../assets/gifs/heart.gif';
 import './index.css';
 
@@ -32,14 +27,18 @@ export default class MainVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
+      emailField: '',
+      shrink: false,
       hasAccess: false,
       videoOpen: false,
+      showPromo: false,
+      showEmail: false,
       showPreview: false,
       showPayment: false,
-      showModal: false,
-      shrink: false,
-      emailField: '',
-      loading: false,
+      showEmailModal: false,
+      showPromoModal: false,
+      showEmailForPromo: false,
     };
   }
 
@@ -55,20 +54,23 @@ export default class MainVideo extends Component {
     });
   }
 
-  checkUserVideoAccess() {
+  checkUserVideoAccess = () => {
     const {
       props: { userIp, video: { users }, addUserIp },
       state: { emailField },
     } = this;
 
-    const cookieEmail = getCookie(COOKIE_EMAIL);
+    
     const coookieRecentOrder = getCookie(COOKIE_RECENT_ORDER);
-    const user = users.filter(({ email }) => email === emailField || email === cookieEmail)[0];
-
     if (coookieRecentOrder) {
       this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
       return user || undefined;
-    } if (!user) {
+    } 
+    
+    const cookieEmail = getCookie(COOKIE_EMAIL);
+    const user = users.filter(({ email }) => email === emailField || email === cookieEmail)[0];
+    // console.log("CHECK USER ACCESS  - video USERS", users, 'user >> ', user, 'cookieEmail >>', cookieEmail);
+    if (!user) {
       this.setState({ showPayment: true, videoOpen: false });
       return undefined;
     }
@@ -88,31 +90,12 @@ export default class MainVideo extends Component {
     return user;
   }
 
-  emailFieldUpdate(event) {
-    this.setState({ emailField: event.target.value.toLowerCase() });
+  emailFieldUpdate = (value) => {
+    this.setState({ emailField: value });
   }
 
-  findEmailForVideo() {
-    const { emailField } = this.state;
-    const cookieEmail = getCookie(COOKIE_EMAIL);
-    const valid = EMAIL_REGEX.test(String(emailField).toLowerCase());
-    if (!valid) {
-      return addNotification.info(
-        EMAIL_NOT_VALID,
-        { className: 'notification notificationError' },
-      );
-    }
-
-    const user = this.checkUserVideoAccess();
-    if (!user) {
-      return addNotification(
-        EMAIL_NOT_FOUND,
-        { className: 'notification' },
-      );
-    } if (cookieEmail !== emailField) {
-      document.cookie = `${COOKIE_EMAIL}=${emailField};`;
-    }
-    return undefined;
+  giveUserAccess = () => {
+    this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
   }
 
   async processPayment(payment, videoId, amount, videoName, createOrder) {
@@ -185,29 +168,23 @@ export default class MainVideo extends Component {
   render() {
     const {
       state: {
-        videoOpen, showPreview, hasAccess, showPayment, showModal, shrink, loading,
+        showPreview,
+        showPayment,
+        emailField,
+        videoOpen,
+        hasAccess,
+        loading,
+        shrink,
       },
-      props: { video, createOrder, addUserIp },
+      props: { video, createOrder },
     } = this;
 
     const {
       id: queryVideoId, name, image, placeholder, link, preview, start, amount,
     } = video;
     const videoLabel = showPreview ? labelPreview : labelExtended;
-
     return (
       <Fragment>
-        { showModal
-          ? (
-            <Modal
-              title="I already purchased this video, how can I watch it again?"
-              text="If you previously purchased this extended video, make sure to type the email address you used at checkout and we will be able to grant you access right away."
-              image={emailExampleGif}
-              onClick={() => { this.setState({ showModal: false }); }}
-            />
-          )
-          : ''
-        }
         {loading
           ? (
             <Loader
@@ -294,26 +271,13 @@ export default class MainVideo extends Component {
                 />
               </div>
               <div className="paymentSeparator" />
-              <div className="emailField">
-                <div className="alreadyPurchased">
-                  <p>ALREADY PURCHASED?</p>
-                  <i
-                    className="fas fa-info-circle"
-                    onClick={() => { this.setState({ showModal: true }); }}
-                    onKeyDown={() => { this.setState({ showModal: true }); }}
-                    role="button"
-                    tabIndex={0}
-                  />
-                </div>
-                <div>
-                  <input
-                    placeholder="Enter Your Email Address"
-                    onChange={this.emailFieldUpdate.bind(this)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') { this.findEmailForVideo(video, addUserIp); } }}
-                  />
-                  <button type="submit" onClick={() => { this.findEmailForVideo(video, addUserIp); }}>GO</button>
-                </div>
-              </div>
+              <CallToAction
+                checkUserVideoAccess={this.checkUserVideoAccess}
+                emailFieldUpdate={this.emailFieldUpdate}
+                giveUserAccess={this.giveUserAccess}
+                emailField={emailField}
+                videoId={queryVideoId}
+              />
               <button
                 type="button"
                 className="videoBackButton"

@@ -18,6 +18,17 @@ const ADD_USER_IP_MUTATION = gql`
   }
 `;
 
+const USE_PROMO_CODE_MUTATION = gql`
+  mutation UsePromoCodeMutation($code: String!, $videoId: String!, $email: String!) {
+    usePromoCode(code: $code, videoId: $videoId, email: $email) {
+      valid
+      user {
+        email
+      }
+    }
+  }
+`;
+
 const CREATE_ORDER_MUTATION = gql`
   mutation createOrderMutation(
     $email: String!, 
@@ -56,6 +67,14 @@ export const createOrderMutation = ({ render }) => (
 
 export const createUserMutation = ({ render, ip, email }) => (
   <Mutation mutation={CREATE_USER_MUTATION} variables={{ ip, email }}>
+    {render}
+  </Mutation>
+);
+
+export const usePromoCodeMutation = ({
+  render, code, videoId, email,
+}) => (
+  <Mutation mutation={USE_PROMO_CODE_MUTATION} variables={{ code, videoId, email }}>
     {render}
   </Mutation>
 );

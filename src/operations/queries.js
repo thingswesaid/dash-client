@@ -80,6 +80,19 @@ export const PRODUCT_QUERY = gql`
   }
 `;
 
+const PROMO_CODE_QUERY = gql` 
+  query PromoCodeQuery($code: String) {
+    promoCode(code: $code) {
+      id
+      code
+      valid
+      user {
+        email
+      }
+    }
+  }
+`;
+
 export const videoPageQuery = ({
   render, id, ip, email, showAll,
 }) => (
@@ -101,6 +114,12 @@ export const searchQuery = ({ render, keywords = '' }) => (
 
 export const productsQuery = ({ render, type }) => (
   <Query query={PRODUCT_QUERY} variables={{ type }}>
+    {render}
+  </Query>
+);
+
+export const promoCodeQuery = ({ render, code }) => (
+  <Query query={PROMO_CODE_QUERY} variables={{ code }}>
     {render}
   </Query>
 );
