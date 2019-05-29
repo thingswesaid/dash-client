@@ -69,7 +69,7 @@ export default class MainVideo extends Component {
     
     const cookieEmail = getCookie(COOKIE_EMAIL);
     const user = users.filter(({ email }) => email === emailField || email === cookieEmail)[0];
-    // console.log("CHECK USER ACCESS  - video USERS", users, 'user >> ', user, 'cookieEmail >>', cookieEmail);
+
     if (!user) {
       this.setState({ showPayment: true, videoOpen: false });
       return undefined;
@@ -227,6 +227,7 @@ export default class MainVideo extends Component {
                     src={image}
                     placeholder={placeholder}
                     className="videoPlaceholder"
+                    animate
                   />
                 </Fragment>
               )}

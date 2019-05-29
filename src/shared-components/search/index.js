@@ -7,9 +7,7 @@ import { searchQuery } from '../../operations/queries';
 import Image from '../image';
 import './index.css';
 
-const mapper = {
-  searchQuery,
-};
+const mapper = { searchQuery };
 
 export default ({ close }) => (
   <Adopt mapper={mapper}>

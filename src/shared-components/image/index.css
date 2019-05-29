@@ -8,3 +8,7 @@
 	backdrop-filter: blur(15px);
 	height: 102%;
 }
+
+.loadingContainer {
+	color: white;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, { Component, Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 import { toast as addNotification } from 'react-toastify';
@@ -20,6 +21,7 @@ export default class CallToAction extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       promoCode: '',
       email: '',
       emailFromPromo: '',
@@ -79,8 +81,9 @@ export default class CallToAction extends Component {
 
   async validatePromoCode(getPromoCode, usePromoCode) {
     const { state: { promoCode }, props: { videoId, giveUserAccess } } = this;
+    await this.setState({ loading: true });
     const { data: { promoCode: promo } } = await getPromoCode({ code: promoCode });
-    // TODO add loader
+    await this.setState({ loading: false });
     if (!promo) {
       return addNotification.error(
         'Promo code does not exist',
@@ -96,7 +99,7 @@ export default class CallToAction extends Component {
       );
     }
 
-    const cookieEmail = getCookie(COOKIE_EMAIL); // email field
+    const cookieEmail = getCookie(COOKIE_EMAIL);
     if (cookieEmail !== email) {
       return this.setState({ emailFromPromo: email, showEmailForPromo: true });
     }
@@ -106,7 +109,7 @@ export default class CallToAction extends Component {
     return giveUserAccess();
   }
 
-  handleEmailForPromo(usePromoCode) {
+  async handleEmailForPromo(usePromoCode) {
     const {
       state: { emailFromPromo, email, promoCode },
       props: { giveUserAccess, videoId },
@@ -119,9 +122,11 @@ export default class CallToAction extends Component {
         { className: 'notification' },
       );
     } else {
+      await this.setState({ loading: true });
       usePromoCode({ variables: { code: promoCode, videoId, email } });
       document.cookie = `${COOKIE_EMAIL}=${email.toLowerCase()};`;
       document.cookie = `${COOKIE_RECENT_ORDER}=true`;
+      await this.setState({ loading: false });
       giveUserAccess();
     }
   }
@@ -129,11 +134,10 @@ export default class CallToAction extends Component {
   render() {
     const {
       state: {
-        showEmailForPromo, showPromoModal, showEmailModal, showEmail, showPromo,
+        loading, showEmailForPromo, showPromoModal, showEmailModal, showEmail, showPromo,
       },
       props: { emailFieldUpdate },
     } = this;
-
     return (
       <Fragment>
         <Adopt mapper={{ usePromoCodeMutation, promoCodeQuery }}>
@@ -142,6 +146,7 @@ export default class CallToAction extends Component {
             promoCodeQuery: { refetch: getPromoCode },
           }) => (
             <div className="callToAction">
+              {loading ? <div className="loading animationLoader" /> : ''}
               { showEmailModal || showPromoModal
                 ? (
                   <Modal

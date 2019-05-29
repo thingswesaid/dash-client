@@ -1,3 +1,14 @@
+.callToAction .loading {
+	background: #d2d2d2b0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 101;
+	overflow: hidden;
+}
+
 .callToAction .emailForPromoContainer {
 	position: absolute;
 	top: 0;
@@ -156,4 +167,10 @@
 
 .callToAction .bottomSection button:nth-child(2) {
 	font-size: 10px;
+}
+
+@media screen and (min-width: 970px) {
+	.callToAction .loading {
+		border-radius: 10px;
+	}
 }
