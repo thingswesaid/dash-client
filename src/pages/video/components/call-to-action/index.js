@@ -173,7 +173,8 @@ export default class CallToAction extends Component {
                         placeholder="Enter Your Email Address"
                         onChange={(event) => {
                           const value = event.target.value.toLowerCase();
-                          this.setState({ email: value });
+                          const email = value.replace(/\s/g, '');
+                          this.setState({ email });
                         }}
                         onKeyDown={(e) => { if (e.key === 'Enter') { this.handleEmailForPromo(usePromoCode); } }}
                       />
@@ -225,7 +226,8 @@ export default class CallToAction extends Component {
                         placeholder="Enter Promo Code"
                         onChange={(event) => {
                           const value = event.target.value.toLowerCase();
-                          this.setState({ promoCode: value });
+                          const promoCode = value.replace(/\s/g, '');
+                          this.setState({ promoCode });
                         }}
                         onKeyDown={(e) => { if (e.key === 'Enter') { this.validatePromoCode(getPromoCode, usePromoCode); } }}
                       />

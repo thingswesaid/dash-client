@@ -91,7 +91,8 @@ export default class MainVideo extends Component {
   }
 
   emailFieldUpdate = (value) => {
-    this.setState({ emailField: value });
+    const emailField = value.replace(/\s/g, "");
+    this.setState({ emailField });
   }
 
   giveUserAccess = () => {
