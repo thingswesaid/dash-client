@@ -99,7 +99,7 @@ export default class MainVideo extends Component {
     this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
   }
 
-  async processPayment(payment, videoId, amount, videoName, createOrder) {
+  async processPayment(payment, videoId, amount, videoName, type, createOrder) {
     try {
       const { userIp } = this.props;
       const {
@@ -135,6 +135,7 @@ export default class MainVideo extends Component {
           firstName,
           lastName,
           paymentId,
+          type,
         },
       });
 
@@ -181,7 +182,7 @@ export default class MainVideo extends Component {
     } = this;
 
     const {
-      id: queryVideoId, name, image, placeholder, link, preview, start, amount,
+      id: queryVideoId, name, image, placeholder, link, preview, start, amount, type,
     } = video;
     const videoLabel = showPreview ? labelPreview : labelExtended;
     return (
@@ -255,7 +256,7 @@ export default class MainVideo extends Component {
                     try {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
-                      this.processPayment(payment, queryVideoId, amount, name, createOrder);
+                      this.processPayment(payment, queryVideoId, amount, name, type, createOrder);
                     } catch (error) {
                       addNotification.info(
                         PAYMENT_ERROR,

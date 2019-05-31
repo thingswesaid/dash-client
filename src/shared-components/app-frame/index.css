@@ -13,6 +13,7 @@
 	overflow: hidden;
 	text-align: center;
 	color: #6e6e6e;
+	padding: 10px;
 }
 
 .notificationError {

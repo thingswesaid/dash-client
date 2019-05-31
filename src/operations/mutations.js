@@ -38,6 +38,7 @@ const CREATE_ORDER_MUTATION = gql`
     $firstName: String, 
     $lastName: String,
     $paymentId: String!
+    $type: String!
   ) {
     createOrder(
       email: $email, 
@@ -47,6 +48,7 @@ const CREATE_ORDER_MUTATION = gql`
       firstName: $firstName, 
       lastName: $lastName,
       paymentId: $paymentId,
+      type: $type,
     ) {
       id
     }

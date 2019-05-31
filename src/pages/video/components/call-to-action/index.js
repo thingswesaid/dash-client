@@ -81,32 +81,36 @@ export default class CallToAction extends Component {
 
   async validatePromoCode(getPromoCode, usePromoCode) {
     const { state: { promoCode }, props: { videoId, giveUserAccess } } = this;
+    if (!promoCode.length) { return; }
     await this.setState({ loading: true });
     const { data: { promoCode: promo } } = await getPromoCode({ code: promoCode });
     await this.setState({ loading: false });
     if (!promo) {
-      return addNotification.error(
+      addNotification.error(
         'Promo code does not exist',
         { className: 'notification notificationError' },
       );
+      return;
     }
 
     const { valid, user: { email } } = promo;
     if (!valid) {
-      return addNotification.error(
+      addNotification.error(
         'Promo code has already been used',
         { className: 'notification notificationError' },
       );
+      return;
     }
 
     const cookieEmail = getCookie(COOKIE_EMAIL);
     if (cookieEmail !== email) {
-      return this.setState({ emailFromPromo: email, showEmailForPromo: true });
+      this.setState({ emailFromPromo: email, showEmailForPromo: true });
+      return;
     }
 
     document.cookie = `${COOKIE_RECENT_ORDER}=true`;
     usePromoCode({ variables: { code: promoCode, videoId, email: cookieEmail } });
-    return giveUserAccess();
+    giveUserAccess();
   }
 
   async handleEmailForPromo(usePromoCode) {
@@ -114,7 +118,7 @@ export default class CallToAction extends Component {
       state: { emailFromPromo, email, promoCode },
       props: { giveUserAccess, videoId },
     } = this;
-
+    if (!email.length) { return; }
     if (email !== emailFromPromo) {
       this.setState({ showEmailForPromo: false });
       addNotification(
