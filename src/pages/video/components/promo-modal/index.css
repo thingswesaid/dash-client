@@ -1,0 +1,125 @@
+.promoModalContainer {
+  width: 100vw;
+  height: 100vh;
+  background: #0000008a;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promoModalContainer .promoModal {
+  width: 485px;
+  padding: 10px 0;
+  background: #fcb03b;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.promoModalContainer .promoModal .close {
+  color: #606060;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  background: white;
+  border-radius: 40px;
+  font-size: 11px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.promoModalContainer .promoModal .megaphone {
+  position: absolute;
+  top: 0;
+  left: -27px;
+  width: 160px;
+}
+
+.promoModalContainer .promoModal .line {
+  width: auto;
+  height: 60px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.promoModalContainer .promoModal .title {
+  font-family: 'Knewave', cursive;
+  font-size: 45px;
+  margin-top: 20px;
+  margin-bottom: -7px;
+  width: 255px;
+  text-align: center;
+  background: -webkit-gradient(linear, left top, left bottom, from(#c165dd), to(#5c27fe));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(0deg, #d26ff1, #3d00f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.promoModalContainer .promoModal .expires {
+  color: #b97b00;
+  font-size: 25px;
+  margin: 0;
+  display: flex;
+  width: 230px;
+  justify-content: space-evenly;
+}
+
+.promoModalContainer .promoModal .expires .countDown {
+  width: 95px;
+}
+
+.promoModalContainer .promoModal .subtitle {
+  font-family: 'Knewave', cursive;
+  font-size: 27px;
+  color: white;
+}
+
+.promoModalContainer .promoModal .description {
+  text-align: justify;
+  font-size: 11px;
+  color: white;
+  width: 70%;
+  line-height: 14px;
+  margin-top: 0px;
+}
+
+.promoModalContainer .promoModal .socials a {
+  color: white;
+  font-size: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+  .promoModalContainer .promoModal {
+    width: 95%;
+  }
+  
+	.promoModalContainer .promoModal .megaphone {
+    top: 40px;
+    left: -18px;
+    width: 90px;
+  }
+
+  .promoModalContainer .promoModal .line {
+    display: none;
+  }
+
+  .promoModalContainer .promoModal .subtitle {
+    font-size: 23px;
+  }
+}

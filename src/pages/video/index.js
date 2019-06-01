@@ -3,10 +3,13 @@ import { Adopt } from 'react-adopt';
 
 import MainVideo from './components/main-video';
 import Promo from './components/promo-video';
+// rename Promo to PromoVideo
+import PromoModal from './components/promo-modal';
 import SuggestedVideos from './components/suggested-videos';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import Educational from './components/educational';
+import { getCookie } from '../../utils';
 // import Merch from './components/merch';
 import './index.css';
 
@@ -43,16 +46,18 @@ export default (props) => {
             if (error) { return <Error message="We will be right back!" />; }
             const {
               videoPage: {
-                video, latestVideos, promoVideo, userActive,
+                video, latestVideos, promoVideo, userActive, sitePromo,
               },
             } = data;
 
             // const { data: { products: { items: products, types: productTypes } } } = productsData;
             const showMerch = false;
+            const promoCookie = getCookie('BUY1GET1');
 
             return userActive ? (
               <Fragment>
                 <div className="page">
+                  {sitePromo && !promoCookie ? <PromoModal promo={sitePromo} /> : '' }
                   <div className="videoWrapper">
                     <MainVideo
                       video={video}

@@ -42,6 +42,11 @@ export const VIDEO_PAGE_QUERY = gql`
         bannerMobile
       }
       userActive
+      sitePromo {
+        promoOffer
+        startDate
+        endDate
+      }
     }
   }
 `;
