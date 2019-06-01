@@ -35,6 +35,8 @@ export default class MainVideo extends Component {
     const {
       hours, minutes, seconds, open,
     } = this.state;
+    const body = document.querySelector('body');
+    body.style.overflow = open ? 'hidden' : 'initial';
     return open ? (
       <div className="promoModalContainer">
         <div className="promoModal">
@@ -64,7 +66,7 @@ export default class MainVideo extends Component {
           <p className="subtitle">Buy 1 get 1 free immediately</p>
           <p className="description">
         With the purchase of one video you will automatically receive a promo code on your email address which can be used to access an additional extended video.
-        The promo code doesn’t expire and can be used on monthly zodiac readings only.
+        The promo code doesn’t expire and can be used on monthly zodiac readings.
           </p>
           <div className="socials">
             <a href="https://www.instagram.com/dash.inbetween/?hl=en" target="_blank" rel="noopener noreferrer">
