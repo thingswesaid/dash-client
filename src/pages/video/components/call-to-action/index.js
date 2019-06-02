@@ -4,7 +4,6 @@ import { Adopt } from 'react-adopt';
 import { toast as addNotification } from 'react-toastify';
 
 import Modal from '../../../../shared-components/modal';
-import emailExampleGif from '../../../../assets/images/email-example.gif';
 import { getCookie } from '../../../../utils';
 import { usePromoCodeMutation } from '../../../../operations/mutations';
 import { promoCodeQuery } from '../../../../operations/queries';
@@ -155,14 +154,13 @@ export default class CallToAction extends Component {
                 ? (
                   <Modal
                     title={showEmailModal
-                      ? 'I already purchased this video, how can I watch it again?'
+                      ? 'I previously accessed this video, how can I watch it again?'
                       : 'Promo code instructions'
               }
                     text={showEmailModal
-                      ? 'If you previously purchased this extended video, make sure to type the email address you used at checkout and we will be able to grant you access right away. You have unlimited access from any device.'
+                      ? 'If you previously watched this extended video and want to access it again, make sure to type the email address you used at checkout and we will be able to grant you access right away. You have unlimited access from any device.'
                       : 'Promo codes do not expire and they are usable only once. Promo codes are associated to your email address, if there is not a match, we will prompt you with an email address request. When you are ready, type the promo code in the dedicated field and, in case of successful validation, the video will start playing automatically.'
               }
-                    image={showEmailModal ? emailExampleGif : ''}
                     onClick={() => { this.setState({ showEmailModal: false, showPromoModal: false }); }}
                   />
                 ) : ''}
@@ -199,14 +197,14 @@ export default class CallToAction extends Component {
                     onClick={() => { this.setState({ showPromo: true }); }}
                     type="button"
                   >
-              PROMO CODE
+                    PROMO CODE
                   </button>
                   <button
                     onKeyDown={() => { this.setState({ showPromo: true }); }}
                     onClick={() => { this.setState({ showEmail: true }); }}
                     type="button"
                   >
-              ALREADY PURCHASED
+                    LOGIN
                   </button>
                 </div>
               ) : ''}
@@ -254,7 +252,7 @@ export default class CallToAction extends Component {
                       role="button"
                       tabIndex={0}
                     />
-                    <p>Already purchased?</p>
+                    <p>Watch again</p>
                     <i
                       className="fas fa-info-circle"
                       onClick={() => { this.setState({ showEmailModal: true }); }}

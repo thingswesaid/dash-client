@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 
 import MainVideo from './components/main-video';
+// TODO rename Promo to PromoVideo
 import Promo from './components/promo-video';
-// rename Promo to PromoVideo
 import PromoModal from './components/promo-modal';
 import SuggestedVideos from './components/suggested-videos';
 import Loader from '../../shared-components/loader';

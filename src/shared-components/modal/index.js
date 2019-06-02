@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import './index.css';
 
 export default ({
-  title, text, image, onClick,
+  title, text, onClick,
 }) => (
   <Modal isOpen className="modalContainer" ariaHideApp={false}>
     <div
@@ -16,7 +16,6 @@ export default ({
         <i className="fas fa-times-circle" />
         <h3>{title}</h3>
         <p>{text}</p>
-        {image ? <img src={image} alt="modal instruction" /> : ''}
       </div>
     </div>
   </Modal>

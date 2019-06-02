@@ -43,9 +43,11 @@
 .modal p {
 	font-size: 13px;
 	color: #6e6e6e;
-  padding: 0 20px;
+	padding: 0 20px;
+	line-height: 20px;
 }
 
 .modal img {
-	margin-left: 35px;
+	margin-left: 62px;
+	width: 230px;
 }
