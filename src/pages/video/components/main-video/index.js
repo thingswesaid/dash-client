@@ -2,7 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
-import { toast as addNotification } from 'react-toastify';
+import { toast as notification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 import * as Sentry from '@sentry/browser';
 
@@ -22,6 +22,7 @@ import labelPreview from '../../../../assets/images/label-preview.png';
 import universe from '../../../../assets/images/universe-bg.jpg';
 import heart from '../../../../assets/gifs/heart.gif';
 import './index.css';
+import { cpus } from 'os';
 
 export default class MainVideo extends Component {
   constructor(props) {
@@ -81,7 +82,7 @@ export default class MainVideo extends Component {
     }
 
     if (!user.active) {
-      return addNotification.error(
+      return notification.error(
         ACCOUNT_SUSPENDED,
         { className: 'notification notificationError' },
       );
@@ -116,7 +117,7 @@ export default class MainVideo extends Component {
       const { id: paymentId } = captures[0];
 
       if (status !== 'COMPLETED') {
-        addNotification.info(
+        notification.info(
           PAYMENT_ERROR,
           { className: 'notification notificationError' },
         );
@@ -126,7 +127,7 @@ export default class MainVideo extends Component {
       const phoneNumber = phone ? phone.phone_number.national_number : undefined;
       const ip = userIp || 'IP-NOT-RECEIVED';
 
-      createOrder({
+      const { data: { createOrder: orderResponse }} = await createOrder({
         variables: {
           email: email.toLowerCase(),
           ips: [ip],
@@ -156,9 +157,16 @@ export default class MainVideo extends Component {
         showPayment: false,
         loading: false,
       });
+
+      if (orderResponse && orderResponse.code) {
+        notification.success(
+          `🎉 New promo code: ${orderResponse.code.toUpperCase()}`, 
+          { closeOnClick: false, autoClose: false }
+        );
+      }
       return undefined;
     } catch (error) {
-      addNotification.info(
+      notification.info(
         PAYMENT_ERROR,
         { className: 'notification notificationError' },
       );
@@ -258,7 +266,7 @@ export default class MainVideo extends Component {
                       const payment = await actions.order.capture();
                       this.processPayment(payment, queryVideoId, amount, name, type, createOrder);
                     } catch (error) {
-                      addNotification.info(
+                      notification.info(
                         PAYMENT_ERROR,
                         { className: 'notification notificationError' },
                       );

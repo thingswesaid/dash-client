@@ -50,7 +50,7 @@ const CREATE_ORDER_MUTATION = gql`
       paymentId: $paymentId,
       type: $type,
     ) {
-      id
+      code
     }
   }
 `;

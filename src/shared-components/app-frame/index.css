@@ -9,25 +9,29 @@
 	overflow: hidden;
 }
 
-.notification {
+.Toastify__toast {
 	overflow: hidden;
 	text-align: center;
 	color: #6e6e6e;
 	padding: 10px;
+	color: white;
 }
 
-.notificationError {
-	color: white;
+.Toastify__toast--error {
 	background: #f76565;
 }
 
-.notificationSuccess {
-	color: white;
-	background: #76ed79;
+.Toastify__toast--success {
+	color: white !important;
+	background: #76ed79 !important;
+}
+
+.Toastify__toast--default {
+	color: darkgray;
 }
 
 @media screen and (min-width: 481px) {
-	.notification {
+	.Toastify__toast {
 		border-radius: 15px;
 	}
 }

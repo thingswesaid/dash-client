@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { Component, Fragment } from 'react';
 import { Adopt } from 'react-adopt';
-import { toast as addNotification } from 'react-toastify';
+import { toast as notification } from 'react-toastify';
+
 
 import Modal from '../../../../shared-components/modal';
 import { getCookie } from '../../../../utils';
@@ -59,18 +60,12 @@ export default class CallToAction extends Component {
     const cookieEmail = getCookie(COOKIE_EMAIL);
     const valid = EMAIL_REGEX.test(String(emailField).toLowerCase());
     if (!valid) {
-      return addNotification.info(
-        EMAIL_NOT_VALID,
-        { className: 'notification notificationError' },
-      );
+      return notification.error(EMAIL_NOT_VALID);
     }
 
     const user = checkUserVideoAccess();
     if (!user) {
-      return addNotification(
-        EMAIL_NOT_FOUND,
-        { className: 'notification' },
-      );
+      return notification(EMAIL_NOT_FOUND);
     }
     if (cookieEmail !== emailField) {
       document.cookie = `${COOKIE_EMAIL}=${emailField};`;
@@ -85,19 +80,13 @@ export default class CallToAction extends Component {
     const { data: { promoCode: promo } } = await getPromoCode({ code: promoCode });
     await this.setState({ loading: false });
     if (!promo) {
-      addNotification.error(
-        'Promo code does not exist',
-        { className: 'notification notificationError' },
-      );
+      notification.error('Promo code does not exist');
       return;
     }
 
     const { valid, user: { email } } = promo;
     if (!valid) {
-      addNotification.error(
-        'Promo code has already been used',
-        { className: 'notification notificationError' },
-      );
+      notification.error('Promo code has already been used');
       return;
     }
 
@@ -120,10 +109,7 @@ export default class CallToAction extends Component {
     if (!email.length) { return; }
     if (email !== emailFromPromo) {
       this.setState({ showEmailForPromo: false });
-      addNotification(
-        'Promo code not associated to this email address',
-        { className: 'notification' },
-      );
+      notification.error('Promo code not associated to this email address');
     } else {
       await this.setState({ loading: true });
       usePromoCode({ variables: { code: promoCode, videoId, email } });
