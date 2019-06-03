@@ -204,7 +204,7 @@ export default class CallToAction extends Component {
                     onClick={() => { this.setState({ showEmail: true }); }}
                     type="button"
                   >
-                    LOGIN
+                    WATCH AGAIN
                   </button>
                 </div>
               ) : ''}
@@ -246,20 +246,13 @@ export default class CallToAction extends Component {
                 <div className="bottomFieldSection">
                   <div className="title">
                     <i
-                      className="fas fa-chevron-circle-left"
+                      className="fas fa-chevron-circle-left promo"
                       onClick={() => this.toggleBottomSection()}
                       onKeyDown={() => this.toggleBottomSection()}
                       role="button"
                       tabIndex={0}
                     />
-                    <p>Watch again</p>
-                    <i
-                      className="fas fa-info-circle"
-                      onClick={() => { this.setState({ showEmailModal: true }); }}
-                      onKeyDown={() => { this.setState({ showEmailModal: true }); }}
-                      role="button"
-                      tabIndex={0}
-                    />
+                    <p className="promo">Type your email address if you already purchased the video or previosly used a promo code to watch it.</p>
                   </div>
                   <div className="inputField">
                     <input

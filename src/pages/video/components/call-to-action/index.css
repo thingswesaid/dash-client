@@ -51,7 +51,7 @@
 
 .callToAction .bottomItemSection,
 .callToAction .bottomFieldSection {
-	height: 60px;
+	height: 80px;
 }
 
 .callToAction .bottomItemSection {
@@ -72,6 +72,7 @@
 
 .callToAction .bottomFieldSection .title {
 	display: flex;
+	align-items: center;
 }
 
 .callToAction .bottomFieldSection .title i {
@@ -79,13 +80,19 @@
 	cursor: pointer;
 }
 
+
 .callToAction .bottomFieldSection .title i.fa-chevron-circle-left {
 	margin: 0 8px 3px 0;
+}
+
+.callToAction .bottomFieldSection .title i.promo {
+	margin-left: -20px;
 }
 
 .callToAction .bottomFieldSection .inputField {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 .callToAction .bottomFieldSection .inputs {
@@ -103,6 +110,12 @@
 	color: white;
 	font-size: 13px;
 	margin: 0 0 1px 3px;
+	max-width: 240px;
+	text-align: justify;
+}
+
+.callToAction .bottomFieldSection p.promo {
+	margin: -5px 0 4px 0;
 }
 
 .callToAction .emailForPromo .inputEmail {
