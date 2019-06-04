@@ -22,7 +22,6 @@ import labelPreview from '../../../../assets/images/label-preview.png';
 import universe from '../../../../assets/images/universe-bg.jpg';
 import heart from '../../../../assets/gifs/heart.gif';
 import './index.css';
-import { cpus } from 'os';
 
 export default class MainVideo extends Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import './index.css';
 import megaphone from '../../../../assets/images/megaphone.png';
 import line from '../../../../assets/images/line.png';
 
-export default class MainVideo extends Component {
+export default class PromoModal extends Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -57,7 +57,7 @@ export default (props) => {
             return userActive ? (
               <Fragment>
                 <div className="page">
-                  {sitePromo && !promoCookie ? <PromoModal promo={sitePromo} /> : '' }
+                  {/* {sitePromo && !promoCookie ? <PromoModal promo={sitePromo} /> : '' } */}
                   <div className="videoWrapper">
                     <MainVideo
                       video={video}

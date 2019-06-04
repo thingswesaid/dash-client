@@ -12,6 +12,10 @@
 - [ ] use Search/Dropdown pre-made component
 - [ ] build unsubscribe email page
 - [ ] refer a friend (one free video for every purchase) - create logic + instruction page
+- [ ] Personalize your experience form popup modal
+  - which signs you're interested into
+  - type of reading (zodiac - pickacard)
+  - more
 - [ ] track affiliate link when using INFLUENCERS (bitly.com)
 - [ ] of monthly payment 29.99 (add promos on navbar)
 - [ ] build recommendation engine
