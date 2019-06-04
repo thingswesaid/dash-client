@@ -2,7 +2,7 @@
 
 *todo*
 
-- [ ] REMOVE WATCH AGAIN MODAL AND GIF
+- [x] REMOVE WATCH AGAIN MODAL AND GIF
 - [ ] promo could should expire (use in one month)
 - [ ] Create item PICKACARD in navbar (copy style from Raise.com)
 - [ ] use Search/Dropdown pre-made component
