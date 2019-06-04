@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 import { toast as notification } from 'react-toastify';
 
-
 import Modal from '../../../../shared-components/modal';
 import { getCookie } from '../../../../utils';
 import { usePromoCodeMutation } from '../../../../operations/mutations';
@@ -28,7 +27,6 @@ export default class CallToAction extends Component {
       showPromo: false,
       showEmail: false,
       showPromoModal: false,
-      showEmailModal: false,
       showEmailForPromo: false,
     };
   }
@@ -123,7 +121,7 @@ export default class CallToAction extends Component {
   render() {
     const {
       state: {
-        loading, showEmailForPromo, showPromoModal, showEmailModal, showEmail, showPromo,
+        loading, showEmailForPromo, showPromoModal, showEmail, showPromo,
       },
       props: { emailFieldUpdate },
     } = this;
@@ -136,17 +134,11 @@ export default class CallToAction extends Component {
           }) => (
             <div className="callToAction">
               {loading ? <div className="loading animationLoader" /> : ''}
-              { showEmailModal || showPromoModal
+              { showPromoModal
                 ? (
                   <Modal
-                    title={showEmailModal
-                      ? 'I previously accessed this video, how can I watch it again?'
-                      : 'Promo code instructions'
-              }
-                    text={showEmailModal
-                      ? 'If you previously watched this extended video and want to access it again, make sure to type the email address you used at checkout and we will be able to grant you access right away. You have unlimited access from any device.'
-                      : 'Promo codes do not expire and they are usable only once. Promo codes are associated to your email address, if there is not a match, we will prompt you with an email address request. When you are ready, type the promo code in the dedicated field and, in case of successful validation, the video will start playing automatically.'
-              }
+                    title="Promo code instructions"
+                    text="Promo codes do not expire and they are usable only once. Promo codes are associated to your email address, if there is not a match, we will prompt you with an email address request. When you are ready, type the promo code in the dedicated field and, in case of successful validation, the video will start playing automatically."
                     onClick={() => { this.setState({ showEmailModal: false, showPromoModal: false }); }}
                   />
                 ) : ''}
