@@ -3,7 +3,7 @@
 *todo*
 
 - [x] REMOVE WATCH AGAIN MODAL AND GIF
-- [ ] promo could should expire (use in one month)
+- [ ] promo should expire (use in one month)
 - [ ] Create item PICKACARD in navbar (copy style from Raise.com)
 - [ ] use Search/Dropdown pre-made component
 - [ ] refactor Promo modal show up dates (use String in SitePromo and use same logic used for modal)
