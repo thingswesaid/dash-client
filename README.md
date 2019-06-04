@@ -3,7 +3,6 @@
 *todo*
 
 - [ ] REMOVE WATCH AGAIN MODAL AND GIF
-- [ ] create layout for pick a card reading (without preview label and with groups choice)
 - [ ] promo could should expire (use in one month)
 - [ ] Create item PICKACARD in navbar (copy style from Raise.com)
 - [ ] use Search/Dropdown pre-made component
