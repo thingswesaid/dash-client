@@ -52,12 +52,13 @@ export default (props) => {
 
             // const { data: { products: { items: products, types: productTypes } } } = productsData;
             const showMerch = false;
-            const promoCookie = getCookie('BUY1GET1');
+            const promoCookie = sitePromo ? getCookie(sitePromo.promoOffer) : '';
+            const showPromo = sitePromo && !promoCookie && sitePromo.type === video.type;
 
             return userActive ? (
               <Fragment>
                 <div className="page">
-                  {/* {sitePromo && !promoCookie ? <PromoModal promo={sitePromo} /> : '' } */}
+                  {showPromo ? <PromoModal promo={sitePromo} videoType={video.type} /> : '' }
                   <div className="videoWrapper">
                     <MainVideo
                       video={video}

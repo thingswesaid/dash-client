@@ -72,7 +72,7 @@
 .promoModalContainer .promoModal .expires {
   color: #b97b00;
   font-size: 25px;
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   width: 230px;
   justify-content: space-evenly;
@@ -86,6 +86,8 @@
   font-family: 'Knewave', cursive;
   font-size: 27px;
   color: white;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .promoModalContainer .promoModal .description {
@@ -121,5 +123,19 @@
 
   .promoModalContainer .promoModal .subtitle {
     font-size: 23px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .promoModalContainer .promoModal .title {
+    font-size: 38px;
+  }
+
+  .promoModalContainer .promoModal .subtitle {
+    font-size: 20px;
+  }
+
+  .promoModalContainer .promoModal .expires {
+    font-size: 22px;
   }
 }

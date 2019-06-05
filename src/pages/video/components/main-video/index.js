@@ -287,6 +287,7 @@ export default class MainVideo extends Component {
                 giveUserAccess={this.giveUserAccess}
                 emailField={emailField}
                 videoId={queryVideoId}
+                videoType={type}
               />
               <button
                 type="button"

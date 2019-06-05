@@ -13,6 +13,10 @@ import {
   COOKIE_EMAIL,
   COOKIE_RECENT_ORDER,
   EMAIL_REGEX,
+  PROMO_NOT_EXIST,
+  PROMO_USED,
+  PROMO_EXPIRED,
+  PROMO_WRONG_EMAIL,
 } from '../../../../constants';
 import './index.css';
 
@@ -72,19 +76,36 @@ export default class CallToAction extends Component {
   }
 
   async validatePromoCode(getPromoCode, usePromoCode) {
-    const { state: { promoCode }, props: { videoId, giveUserAccess } } = this;
+    const { state: { promoCode }, props: { videoId, videoType, giveUserAccess } } = this;
     if (!promoCode.length) { return; }
     await this.setState({ loading: true });
     const { data: { promoCode: promo } } = await getPromoCode({ code: promoCode });
     await this.setState({ loading: false });
+
     if (!promo) {
-      notification.error('Promo code does not exist');
+      notification.error(PROMO_NOT_EXIST);
       return;
     }
 
-    const { valid, user: { email } } = promo;
+    const {
+      valid, endDate, type: promoType, user: { email },
+    } = promo;
+
     if (!valid) {
-      notification.error('Promo code has already been used');
+      notification.error(PROMO_USED);
+      return;
+    }
+
+    if (promoType !== videoType) {
+      const type = promoType === 'PICKACARD' ? 'pick-a-card' : 'zodiac sign';
+      notification.error(`Promo valid only for ${type.toLowerCase()} videos`);
+      return;
+    }
+
+    const now = new Date();
+    const promoEndDate = new Date(endDate);
+    if (promoEndDate < now) {
+      notification.error(PROMO_EXPIRED);
       return;
     }
 
@@ -94,8 +115,8 @@ export default class CallToAction extends Component {
       return;
     }
 
-    document.cookie = `${COOKIE_RECENT_ORDER}=true`;
-    usePromoCode({ variables: { code: promoCode, videoId, email: cookieEmail } });
+    // document.cookie = `${COOKIE_RECENT_ORDER}=true`;
+    // usePromoCode({ variables: { code: promoCode, videoId, email: cookieEmail } });
     giveUserAccess();
   }
 
@@ -107,7 +128,7 @@ export default class CallToAction extends Component {
     if (!email.length) { return; }
     if (email !== emailFromPromo) {
       this.setState({ showEmailForPromo: false });
-      notification.error('Promo code not associated to this email address');
+      notification.error(PROMO_WRONG_EMAIL);
     } else {
       await this.setState({ loading: true });
       usePromoCode({ variables: { code: promoCode, videoId, email } });
@@ -139,7 +160,7 @@ export default class CallToAction extends Component {
                   <Modal
                     title="Promo code instructions"
                     text="Promo codes do not expire and they are usable only once. Promo codes are associated to your email address, if there is not a match, we will prompt you with an email address request. When you are ready, type the promo code in the dedicated field and, in case of successful validation, the video will start playing automatically."
-                    onClick={() => { this.setState({ showEmailModal: false, showPromoModal: false }); }}
+                    onClick={() => { this.setState({ showPromoModal: false }); }}
                   />
                 ) : ''}
               { showEmailForPromo ? (

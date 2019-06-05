@@ -9,19 +9,19 @@ export default class PromoModal extends Component {
     super(props);
     this.state = {
       open: true,
-      hours: 23,
-      minutes: 59,
-      seconds: 59,
+      hours: '--',
+      minutes: '--',
+      seconds: '--',
     };
   }
 
   componentDidMount() {
-    const countDownDate = new Date('Jun 1, 2019 23:59:59').getTime();
+    const { promo: { endDate } } = this.props;
+    const countDownDate = new Date(endDate).getTime();
     const countDown = setInterval(() => {
       const now = new Date().getTime();
       const distance = countDownDate - now;
-      // const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = (`0${Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}`).slice(-2);
+      const hours = Math.floor((distance / (1000 * 60 * 60)));
       const minutes = (`0${Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))}`).slice(-2);
       const seconds = (`0${Math.floor((distance % (1000 * 60)) / 1000)}`).slice(-2);
       this.setState({ hours, minutes, seconds });
@@ -33,8 +33,11 @@ export default class PromoModal extends Component {
 
   render() {
     const {
-      hours, minutes, seconds, open,
-    } = this.state;
+      state: {
+        hours, minutes, seconds, open,
+      }, props: { videoType, promo: { promoOffer } },
+    } = this;
+
     const body = document.querySelector('body');
     body.style.overflow = open ? 'hidden' : 'initial';
     return open ? (
@@ -47,7 +50,9 @@ export default class PromoModal extends Component {
             aria-hidden="true"
             onClick={() => {
               this.setState({ open: false });
-              document.cookie = 'BUY1GET1=true;  expires=Sun, 02 Jun 2019 00:00:00 GMT';
+              const date = new Date();
+              date.setHours(date.getHours() + 24);
+              document.cookie = `${promoOffer}=true;expires=${date}`;
             }}
           />
           <p className="title">FREE VIDEO!</p>
@@ -65,8 +70,17 @@ export default class PromoModal extends Component {
           </div>
           <p className="subtitle">Buy 1 get 1 free immediately</p>
           <p className="description">
-            With the purchase of one video you will automatically receive a promo code on your email address which can be used to access an additional extended video.
-            The promo code doesn’t expire and can be used on monthly zodiac readings.
+            With the purchase of one
+            {' '}
+            {videoType.toLowerCase()}
+            {' '}
+            video you will automatically receive a promo code on your email address
+            which can be used to access an additional extended video. This promo code
+            is valid for the current month and can be used on
+            {' '}
+            {videoType.toLowerCase()}
+            {' '}
+            readings only.
           </p>
           <div className="socials">
             <a href="https://www.instagram.com/dash.inbetween/?hl=en" target="_blank" rel="noopener noreferrer">

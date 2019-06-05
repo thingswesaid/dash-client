@@ -20,7 +20,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 10px;
 }
 
 .callToAction .emailForPromo {
@@ -183,6 +182,10 @@
 }
 
 @media screen and (min-width: 970px) {
+	.callToAction .emailForPromoContainer {
+		border-radius: 10px;
+	}
+
 	.callToAction .loading {
 		border-radius: 10px;
 	}

@@ -46,6 +46,7 @@ export const VIDEO_PAGE_QUERY = gql`
         promoOffer
         startDate
         endDate
+        type
       }
     }
   }
@@ -91,6 +92,8 @@ const PROMO_CODE_QUERY = gql`
       id
       code
       valid
+      endDate
+      type
       user {
         email
       }
