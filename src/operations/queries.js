@@ -13,10 +13,15 @@ export const VIDEO_PAGE_QUERY = gql`
         image
         placeholder
         published
-        amount
+        price
         start
         type
         familyId
+        priceSchedule {
+          price
+          startDate
+          endDate
+        }
         users {
           id
           email

@@ -54,7 +54,6 @@ export default (props) => {
             const showMerch = false;
             const promoCookie = sitePromo ? getCookie(sitePromo.promoOffer) : '';
             const showPromo = sitePromo && !promoCookie && sitePromo.type === video.type;
-
             return userActive ? (
               <Fragment>
                 <div className="page">

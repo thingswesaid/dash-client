@@ -5,9 +5,10 @@
 - [x] REMOVE WATCH AGAIN MODAL AND GIF
 - [x] refactor Promo modal show up dates (use String in SitePromo and use same logic used for modal)
 - [x] promo should expire (use in one month)
-- [ ] implement DYNAMIC PRICING (2.99 off for 12 hours)
-- [ ] implement GPAY | reimplement PAYPAL on Prisma Client (too many SDK errors)
+- [x] implement DYNAMIC PRICING (2.99 off for 12 hours)
+- [x] remove amount from server prisma
 - [ ] Fix Google ecommerce track purchase
+- [ ] implement GPAY | reimplement PAYPAL on Prisma Client (too many SDK errors)
 - [ ] Create item PICKACARD in navbar (copy style from Raise.com)
 - [ ] use Search/Dropdown pre-made component
 - [ ] build unsubscribe email page

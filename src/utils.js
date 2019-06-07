@@ -19,9 +19,20 @@ export const getWindowHeight = (triggerHeight, component) => {
   }
 };
 
+export const getScheduledPrice = (schedule) => {
+  if (!schedule) { return; }
+  const now = new Date();
+  const scheduledPrice = schedule.filter(({ startDate, endDate }) => {
+    const from = new Date(startDate);
+    const to = new Date(endDate);
+    return from < now && now < to;
+  });
+  return scheduledPrice.length ? scheduledPrice[0].price : undefined;
+};
+
 export const transactionToAnalytics = (dataLayer, transaction) => {
   const {
-    videoId, videoName, amount, paymentId,
+    videoId, videoName, price, paymentId,
   } = transaction;
   dataLayer.push({
     ecommerce: {
@@ -29,13 +40,13 @@ export const transactionToAnalytics = (dataLayer, transaction) => {
         actionField: {
           id: paymentId,
           affiliation: 'Video Page',
-          revenue: amount,
+          revenue: price,
           coupon: '', // implement PromoCode
         },
         products: [{
           name: videoName,
           id: videoId,
-          price: amount,
+          price,
           category: 'video',
           quantity: 1,
           coupon: '', // implement PromoCode

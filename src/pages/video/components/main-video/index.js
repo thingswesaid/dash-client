@@ -14,7 +14,7 @@ import {
 } from '../../../../constants';
 import Image from '../../../../shared-components/image';
 import CallToAction from '../call-to-action';
-import { getCookie, getWindowHeight, transactionToAnalytics } from '../../../../utils';
+import { getCookie, getWindowHeight, getScheduledPrice, transactionToAnalytics } from '../../../../utils';
 import Loader from '../../../../shared-components/loader';
 import playButton from '../../../../assets/images/play-button.png';
 import labelExtended from '../../../../assets/images/label-extended.png';
@@ -99,7 +99,7 @@ export default class MainVideo extends Component {
     this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
   }
 
-  async processPayment(payment, videoId, amount, videoName, type, createOrder) {
+  async processPayment(payment, videoId, price, videoName, type, createOrder) {
     try {
       const { userIp } = this.props;
       const {
@@ -145,7 +145,7 @@ export default class MainVideo extends Component {
       transactionToAnalytics(dataLayer, {
         videoName,
         videoId,
-        amount,
+        price,
         paymentId,
       });
 
@@ -189,9 +189,11 @@ export default class MainVideo extends Component {
     } = this;
 
     const {
-      id: queryVideoId, name, image, placeholder, link, preview, start, amount, type,
+      id: queryVideoId, name, image, placeholder, link, preview, start, price: videoPrice, type, priceSchedule,
     } = video;
     const videoLabel = showPreview ? labelPreview : labelExtended;
+    const priceScheduled = getScheduledPrice(priceSchedule);
+    const price = priceScheduled ? priceScheduled : videoPrice;
     return (
       <Fragment>
         {loading
@@ -245,14 +247,14 @@ export default class MainVideo extends Component {
               <div className="payPalWrapper">
                 <div className="price">
                 $
-                  {amount}
+                  {price}
                 </div>
                 <PayPalButton
                   createOrder={(data, actions) => actions.order.create({
                     purchase_units: [{
                       amount: {
                         currency_code: 'USD',
-                        value: amount,
+                        value: price,
                       },
                     }],
                     application_context: {
@@ -263,7 +265,7 @@ export default class MainVideo extends Component {
                     try {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
-                      this.processPayment(payment, queryVideoId, amount, name, type, createOrder);
+                      this.processPayment(payment, queryVideoId, price, name, type, createOrder);
                     } catch (error) {
                       notification.info(
                         PAYMENT_ERROR,
