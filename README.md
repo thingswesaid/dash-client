@@ -15,7 +15,7 @@
   - implement checkout.com
   - has to have google pay
   - add login to flow
-- [ ] Create login + user page (all purchased + promos) + recovery password + settings (set notifications, payment methods, etc.)
+- [ ] Create login + user page (all purchased + promos = timeline) + recovery password + settings (set notifications, payment methods, etc.)
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title
   - watch on YouTube
