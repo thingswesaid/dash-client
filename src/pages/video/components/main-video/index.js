@@ -115,7 +115,7 @@ export default class MainVideo extends Component {
       const { payments: { captures } } = purchase[0];
       const { id: paymentId } = captures[0];
 
-      if (status !== 'COMPLETED') {
+      if (status !== 'COMPLETED') { // look into statuses and still create order
         notification.info(
           PAYMENT_ERROR,
           { className: 'notification notificationError' },
