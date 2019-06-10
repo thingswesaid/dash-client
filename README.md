@@ -1,6 +1,6 @@
 # DASH
 
-*todo*
+## todo
 
 - [x] REMOVE WATCH AGAIN MODAL AND GIF
 - [x] refactor Promo modal show up dates (use String in SitePromo and use same logic used for modal)
