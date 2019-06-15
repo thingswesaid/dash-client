@@ -8,11 +8,11 @@
 - [x] implement DYNAMIC PRICING (2.99 off for 12 hours)
 - [x] remove amount from server prisma
 - [x] finish connect users to sendgrid
-- [ ] Fix Google ecommerce track purchase
+- [x] add button linkTo to promo banner and promo section
+- [ ] Fix Google ecommerce track purchase 
 - [ ] create modal for discount promo
 - [ ] look into AMP sites
 - [ ] Checkout payment redesign 
-  - implement checkout.com
   - has to have google pay
   - add login to flow
 - [ ] Create login + user page (all purchased + promos = timeline) + recovery password + settings (set notifications, payment methods, etc.)
