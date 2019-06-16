@@ -43,18 +43,6 @@
 	position: absolute;
 }
 
-.promoVideo .imageContainer p.title {
-	position: absolute;
-	font-family: 'tagliner';
-	font-size: 20px;
-	color: #ffeb00;
-	z-index: 1;
-	background: #1500006e;
-	padding: 5px;
-	border-radius: 10px;
-	top: 240px;
-}
-
 .promoVideo p.description {
 	font-weight: 600;
 	font-size: 16px;

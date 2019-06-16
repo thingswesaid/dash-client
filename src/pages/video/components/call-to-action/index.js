@@ -159,7 +159,7 @@ export default class CallToAction extends Component {
                 ? (
                   <Modal
                     title="Promo code instructions"
-                    text="Promo codes do not expire and they are usable only once. Promo codes are associated to your email address, if there is not a match, we will prompt you with an email address request. When you are ready, type the promo code in the dedicated field and, in case of successful validation, the video will start playing automatically."
+                    text="Promo codes are valid only for the same month in which they were generated and they are utilizable only once. Promo codes are associated to your email address, if there is not a match, we will prompt you with an email address request. When you are ready, type the promo code in the dedicated field and, in case of successful validation, the video will start playing automatically."
                     onClick={() => { this.setState({ showPromoModal: false }); }}
                   />
                 ) : ''}

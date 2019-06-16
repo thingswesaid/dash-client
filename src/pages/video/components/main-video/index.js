@@ -14,7 +14,7 @@ import {
 } from '../../../../constants';
 import Image from '../../../../shared-components/image';
 import CallToAction from '../call-to-action';
-import { getCookie, getWindowHeight, getScheduledPrice, transactionToAnalytics } from '../../../../utils';
+import { getCookie, getWindowHeight, transactionToAnalytics } from '../../../../utils';
 import Loader from '../../../../shared-components/loader';
 import playButton from '../../../../assets/images/play-button.png';
 import labelExtended from '../../../../assets/images/label-extended.png';
@@ -185,15 +185,16 @@ export default class MainVideo extends Component {
         loading,
         shrink,
       },
-      props: { video, createOrder },
+      props: { video, createOrder, sitePromo },
     } = this;
 
     const {
-      id: queryVideoId, name, image, placeholder, link, preview, start, price: videoPrice, type, priceSchedule,
+      id: queryVideoId, name, image, placeholder, link, preview, start, price, type,
     } = video;
+
+    const hasDiscount = sitePromo && sitePromo.promoOffer === "DISCOUNT";
     const videoLabel = showPreview ? labelPreview : labelExtended;
-    const priceScheduled = getScheduledPrice(priceSchedule);
-    const price = priceScheduled ? priceScheduled : videoPrice;
+
     return (
       <Fragment>
         {loading
@@ -245,7 +246,10 @@ export default class MainVideo extends Component {
             <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
               <div className="title">30 SECOND CHECKOUT</div>
               <div className="payPalWrapper">
-                <div className="price">
+                {
+                  hasDiscount ? <div className="priceDiscounted">${sitePromo.newPrice.toFixed(2)}</div> : ""
+                }
+                <div className={classNames('price', { hasDiscount })}>
                 $
                   {price}
                 </div>
@@ -254,7 +258,7 @@ export default class MainVideo extends Component {
                     purchase_units: [{
                       amount: {
                         currency_code: 'USD',
-                        value: price,
+                        value: sitePromo ? sitePromo.newPrice : price,
                       },
                     }],
                     application_context: {

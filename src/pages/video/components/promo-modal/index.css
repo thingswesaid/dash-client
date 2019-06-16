@@ -133,6 +133,7 @@
 
   .promoModalContainer .promoModal .subtitle {
     font-size: 20px;
+    text-align: center;
   }
 
   .promoModalContainer .promoModal .expires {

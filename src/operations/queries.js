@@ -17,11 +17,6 @@ export const VIDEO_PAGE_QUERY = gql`
         start
         type
         familyId
-        priceSchedule {
-          price
-          startDate
-          endDate
-        }
         users {
           id
           email
@@ -49,9 +44,13 @@ export const VIDEO_PAGE_QUERY = gql`
       userActive
       sitePromo {
         promoOffer
+        type
+        title
+        subtitle
+        description
+        newPrice
         startDate
         endDate
-        type
       }
     }
   }

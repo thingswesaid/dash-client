@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './index.css';
 
 import megaphone from '../../../../assets/images/megaphone.png';
 import line from '../../../../assets/images/line.png';
+import './index.css';
 
 export default class PromoModal extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default class PromoModal extends Component {
     const {
       state: {
         hours, minutes, seconds, open,
-      }, props: { videoType, promo: { promoOffer } },
+      }, props: { promo: { promoOffer, title, subtitle, description } },
     } = this;
 
     const body = document.querySelector('body');
@@ -55,7 +55,7 @@ export default class PromoModal extends Component {
               document.cookie = `${promoOffer}=true;expires=${date}`;
             }}
           />
-          <p className="title">FREE VIDEO!</p>
+          <p className="title">{title}</p>
           <div className="expires">
             <p>
             expires in
@@ -68,20 +68,8 @@ export default class PromoModal extends Component {
               {seconds}
             </p>
           </div>
-          <p className="subtitle">Buy 1 get 1 free immediately</p>
-          <p className="description">
-            With the purchase of one
-            {' '}
-            {videoType.toLowerCase()}
-            {' '}
-            video you will automatically receive a promo code on your email address
-            which can be used to access an additional extended video. This promo code
-            is valid for the current month and can be used on
-            {' '}
-            {videoType.toLowerCase()}
-            {' '}
-            readings only.
-          </p>
+          <p className="subtitle">{subtitle}</p>
+          <p className="description">{description}</p>
           <div className="socials">
             <a href="https://www.instagram.com/dash.inbetween/?hl=en" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-instagram" />

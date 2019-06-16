@@ -57,13 +57,14 @@ export default (props) => {
             return userActive ? (
               <Fragment>
                 <div className="page">
-                  {showPromo ? <PromoModal promo={sitePromo} videoType={video.type} /> : '' }
+                  {showPromo ? <PromoModal promo={sitePromo} /> : '' }
                   <div className="videoWrapper">
                     <MainVideo
                       video={video}
                       userIp={userIp}
                       addUserIp={addUserIp}
                       createOrder={createOrder}
+                      sitePromo={sitePromo}
                     />
                     {promoVideo ? <div className="separator" /> : ''}
                     {promoVideo ? <Promo video={promoVideo} orientation="portrait" /> : ''}

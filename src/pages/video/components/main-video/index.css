@@ -121,6 +121,7 @@ div.videoWrapper > div.cardsContainer.shrink {
 	position: relative;
 }
 
+.payments .priceDiscounted,
 .payments .price {
 	transform: rotate(-18deg);
 	color: #8a5b8a;
@@ -134,6 +135,19 @@ div.videoWrapper > div.cardsContainer.shrink {
 	position: absolute;
 	left: -30px;
 	top: 3px;
+}
+
+.payments .hasDiscount {
+	text-decoration: line-through;
+	color: #ff2c2c;
+}
+
+.payments .priceDiscounted {
+	top: -18px;
+	background: none;
+	color: lime;
+	font-weight: bold;
+	left: -39px;
 }
 
 .videoLabel {

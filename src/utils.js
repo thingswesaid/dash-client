@@ -19,17 +19,6 @@ export const getWindowHeight = (triggerHeight, component) => {
   }
 };
 
-export const getScheduledPrice = (schedule) => {
-  if (!schedule) { return; }
-  const now = new Date();
-  const scheduledPrice = schedule.filter(({ startDate, endDate }) => {
-    const from = new Date(startDate);
-    const to = new Date(endDate);
-    return from < now && now < to;
-  });
-  return scheduledPrice.length ? scheduledPrice[0].price : undefined;
-};
-
 export const transactionToAnalytics = (dataLayer, transaction) => {
   const {
     videoId, videoName, price, paymentId,
