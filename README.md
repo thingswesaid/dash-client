@@ -16,6 +16,8 @@
   - has to have google pay
   - add login to flow
 - [ ] Create login + user page (all purchased + promos = timeline) + recovery password + settings (set notifications, payment methods, etc.)
+- Get lucky popup
+- redesign homepage (similar to Raise.com - searchbar + content + merch + promos)
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title
   - watch on YouTube

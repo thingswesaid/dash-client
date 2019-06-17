@@ -19,9 +19,9 @@ import {
   createOrderMutation,
 } from '../../operations/mutations';
 
+// productsQuery,
 const mapper = {
   videoPageQuery,
-  // productsQuery,
   addUserIpMutation,
   createOrderMutation,
 };
@@ -41,7 +41,6 @@ export default (props) => {
         }) => {
           try {
             const { data, loading, error } = videoPageData;
-
             if (loading) { return <Loader />; }
             if (error) { return <Error message="We will be right back!" />; }
             const {

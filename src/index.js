@@ -17,6 +17,7 @@ import { COOKIE_RECENT_ORDER } from './constants';
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import { deleteCookie } from './utils';
 import AppFrame from './shared-components/app-frame';
+import ErrorBoundary from './shared-components/error-boundary'
 import HomePage from './pages/homepage';
 import VideoPage from './pages/video';
 import TermsPage from './pages/terms';
@@ -44,38 +45,40 @@ render((
   <ApolloProvider client={client}>
     <Router>
       <AppFrameWithData>
-        <AppContext.Consumer>
-          {({ userIp, cookieEmail }) => (
-            <Switch>
-              <Route
-                path="/"
-                exact
-                render={() => (<HomePage />)}
-              />
-              <Route
-                path="/video/:id"
-                render={
-                  ({ match, location: { search } }) => {
-                    const { showall } = queryString.parse(search);
-                    const { params: { id } } = match;
-                    return (
-                      <VideoPage
-                        videoId={id}
-                        userIp={userIp}
-                        cookieEmail={cookieEmail}
-                        showAll={!!showall}
-                      />
-                    );
+        <ErrorBoundary>
+          <AppContext.Consumer>
+            {({ userIp, cookieEmail }) => (
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  render={() => (<HomePage />)}
+                />
+                <Route
+                  path="/video/:id"
+                  render={
+                    ({ match, location: { search } }) => {
+                      const { showall } = queryString.parse(search);
+                      const { params: { id } } = match;
+                      return (
+                        <VideoPage
+                          videoId={id}
+                          userIp={userIp}
+                          cookieEmail={cookieEmail}
+                          showAll={!!showall}
+                        />
+                      );
+                    }
                   }
-                }
-              />
-              <Route
-                path="/terms"
-                render={() => (<TermsPage />)}
-              />
-            </Switch>
-          )}
-        </AppContext.Consumer>
+                />
+                <Route
+                  path="/terms"
+                  render={() => (<TermsPage />)}
+                />
+              </Switch>
+            )}
+          </AppContext.Consumer>
+        </ErrorBoundary>
       </AppFrameWithData>
     </Router>
   </ApolloProvider>
