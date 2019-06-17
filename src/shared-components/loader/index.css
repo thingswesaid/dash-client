@@ -7,4 +7,6 @@
 
 .siteLoaderContainer img {
   width: 60px;
+  margin: 0 auto;
+  align-self: center;
 }
