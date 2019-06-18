@@ -9,14 +9,14 @@
 - [x] remove amount from server prisma
 - [x] finish connect users to sendgrid
 - [x] add button linkTo to promo banner and promo section
-- [ ] Fix Google ecommerce track purchase 
-- [ ] create modal for discount promo
-- [ ] look into AMP sites
+- [x] create modal for discount promo
 - [ ] Checkout payment redesign 
   - has to have google pay
   - add login to flow
+- [ ] Fix Google ecommerce track purchase 
+- [ ] look into AMP sites
 - [ ] Create login + user page (all purchased + promos = timeline) + recovery password + settings (set notifications, payment methods, etc.)
-- Get lucky popup
+- [ ] Get lucky popup
 - redesign homepage (similar to Raise.com - searchbar + content + merch + promos)
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title

@@ -81,10 +81,7 @@ export default class MainVideo extends Component {
     }
 
     if (!user.active) {
-      return notification.error(
-        ACCOUNT_SUSPENDED,
-        { className: 'notification notificationError' },
-      );
+      return notification.error(ACCOUNT_SUSPENDED);
     }
     this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
     return user;
@@ -116,10 +113,7 @@ export default class MainVideo extends Component {
       const { id: paymentId } = captures[0];
 
       if (status !== 'COMPLETED') { // look into statuses and still create order
-        notification.info(
-          PAYMENT_ERROR,
-          { className: 'notification notificationError' },
-        );
+        notification.error(PAYMENT_ERROR);
         return this.setState({ loading: false });
       }
 
@@ -165,10 +159,7 @@ export default class MainVideo extends Component {
       }
       return undefined;
     } catch (error) {
-      notification.info(
-        PAYMENT_ERROR,
-        { className: 'notification notificationError' },
-      );
+      notification.error(PAYMENT_ERROR);
       Sentry.captureException(`MAIN-VIDEO:processPayment:error - ${error}`);
       return this.setState({ loading: false });
     }
@@ -271,10 +262,7 @@ export default class MainVideo extends Component {
                       const payment = await actions.order.capture();
                       this.processPayment(payment, queryVideoId, price, name, type, createOrder);
                     } catch (error) {
-                      notification.info(
-                        PAYMENT_ERROR,
-                        { className: 'notification notificationError' },
-                      );
+                      notification.error(PAYMENT_ERROR);
                       Sentry.captureException(`MAIN-VIDEO:onApprove - ${error}`);
                       return this.setState({ loading: false });
                     }

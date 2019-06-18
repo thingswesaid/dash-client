@@ -21,7 +21,7 @@ export default class PromoModal extends Component {
     const countDown = setInterval(() => {
       const now = new Date().getTime();
       const distance = countDownDate - now;
-      const hours = Math.floor((distance / (1000 * 60 * 60)));
+      const hours = (`0${Math.floor((distance / (1000 * 60 * 60)))}`).slice(-2);
       const minutes = (`0${Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))}`).slice(-2);
       const seconds = (`0${Math.floor((distance % (1000 * 60)) / 1000)}`).slice(-2);
       this.setState({ hours, minutes, seconds });
@@ -40,6 +40,8 @@ export default class PromoModal extends Component {
 
     const body = document.querySelector('body');
     body.style.overflow = open ? 'hidden' : 'initial';
+    body.style.position = open ? 'fixed' : 'initial';
+    
     return open ? (
       <div className="promoModalContainer">
         <div className="promoModal">

@@ -13,8 +13,8 @@ export default class ErrorBoundary extends Component {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
-    Sentry.captureException(`ERROR-BOUNDARY - ${error, info}`);
+  componentDidCatch(error) {
+    Sentry.captureException(`ERROR-BOUNDARY - ${error}`);
   }
 
   render() {

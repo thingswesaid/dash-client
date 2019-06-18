@@ -65,6 +65,8 @@ div.videoWrapper > div.cardsContainer.shrink {
 }
 
 .videoPlayer {
+	display: flex;
+	justify-content: center;
 	height: 100%;
 	position: relative;
 	overflow: hidden;
@@ -73,9 +75,8 @@ div.videoWrapper > div.cardsContainer.shrink {
 	backface-visibility: hidden;
 	z-index: 2;
 	background: black;
-	display: flex;
-	justify-content: center;
 	transform: rotateX(0deg);
+	display: -webkit-box;
 }
 
 .videoPlayer iframe {

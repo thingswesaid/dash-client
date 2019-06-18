@@ -15,7 +15,7 @@ import {
 
 import { COOKIE_RECENT_ORDER } from './constants';
 import { withAppData, AppContext } from './shared-components/with-app-data';
-import { deleteCookie } from './utils';
+import { deleteCookie, browserCheck } from './utils';
 import AppFrame from './shared-components/app-frame';
 import ErrorBoundary from './shared-components/error-boundary'
 import HomePage from './pages/homepage';
@@ -40,6 +40,7 @@ const client = new ApolloClient({
 
 const AppFrameWithData = withAppData(AppFrame);
 deleteCookie(COOKIE_RECENT_ORDER);
+browserCheck();
 
 render((
   <ApolloProvider client={client}>

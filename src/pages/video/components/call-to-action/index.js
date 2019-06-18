@@ -62,7 +62,7 @@ export default class CallToAction extends Component {
     const cookieEmail = getCookie(COOKIE_EMAIL);
     const valid = EMAIL_REGEX.test(String(emailField).toLowerCase());
     if (!valid) {
-      return notification.error(EMAIL_NOT_VALID);
+      return notification(EMAIL_NOT_VALID);
     }
 
     const user = checkUserVideoAccess();
