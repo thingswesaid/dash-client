@@ -11,10 +11,13 @@
 - [x] add button linkTo to promo banner and promo section
 - [x] create modal for discount promo
 - [ ] Checkout payment redesign 
-  - has to have google pay
+  - PayPal to server
+  - PayPal, Google Pay, Venmo, Samsung Pay, Skrill, Credit Cards, Paytm (India only)
+    - suggest new payment method 
   - add login to flow
 - [ ] Fix Google ecommerce track purchase 
 - [ ] look into AMP sites
+- [ ] Follow SEO practices to rank up in Google (main external source for YT videos)
 - [ ] Create login + user page (all purchased + promos = timeline) + recovery password + settings (set notifications, payment methods, etc.)
 - [ ] Get lucky popup
 - redesign homepage (similar to Raise.com - searchbar + content + merch + promos)
@@ -33,6 +36,7 @@
   - which signs you're interested into
   - type of reading (zodiac - pickacard)
   - more
+- [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
 - [ ] track affiliate link when using INFLUENCERS (bitly.com)
 - [ ] monthly payment 29.99 (add promos on navbar)
 - [ ] build recommendation engine
