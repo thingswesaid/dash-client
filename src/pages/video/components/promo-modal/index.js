@@ -45,7 +45,7 @@ export default class PromoModal extends Component {
     return open ? (
       <div className="promoModalContainer">
         <div className="promoModal">
-          <img src={megaphone} className="megaphone" alt="promo" />
+          <img src={megaphone} className="megaphone" alt="Dash in Between Tarot Zodiac Promo" />
           <img src={line} className="line" alt="promo" />
           <i
             className="fa fa-times close"

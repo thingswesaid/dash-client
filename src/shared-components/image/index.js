@@ -14,7 +14,7 @@ export default ({
           <div className={classNames('loadingContainer', { animationLoader: loading && animate })} />
           <img
             src={srcReady}
-            alt="Dash in Between"
+            alt="Dash in Between Tarot Zodiac"
             className={classNames({ placeholderBlur: loading })}
           />
         </Fragment>

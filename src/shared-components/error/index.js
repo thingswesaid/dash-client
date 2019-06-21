@@ -3,7 +3,7 @@ import './index.css';
 
 export default ({ message }) => (
   <div className="error">
-    <img src="https://s3.us-west-1.wasabisys.com/dash-misc/Moon.png" alt="Dash error" />
+    <img src="https://s3.us-west-1.wasabisys.com/dash-misc/Moon.png" alt="Dash in Between Tarot error" />
     <div className="content">
       <p>{message}</p>
       <div className="line" />

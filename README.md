@@ -10,17 +10,16 @@
 - [x] finish connect users to sendgrid
 - [x] add button linkTo to promo banner and promo section
 - [x] create modal for discount promo
+- [ ] Follow SEO practices to rank up in Google (main external source for YT videos)
+- [ ] Fix Google ecommerce track purchase 
 - [ ] Checkout payment redesign 
   - PayPal to server
   - PayPal, Google Pay, Venmo, Samsung Pay, Skrill, Credit Cards, Paytm (India only)
     - suggest new payment method 
   - add login to flow
-- [ ] Fix Google ecommerce track purchase 
-- [ ] look into AMP sites
-- [ ] Follow SEO practices to rank up in Google (main external source for YT videos)
 - [ ] Create login + user page (all purchased + promos = timeline) + recovery password + settings (set notifications, payment methods, etc.)
 - [ ] Get lucky popup
-- redesign homepage (similar to Raise.com - searchbar + content + merch + promos)
+- [ ] Redesign homepage (similar to Raise.com - searchbar + content + merch + promos)
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title
   - watch on YouTube

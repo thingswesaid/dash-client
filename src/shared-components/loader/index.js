@@ -13,13 +13,13 @@ export default ({
 }) => (custom ? (
   <div className={classContainer}>
     <div className={classContent}>
-      <img src={image} alt="Dash Loading" />
+      <img src={image} alt="Dash in Between Tarot Zodiac" />
       <p>{title}</p>
       <p>{description}</p>
     </div>
   </div>
 ) : (
   <div className="siteLoaderContainer">
-    <img src={rolling} alt="Dash Loading" />
+    <img src={rolling} alt="Dash in Between Tarot Zodiac" />
   </div>
 ));

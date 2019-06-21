@@ -30,9 +30,9 @@ export default ({
   >
     <Media query="(min-width: 645px)">
       {matches => (matches ? (
-        <img src={banner} alt="Dash in Between promo banner" />
+        <img src={banner} alt="Dash in Between Tarot promo banner" />
       ) : (
-        <img src={bannerMobile} alt="Dash in Between promo banner" />
+        <img src={bannerMobile} alt="Dash in Between Tarot promo banner" />
       ))
           }
     </Media>

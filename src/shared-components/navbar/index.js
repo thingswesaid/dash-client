@@ -41,7 +41,7 @@ export default class Navbar extends Component {
       <div className={classNames('navbarContainer', { searchOpen, shrink: shouldShrink })}>
         <div className="navBar">
         <a href='/'>
-          <img src={DashLogo} alt="dash in between logo" />
+          <img src={DashLogo} alt="Dash in Between Tarot Zodiac" />
         </a>
           {searchOpen ? <Search close={this.toggleSearch} searchOpen={searchOpen} /> : '' }
           {searchOpen ? (

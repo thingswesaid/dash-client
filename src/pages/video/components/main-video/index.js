@@ -202,7 +202,7 @@ export default class MainVideo extends Component {
         <div className={classNames('cardsContainer', { showPayment, shrink })}>
           <div className="videoContainer">
             <div className="videoPlayer">
-              <img src={videoLabel} className="videoLabel" alt="video label" />
+              <img src={videoLabel} className="videoLabel" alt="Dash in Between Tarot Zodiac" />
               { videoOpen || (hasAccess && videoOpen) ? (
                 <YouTube
                   videoId={showPreview ? preview : link}
@@ -223,7 +223,7 @@ export default class MainVideo extends Component {
                     onClick={() => { this.checkUserVideoAccess(); }}
                     onKeyPress={() => { this.setState({ videoOpen: true }); }}
                   >
-                    <img src={playButton} alt="play button" />
+                    <img src={playButton} alt="Dash in Between Tarot Zodiac" />
                   </button>
                   <Image
                     src={image}
