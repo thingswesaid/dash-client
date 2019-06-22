@@ -17,6 +17,10 @@
 	font-weight: 600;
 	margin: 0 0 5px;
 	font-size: 18px;
+	background: #ff0053;
+    background: linear-gradient(45deg, #ffc59b 0%, #ff0053 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .promoVideo .imageContainer {
@@ -62,6 +66,9 @@
 	font-size: 12px;
 	letter-spacing: 1px;
 	font-weight: bold;
+	background: #34ff86;
+    background: linear-gradient(45deg, #34ff86 0%, #4EE5E5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$light-blue', GradientType=1);
 }
 
 .promoVideoMobile {
