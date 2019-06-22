@@ -55,6 +55,10 @@ export default (props) => {
             const showPromo = sitePromo && !promoCookie && sitePromo.type === video.type;
             return userActive ? (
               <Fragment>
+                <div className="seo">
+                  <h1>{video.name}</h1>
+                  <h2>Checkout this tarot video to find out what your monthly energies are going to be.</h2>
+                </div>
                 <div className="page">
                   {showPromo ? <PromoModal promo={sitePromo} /> : '' }
                   <div className="videoWrapper">

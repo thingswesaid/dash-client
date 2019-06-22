@@ -1,0 +1,22 @@
+.unsubscribe {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 50vh;
+  max-width: 1340px;
+  padding-top: 50px; 
+}
+
+.unsubscribe h2, 
+.unsubscribe p,
+.unsubscribe a {
+  text-align: center;
+}
+
+.unsubscribe .link {
+  font-size: 13px;
+  color: #3eb5ff;
+  text-decoration: underline;
+  cursor: pointer;
+}

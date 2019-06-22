@@ -55,6 +55,14 @@ const CREATE_ORDER_MUTATION = gql`
   }
 `;
 
+export const UNSUBSCRIBE_USER_MUTATION = gql`
+  mutation SubscribeUpdateMutation($email: String!, $type: String!, $subscribe: Boolean!) {
+    subscribeUpdate(email: $email, type: $type, subscribe: $subscribe) {
+      id
+    }
+  }
+`;
+
 export const addUserIpMutation = ({ render }) => (
   <Mutation mutation={ADD_USER_IP_MUTATION}>
     {render}

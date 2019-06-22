@@ -21,6 +21,7 @@ import ErrorBoundary from './shared-components/error-boundary'
 import HomePage from './pages/homepage';
 import VideoPage from './pages/video';
 import TermsPage from './pages/terms';
+import UnsubscribePage from './pages/unsubscribe';
 
 import './index.css';
 
@@ -75,6 +76,12 @@ render((
                 <Route
                   path="/terms"
                   render={() => (<TermsPage />)}
+                />
+                <Route
+                  path="/unsubscribe/:type/:email"
+                  render={({ match: { params: { type, email } } }) => 
+                    <UnsubscribePage type={type} email={email} />
+                  }
                 />
               </Switch>
             )}

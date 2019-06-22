@@ -10,37 +10,38 @@
 - [x] finish connect users to sendgrid
 - [x] add button linkTo to promo banner and promo section
 - [x] create modal for discount promo
-- [ ] Follow SEO practices to rank up in Google (main external source for YT videos)
-- [ ] Fix Google ecommerce track purchase 
-- [ ] Checkout payment redesign 
-  - PayPal to server
-  - PayPal, Google Pay, Venmo, Samsung Pay, Skrill, Credit Cards, Paytm (India only)
-    - suggest new payment method 
-  - add login to flow
-- [ ] Create login + user page (all purchased + promos = timeline) + recovery password + settings (set notifications, payment methods, etc.)
+- [x] Follow SEO practices to rank up in Google (main external source for YT videos)
+- [x] build unsubscribe email page
+- [ ] add images (sad and happy) to unsubscribe emails
+- [ ] marketing campaign
+	- create buy 1 get 1 free emails for Secret reading
+	- create marketing campaigns bulk email (don't miss out! 4.99 for all videos at the end of the month)
+- [ ] use Search/Dropdown pre-made component
+  - Gif search input placeholder - typing "are you thinking about me", "is it over" ...
 - [ ] Get lucky popup
+- [ ] Create login (add password to user), sign up and user dash timeline (all video purchased, promos and other activities on the website) - recovery password + profile settings page (set notifications, payment methods, etc.)
+- [ ] Find influencers, create assets for them and track affiliate link with bitly.com
+- [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar)
+- [ ] build recommendation engine
+- [ ] Fix Google ecommerce track purchase
 - [ ] Redesign homepage (similar to Raise.com - searchbar + content + merch + promos)
-- [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
-  - header with main image + title
-  - watch on YouTube
+- [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com) - TODO when at least 3 pick a card videos published 
+  - header with main image + title + video preview (only first 30 secs then keep watching on youtube)
+  - watch on YouTube button
   - description + options
   - watch the signs section
   - more for you (suggest videos)
   - subscribe for notifications
   - -webkit-box-shadow: 0 2px 6px 0 #e0e2e3; box-shadow: 0 2px 6px 0 #e0e2e3;
-- [ ] use Search/Dropdown pre-made component
-- [ ] build unsubscribe email page (what happens when users click unsubscribe from sendgrid)
+- [ ] Checkout payment redesign 
+  - PayPal to server
+  - PayPal, Google Pay, Venmo, Samsung Pay, Skrill, Credit Cards, Paytm (India only)
+    - suggest new payment method 
 - [ ] refer a friend (one free video for every purchase) - create logic + instruction page + emails confirmation
 - [ ] Personalize your experience form popup modal
   - which signs you're interested into
   - type of reading (zodiac - pickacard)
   - more
-- [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
-- [ ] track affiliate link when using INFLUENCERS (bitly.com)
-- [ ] monthly payment 29.99 (add promos on navbar)
-- [ ] build recommendation engine
-- [ ] figure out emails: 
-    - we'll answer ASAP
-    - account suspanded for suspicious activity
-    - create marketing campaigns bulk email (don't miss out! 4.99 for all videos at the end of the month)
-    - create marketing emails on Sendgrid
+- [ ] Build following emails: 
+	- we'll answer ASAP
+	- account suspanded for suspicious activity

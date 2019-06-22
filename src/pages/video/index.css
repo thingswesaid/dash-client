@@ -1,3 +1,8 @@
+.seo {
+	position: absolute;
+	color: white;
+}
+
 .page {
 	display: flex;
 	flex-direction: column;
