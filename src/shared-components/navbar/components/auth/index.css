@@ -104,6 +104,9 @@
   color: #3cecab;
   font-weight: bold;
   text-decoration: underline;
+  text-align: center;
+  padding: 0 10px;
+  max-width: 310px;
 }
 
 .authWrapper .auth .inputField p {

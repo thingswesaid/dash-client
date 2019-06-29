@@ -123,6 +123,7 @@ export default class MainVideo extends Component {
           lastName,
           paymentId,
           type,
+          paymentEmail: payPalEmail,
         },
       });
 

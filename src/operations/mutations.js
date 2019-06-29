@@ -84,6 +84,7 @@ const CREATE_ORDER_MUTATION = gql`
     $lastName: String,
     $paymentId: String!
     $type: String!
+    $paymentEmail: String!
   ) {
     createOrder(
       userToken: $userToken, 
@@ -93,6 +94,7 @@ const CREATE_ORDER_MUTATION = gql`
       lastName: $lastName,
       paymentId: $paymentId,
       type: $type,
+      paymentEmail: $paymentEmail,
     ) {
       promo {
         code
