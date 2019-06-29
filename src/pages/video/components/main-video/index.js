@@ -14,7 +14,6 @@ import {
   ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
   COOKIE_EMAIL,
-  COOKIE_USER_ID,
   COOKIE_USER_TOKEN,
   COOKIE_RECENT_ORDER,
   COOKIE_PAYPAYL_EMAIL,
@@ -65,7 +64,7 @@ export default class MainVideo extends Component {
       return user || undefined;
     } 
     
-    const userId = getCookie(COOKIE_USER_ID);
+    const userId = getCookie(COOKIE_USER_TOKEN);
     const user = users.filter(({ id }) => id === userId)[0];
     
     if (!user) {

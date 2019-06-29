@@ -79,7 +79,6 @@ export default class Auth extends Component {
         }) => (
           <Fragment>
             <h1>{type}</h1>
-            {/* if you wish to access the video in the future */}
             {afterCheckout && <p className="accessAgain">Watch once or sign up to watch again at any time.</p>}
             <div className="inputField">
               <p>Email Address</p>
