@@ -1,3 +1,9 @@
+.suggestionContainer {
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+}
+
 .suggestion {
 	display: flex;
 	flex-direction: column;
@@ -74,17 +80,25 @@
 	}
 }
 
+@media screen and (min-width: 645px) {
+	.suggestionContainer {
+		background: #f6f8f8;
+	}
+}
 
 @media screen and (min-width: 730px) and (max-width: 969px) {
-	.suggestion {
+	.suggestionContainer {
 		margin-top: 40px;
 	}
 }
 
 @media screen and (min-width: 970px) {
+	.suggestionContainer {
+		margin-top: 70px;
+	}
+
 	.suggestion {
 		width: 1000px;
-		margin-top: 50px;
 	}
 
 	.suggestion .videosList {

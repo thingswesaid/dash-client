@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 
 import { USERIP_QUERY } from '../../operations/queries';
 import { COOKIE_EMAIL } from '../../constants';
-import { getCookie } from '../../utils';
+import { getCookie } from '../../cookieUtils';
 import Loader from '../loader';
 import Error from '../error';
 

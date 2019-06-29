@@ -19,7 +19,7 @@ export default ({
     </div>
   </div>
 ) : (
-  <div className="siteLoaderContainer">
+  <div className={`siteLoaderContainer ${classContainer}`}>
     <img src={rolling} alt="Dash in Between Tarot Zodiac" />
   </div>
 ));

@@ -13,16 +13,6 @@
 	text-align: center;
 }
 
-.promoVideo .sectionTitle {
-	font-weight: 600;
-	margin: 0 0 5px;
-	font-size: 18px;
-	background: #ff0053;
-    background: linear-gradient(45deg, #ffc59b 0%, #ff0053 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .promoVideo .imageContainer {
 	display: flex;
 	flex-direction: column;
@@ -48,27 +38,31 @@
 }
 
 .promoVideo p.description {
-	font-weight: 600;
+	font-weight: 100;
 	font-size: 16px;
 	text-align: justify;
 	padding: 5px;
 	min-height: 100px;
 	margin: -3px auto;
+	color: #5f5f5f;
+	line-height: 20px;
+	width: 200px;
 }
 
-.promoVideo p.watchYoutube {
+.promoVideo button.watchYoutube {
 	background: #00000099;
 	color: white;
 	padding: 10px 0;
-	border-radius: 10px;
-	width: 190px;
-	margin: 10px auto;
-	font-size: 12px;
-	letter-spacing: 1px;
+	border-radius: 50px;
+	height: 38px;
+	width: 140px;
+	font-size: 13px;
 	font-weight: bold;
+	margin: 10px auto;
+	letter-spacing: 0.3px;
 	background: #34ff86;
-    background: linear-gradient(45deg, #34ff86 0%, #4EE5E5 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$light-blue', GradientType=1);
+	background: linear-gradient(45deg, #34ff86 0%, #4EE5E5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$light-blue', GradientType=1);
 }
 
 .promoVideoMobile {

@@ -5,16 +5,25 @@ import classNames from 'classnames';
 import { toast as notification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 import * as Sentry from '@sentry/browser';
+import jwt from 'jsonwebtoken';
+
+import Modal from '../../../../shared-components/modal';
+import { setCookie, addChangeListener, removeChangeListener } from '../../../../cookieUtils';
 
 import {
   ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
   COOKIE_EMAIL,
+  COOKIE_USER_ID,
+  COOKIE_USER_TOKEN,
   COOKIE_RECENT_ORDER,
+  COOKIE_PAYPAYL_EMAIL,
 } from '../../../../constants';
 import Image from '../../../../shared-components/image';
-import CallToAction from '../call-to-action';
-import { getCookie, getWindowHeight, transactionToAnalytics } from '../../../../utils';
+import PromoCode from '../promo-code';
+import Labels from '../labels';
+import { transactionToAnalytics } from '../../../../utils';
+import { getCookie } from '../../../../cookieUtils';
 import Loader from '../../../../shared-components/loader';
 import playButton from '../../../../assets/images/play-button.png';
 import labelExtended from '../../../../assets/images/label-extended.png';
@@ -27,49 +36,38 @@ export default class MainVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
       emailField: '',
-      shrink: false,
+      loading: false,
+      optionSelected: 0,
       hasAccess: false,
       videoOpen: false,
       showPromo: false,
       showEmail: false,
-      showPreview: false,
+      showPreview: true,
       showPayment: false,
       showEmailModal: false,
       showPromoModal: false,
-      showEmailForPromo: false,
     };
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', () => {
-      getWindowHeight(20, this);
-    });
+  cookieCheck = ({ name: cookieName, value: cookieValue }, payment, queryVideoId, price, name, type, createOrder) => {
+    if (cookieName === COOKIE_USER_TOKEN) {
+      this.processPayment(payment, queryVideoId, price, name, type, cookieValue, createOrder);
+      removeChangeListener(this.cookieCheck);
+    }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', () => {
-      getWindowHeight(20, this);
-    });
-  }
-
-  checkUserVideoAccess = () => {
-    const {
-      props: { userIp, video: { users }, addUserIp },
-      state: { emailField },
-    } = this;
-
-    
+  checkUserVideoAccess = (showPreview) => {
+    const { userIp, video: { users }, addUserIp } = this.props;
     const coookieRecentOrder = getCookie(COOKIE_RECENT_ORDER);
-    if (coookieRecentOrder) {
+    if (coookieRecentOrder || showPreview) {
       this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
       return user || undefined;
     } 
     
-    const cookieEmail = getCookie(COOKIE_EMAIL);
-    const user = users.filter(({ email }) => email === emailField || email === cookieEmail)[0];
-
+    const userId = getCookie(COOKIE_USER_ID);
+    const user = users.filter(({ id }) => id === userId)[0];
+    
     if (!user) {
       this.setState({ showPayment: true, videoOpen: false });
       return undefined;
@@ -83,27 +81,21 @@ export default class MainVideo extends Component {
     if (!user.active) {
       return notification.error(ACCOUNT_SUSPENDED);
     }
-    this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
-    return user;
-  }
 
-  emailFieldUpdate = (value) => {
-    const emailField = value.replace(/\s/g, "");
-    this.setState({ emailField });
+    this.setState({ hasAccess: true, videoOpen: true, showPayment: false, showPreview: false });
+    return user;
   }
 
   giveUserAccess = () => {
     this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
   }
 
-  async processPayment(payment, videoId, price, videoName, type, createOrder) {
+  async processPayment(payment, videoId, price, videoName, type, userToken, createOrder) {
     try {
-      const { userIp } = this.props;
       const {
         payer: {
-          email_address: email,
+          email_address: payPalEmail,
           name: { given_name: firstName, surname: lastName },
-          phone,
         },
         purchase_units: purchase,
         status,
@@ -112,20 +104,21 @@ export default class MainVideo extends Component {
       const { payments: { captures } } = purchase[0];
       const { id: paymentId } = captures[0];
 
-      if (status !== 'COMPLETED') { // look into statuses and still create order
+      if (status !== 'COMPLETED') {
         notification.error(PAYMENT_ERROR);
         return this.setState({ loading: false });
       }
 
-      const phoneNumber = phone ? phone.phone_number.national_number : undefined;
-      const ip = userIp || 'IP-NOT-RECEIVED';
-
-      const { data: { createOrder: orderResponse }} = await createOrder({
+      const ip = this.props.userIp || 'IP-NOT-RECEIVED';
+      const { 
+        data: { 
+          createOrder: { promo, user: { email: userEmail } } 
+        }
+      } = await createOrder({
         variables: {
-          email: email.toLowerCase(),
+          userToken,
           ips: [ip],
           videoId,
-          phone: phoneNumber,
           firstName,
           lastName,
           paymentId,
@@ -133,8 +126,10 @@ export default class MainVideo extends Component {
         },
       });
 
-      document.cookie = `${COOKIE_EMAIL}=${email.toLowerCase()};`;
-      document.cookie = `${COOKIE_RECENT_ORDER}=true`;
+      setCookie(COOKIE_EMAIL, userEmail); // TODO move to helper functions (accepts array of cookies)
+
+      const { userId } = jwt.verify(userToken, 'temporarydashsecret');
+      if (!userId) setCookie(COOKIE_PAYPAYL_EMAIL, payPalEmail);
 
       transactionToAnalytics(dataLayer, {
         videoName,
@@ -151,9 +146,9 @@ export default class MainVideo extends Component {
         loading: false,
       });
 
-      if (orderResponse && orderResponse.code) {
+      if (promo && promo.code) {
         notification.success(
-          `🎉 New promo code: ${orderResponse.code.toUpperCase()}`, 
+          `🎉 New promo code: ${promo.code.toUpperCase()}`, 
           { closeOnClick: false, autoClose: false }
         );
       }
@@ -168,44 +163,49 @@ export default class MainVideo extends Component {
   render() {
     const {
       state: {
+        optionSelected,
+        showPromoModal,
         showPreview,
         showPayment,
         emailField,
         videoOpen,
         hasAccess,
         loading,
-        shrink,
       },
       props: { video, createOrder, sitePromo },
     } = this;
 
     const {
-      id: queryVideoId, name, image, placeholder, link, preview, start, price, type,
+      id: queryVideoId, name, image, placeholder, link, preview, start, price, type, options
     } = video;
 
+    const linkToVideo = options.length ? options[optionSelected] : link;
     const hasDiscount = sitePromo && sitePromo.promoOffer === "DISCOUNT";
     const videoLabel = showPreview ? labelPreview : labelExtended;
+    const showVideo = videoOpen || (hasAccess && videoOpen);
 
     return (
       <Fragment>
-        {loading
-          ? (
-            <Loader
-              custom
-              classContainer="loaderContainer"
-              classContent="content"
-              image={heart}
-              title="Thank you for your purchase!"
-              description="We are processing your payment"
-            />
-          ) : ''}
-        <div className={classNames('cardsContainer', { showPayment, shrink })}>
+        {loading && <Loader
+          custom
+          classContainer="loaderContainer"
+          classContent="content"
+          image={heart}
+          title="Thank you for your purchase!"
+          description="We are processing your payment"
+        />}
+        {showPromoModal && <Modal
+          title="Promo code instructions"
+          text="Promo codes are valid only for the same month in which they were generated and they are utilizable only once. Promo codes are associated to your email address, therefore in order to use them, you will need to be logged in. When you are ready, type the promo code in the dedicated field and, in case of successful validation, the video will start playing automatically."
+          onClick={() => { this.setState({ showPromoModal: false }); }}
+        />}
+        <div className={classNames('cardsContainer', { showPayment })}>
           <div className="videoContainer">
             <div className="videoPlayer">
               <img src={videoLabel} className="videoLabel" alt="Dash in Between Tarot Zodiac" />
-              { videoOpen || (hasAccess && videoOpen) ? (
+              { showVideo ? (
                 <YouTube
-                  videoId={showPreview ? preview : link}
+                  videoId={showPreview ? preview : linkToVideo}
                   opts={{
                     playerVars: {
                       autoplay: 1,
@@ -220,7 +220,7 @@ export default class MainVideo extends Component {
                   <button
                     type="button"
                     className="playButton"
-                    onClick={() => { this.checkUserVideoAccess(); }}
+                    onClick={() => { this.checkUserVideoAccess(showPreview); }}
                     onKeyPress={() => { this.setState({ videoOpen: true }); }}
                   >
                     <img src={playButton} alt="Dash in Between Tarot Zodiac" />
@@ -235,7 +235,9 @@ export default class MainVideo extends Component {
               )}
             </div>
             <div className="payments" style={{ background: `url(${universe}) no-repeat`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
-              <div className="title">30 SECOND CHECKOUT</div>
+              <div className="title">
+                {type === "PICKACARD" ? "CHECKOUT - Access to all 4 groups!" : "30 SECOND CHECKOUT" }
+              </div>
               <div className="payPalWrapper">
                 {
                   hasDiscount ? <div className="priceDiscounted">${sitePromo.newPrice.toFixed(2)}</div> : ""
@@ -260,7 +262,21 @@ export default class MainVideo extends Component {
                     try {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
-                      this.processPayment(payment, queryVideoId, price, name, type, createOrder);
+                      setCookie(COOKIE_RECENT_ORDER, true);
+                      const userToken = getCookie(COOKIE_USER_TOKEN);
+                      if (userToken) this.processPayment(payment, queryVideoId, price, name, type, userToken, createOrder);
+                      else if (payment.status === 'COMPLETED') {
+                        addChangeListener((cookieName) => {this.cookieCheck(
+                          cookieName, payment, queryVideoId, price, name, type, createOrder
+                        )});
+                        this.setState({
+                          hasAccess: true,
+                          videoOpen: true,
+                          showPreview: false,
+                          showPayment: false,
+                          loading: false,
+                        });
+                      }
                     } catch (error) {
                       notification.error(PAYMENT_ERROR);
                       Sentry.captureException(`MAIN-VIDEO:onApprove - ${error}`);
@@ -275,11 +291,9 @@ export default class MainVideo extends Component {
                 />
               </div>
               <div className="paymentSeparator" />
-              <CallToAction
+              <PromoCode
                 checkUserVideoAccess={this.checkUserVideoAccess}
-                emailFieldUpdate={this.emailFieldUpdate}
                 giveUserAccess={this.giveUserAccess}
-                emailField={emailField}
                 videoId={queryVideoId}
                 videoType={type}
               />
@@ -294,9 +308,10 @@ export default class MainVideo extends Component {
               </button>
             </div>
           </div>
-          <button
-            type="button"
-            className="showLabel"
+          <Labels 
+            options={options}
+            selected={optionSelected} 
+            showPreview={showPreview}
             onClick={() => {
               if (showPreview) {
                 this.checkUserVideoAccess();
@@ -307,21 +322,11 @@ export default class MainVideo extends Component {
                 });
               }
             }}
-            onKeyPress={() => {
-              if (showPreview) {
-                this.checkUserVideoAccess();
-                this.setState({ showPreview: !showPreview });
-              } else {
-                this.setState({ showPreview: !showPreview, videoOpen: !showPreview });
-              }
+            onClickOption={(optionSelected) => {
+              this.setState({ optionSelected });
+              this.checkUserVideoAccess();
             }}
-          >
-            <p>
-              SWITCH TO
-              {' '}
-              {showPreview ? 'EXTENDED' : 'PREVIEW'}
-            </p>
-          </button>
+          />
         </div>
       </Fragment>
     );

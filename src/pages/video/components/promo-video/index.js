@@ -10,21 +10,19 @@ export default ({
   },
 }) => (orientation === 'portrait' ? (
   <div className="promoVideo">
-    <a href={link} target="_blank" rel="noopener noreferrer">
-      <p className="sectionTitle">POPULAR READING</p>
+    <a href={`/video/${link}`} rel="noopener noreferrer">
       <div className="imageContainer">
         <button className="image-container shadow" type="button">
           <Image src={image} placeholder={placeholder} />
         </button>
       </div>
       <p className="description">{description}</p>
-      <p className="watchYoutube">WATCH ON YOUTUBE</p>
+      <button className="watchYoutube">WATCH NOW</button>
     </a>
   </div>
 ) : (
   <a
-    href={link}
-    target="_blank"
+    href={`/video/${link}`}
     rel="noopener noreferrer"
     className="promoVideoMobile"
   >

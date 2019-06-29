@@ -22,7 +22,7 @@ export default class ErrorBoundary extends Component {
       return (
         <div className="errorBoundary">
           <h1>There was an error. </h1>
-          <p>We apologize for the inconvenience. Please try again.</p>
+          <p>We apologize for the inconvenience. Please try again later.</p>
         </div>
       );
     }

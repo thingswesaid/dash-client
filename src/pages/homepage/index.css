@@ -3,21 +3,77 @@
   align-content: center;
   flex-direction: column;
   width: 100vw;
-  height: 50vh;
-  max-width: 1340px;
-  padding-top: 50px; 
 }
 
-.homepage .search {
+.homepage .searchBar {
+  background-color: #f6f8f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  color: #214352;
+}
+
+.homepage .searchBar .input {
+  width: 90%;
+  position: relative;
+  max-width: 580px;
+}
+
+.homepage .searchBar .input .mGlass {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 20px;
+}
+
+.homepage .searchBar .input button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 44px;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50px;
+  font-weight: bold;
+  background: #34ff86;
+	background: linear-gradient(45deg, #3fec86 0%, #36dede 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$light-blue', GradientType=1);
+}
+
+.homepage .searchBar h1 {
+  font-size: 6.5vw;
+  margin: 0;
+  text-align: center;
+}
+
+.homepage .searchBar h2 {
+  margin: 0 0 20px;
+  font-weight: lighter;
+  font-size: 4.5vw;
+}
+
+.homepage .searchBar .search {
   margin: 0 auto;
   position: relative;
-  min-width: 310px;
   display: flex;
-  width: 60%;
-  height: 50px;
+  width: 100%;
+  height: 44px;
+  border-radius: 30px;
+  border: solid 2px #39e4b9;
+  text-indent: 35px;
+  box-shadow: 0 2px 6px 0 #e0e2e3;
+  color: #777777;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  padding-left: 25px;
 }
 
-.homepage .search > div.dropdown {
+.homepage .searchBar .search > div.dropdown {
   border-right: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   border-left: 1px solid lightgray;
@@ -26,11 +82,11 @@
   min-width: 278px;
 }
 
-.homepage .search > div.dropdown > div > a > p {
+.homepage .searchBar .search > div.dropdown > div > a > p {
   max-width: 150px;
 }
 
-.homepage .search input {
+.homepage .searchBar .search input {
   -webkit-box-shadow: 0px 16px 6px -17px rgba(71,71,71,1);
   -moz-box-shadow: 0px 16px 6px -17px rgba(71,71,71,1);
   box-shadow: 0px 16px 6px -17px rgba(71,71,71,1);
@@ -39,4 +95,22 @@
 .homepage img {
   width: 310px;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 550px) {
+  .homepage .searchBar h1 {
+    font-size: 30px;
+  }
+
+  .homepage .searchBar .input {
+    width: 65%;
+  }
+
+  .homepage .searchBar h2 {
+    font-size: 25px;
+  }
+
+  .homepage .searchBar .input button {
+    width: 140px;
+  }
 }

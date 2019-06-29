@@ -13,12 +13,15 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { COOKIE_RECENT_ORDER } from './constants';
+import { COOKIE_RECENT_ORDER, COOKIE_PAYPAYL_EMAIL } from './constants';
 import { withAppData, AppContext } from './shared-components/with-app-data';
-import { deleteCookie, browserCheck } from './utils';
+import { browserCheck } from './utils';
+import { removeCookie } from './cookieUtils';
 import AppFrame from './shared-components/app-frame';
 import ErrorBoundary from './shared-components/error-boundary'
 import HomePage from './pages/homepage';
+import PickACard from './pages/pick-a-card';
+import UserPage from './pages/user-page';
 import VideoPage from './pages/video';
 import TermsPage from './pages/terms';
 import UnsubscribePage from './pages/unsubscribe';
@@ -40,7 +43,8 @@ const client = new ApolloClient({
 });
 
 const AppFrameWithData = withAppData(AppFrame);
-deleteCookie(COOKIE_RECENT_ORDER);
+removeCookie(COOKIE_RECENT_ORDER);
+removeCookie(COOKIE_PAYPAYL_EMAIL);
 browserCheck();
 
 render((
@@ -72,6 +76,14 @@ render((
                       );
                     }
                   }
+                />
+                <Route
+                  path="/pick-a-card"
+                  render={() => (<PickACard />)}
+                />
+                <Route
+                  path="/user"
+                  render={() => (<UserPage />)}
                 />
                 <Route
                   path="/terms"

@@ -41,10 +41,6 @@
 	transition: all .1s ease-in-out;
 }
 
-div.videoWrapper > div.cardsContainer.shrink {
-	top: 15px;
-}
-
 .videoContainer {
 	width: 100%;
 	height: 100%;
@@ -156,13 +152,14 @@ div.videoWrapper > div.cardsContainer.shrink {
 	top: -2px;
 	right: 0px;
 	z-index: 1;
-	width: 360px;
-	opacity: .9;
+	width: 490px;
+	opacity: .95;
 }
 
 .videoPlaceholder {
-	position: absolute;
 	height: 100%;
+	margin: 0 auto;
+	width: 700px;
 }
 
 .videoPlaceholder img {
@@ -178,37 +175,11 @@ div.videoWrapper > div.cardsContainer.shrink {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	opacity: .8;
+	opacity: .9;
 }
 
 .playButton img {
 	width: 80px;
-}
-
-.showLabel {
-	width: 140px;
-	border: 1px solid #e0e0e0;
-	text-align: center;
-	padding: 18px 9px 9px 9px;
-	border-radius: 15px;
-	line-height: 1.3;
-	background: white;
-	color: gray;
-	font-size: 10px;
-	transition: all .2s ease-in-out;
-	position: absolute;
-	top: 93%;
-	left: 0;
-	right: 0;
-	margin: auto;
-	-webkit-box-shadow: 0px 8px 14px -15px rgba(99,99,99,1);
-  -moz-box-shadow: 0px 8px 14px -15px rgba(99,99,99,1);
-  box-shadow: 0px 8px 14px -15px rgba(99,99,99,1);
-}
-
-.showLabel p {
-	margin-bottom: 0;
-	margin-top: 3px;
 }
 
 .arrowDown::before {
@@ -225,16 +196,16 @@ div.videoWrapper > div.cardsContainer.shrink {
 }
 
 @media screen and (min-width: 480px) {
-	.showLabel {
-		top: 97%;
-	}
-
 	.cardsContainer {
-		top: 50px;
+		top: 60px;
 	}
 }
 
 @media screen and (min-width: 970px) {
+	.videoPlaceholder {
+		margin: 0;
+	}
+
 	.videoPlayer {
 		border-radius: 10px;
 	}
@@ -255,14 +226,29 @@ div.videoWrapper > div.cardsContainer.shrink {
 	}
 }
 
-@media screen and (min-width: 730px) {
+@media screen and (min-width: 970px) {
 	.videoPlayer iframe {
 		width: 700px;
+	}
+
+	.cardsContainer {
+		height: 394px;
+	}
+}
+
+@media screen and (min-width: 730px) {
+	.videoPlayer iframe {
 		height: 394px;
 	}
 
 	.cardsContainer {
 		height: 394px;
+	}
+}
+
+@media screen and (min-width: 630px) {
+	.videoLabel {
+		width: 680px;
 	}
 }
 
@@ -272,8 +258,8 @@ div.videoWrapper > div.cardsContainer.shrink {
 	}
 }
 
-@media screen and (min-width: 680px) {
+@media screen and (min-width: 460px) {
 	.videoLabel {
-		width: 680px;
+		width: 750px;
 	}
 }

@@ -9,7 +9,7 @@ import SuggestedVideos from './components/suggested-videos';
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import Educational from './components/educational';
-import { getCookie } from '../../utils';
+import { getCookie } from '../../cookieUtils';
 // import Merch from './components/merch';
 import './index.css';
 
@@ -53,6 +53,7 @@ export default (props) => {
             const showMerch = false;
             const promoCookie = sitePromo ? getCookie(sitePromo.promoOffer) : '';
             const showPromo = sitePromo && !promoCookie && sitePromo.type === video.type;
+
             return userActive ? (
               <Fragment>
                 <div className="seo">

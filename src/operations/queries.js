@@ -7,7 +7,7 @@ export const VIDEO_PAGE_QUERY = gql`
     videoPage(id: $id, ip: $ip, email: $email, showAll: $showAll) {
       video {
         id
-        name
+        # name
         link
         preview
         image
@@ -17,6 +17,7 @@ export const VIDEO_PAGE_QUERY = gql`
         start
         type
         familyId
+        options
         users {
           id
           email
@@ -27,7 +28,7 @@ export const VIDEO_PAGE_QUERY = gql`
       latestVideos {
         id
         title
-        name
+        # name
         image
         placeholder
         published
@@ -57,13 +58,14 @@ export const VIDEO_PAGE_QUERY = gql`
 `;
 
 export const SEARCH_QUERY = gql` 
-  query SearchQuery($keywords: String!) {
-    videos(keywords: $keywords) {
+  query SearchQuery($keywords: String, $id: ID, $type: String) {
+    videos(keywords: $keywords, id: $id, type: $type) {
       id
       link
       image
       title
       placeholder
+      # maybe description for pick a card readings
     }
   }
 `;

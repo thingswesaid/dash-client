@@ -12,20 +12,17 @@
 - [x] create modal for discount promo
 - [x] Follow SEO practices to rank up in Google (main external source for YT videos)
 - [x] build unsubscribe email page
-- [ ] add images (sad and happy) to unsubscribe emails
-- [ ] marketing campaign
-	- create buy 1 get 1 free emails for Secret reading
-	- create marketing campaigns bulk email (don't miss out! 4.99 for all videos at the end of the month)
-- [ ] use Search/Dropdown pre-made component
-  - Gif search input placeholder - typing "are you thinking about me", "is it over" ...
-- [ ] Get lucky popup
-- [ ] Create login (add password to user), sign up and user dash timeline (all video purchased, promos and other activities on the website) - recovery password + profile settings page (set notifications, payment methods, etc.)
-- [ ] Find influencers, create assets for them and track affiliate link with bitly.com
-- [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar)
-- [ ] build recommendation engine
-- [ ] Fix Google ecommerce track purchase
-- [ ] Redesign homepage (similar to Raise.com - searchbar + content + merch + promos)
-- [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com) - TODO when at least 3 pick a card videos published 
+- [x] Rebuild search component
+- [x] Figure out search for pick a card - should show only main reading (maybe page) - don't show options
+- [ ] ATTENTION TO THIS: CHANGE LINK IN PROMO VIDEO WHEN DEPLOYING NEW CHANGES - SHOULD BE `0tg9m`
+- ALSO CHANGE IN YT VIDEO DESCRIPTION TO // Get access to all four extended readings
+- [ ] REVISIT OVERALL CHECKUSERACCESS FUNCTION
+- [ ] Change email address / password from user's profile
+- [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
+- [ ] Build Login page (make it a popup instead as shared component) and change navbar item to profile when logged in - COMPONENT SHOULD BE AT THE APP FRAME LEVEL
+- [ ] Figure out PROMO check and redeem with new login system
+- [ ] Create promo modal for pick a card that says that you can access all the videos after purchase (cookie expires after one month) "A single purchase will give you access to all groups extended readings"
+- [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title + video preview (only first 30 secs then keep watching on youtube)
   - watch on YouTube button
   - description + options
@@ -33,6 +30,23 @@
   - more for you (suggest videos)
   - subscribe for notifications
   - -webkit-box-shadow: 0 2px 6px 0 #e0e2e3; box-shadow: 0 2px 6px 0 #e0e2e3;
+- [ ] Marketing campaign
+	- create buy 1 get 1 free emails for Secret reading
+	- create marketing campaigns bulk email (don't miss out! 4.99 for all videos at the end of the month)
+- [ ] Get lucky popup
+- [x] Show Loader on homepage while loading dropdownXL
+- [x] Adapt Navbar for mobile
+- [ ] DropdownXL add field to suggest pick-a-card topic (when NO RESULT)
+- [ ] For search point to keywords instead of name and make it Elastic Search
+- [ ] TECH: remove all `) : ''}` from ternary operators
+- [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) - TODO when have more readings
+- [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar) - add option to checkout pannel
+- [ ] Add images (sad and happy) to unsubscribe emails
+- [ ] Merge Utils
+- [ ] Create OUR MISSION section
+- [ ] Find influencers, create assets for them and track affiliate link with bitly.com
+- [ ] build recommendation engine
+- [ ] Fix Google ecommerce track purchase
 - [ ] Checkout payment redesign 
   - PayPal to server
   - PayPal, Google Pay, Venmo, Samsung Pay, Skrill, Credit Cards, Paytm (India only)

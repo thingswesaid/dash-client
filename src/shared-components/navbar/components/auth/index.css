@@ -1,0 +1,142 @@
+.authWrapper {
+  width: 90%;
+  max-width: 590px;
+  height: 500px;
+  position: absolute;
+  top: -800px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: all .2s;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.96), 0px 16px 36px -19px rgb(183, 183, 183);
+}
+
+.authContainer {
+  width: 200vw;
+  height: 200vh;
+  position: absolute;
+  top: -50px;
+  left: -300px;
+  right: 0;
+  margin: 0 auto;
+  display: none;
+}
+
+.authLoader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 10px;
+  z-index: 1;
+  background: #ffffffb5;
+}
+
+.authContainer.show {
+  display: inherit;
+}
+
+.navbarContainer .loginContainer.show {
+	display: inherit;
+}
+
+.authWrapper.show {
+  top: 45px;
+}
+
+.authWrapper .backLogin {
+  font-size: 12px;
+  color: #21aaff;
+  cursor: pointer;
+}
+
+.authWrapper .auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.authWrapper .auth .fa-times-circle {
+  color: #5d5c5c;
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 10px;
+}
+
+.authWrapper .auth a {
+  font-size: 12px;
+  margin-left: -90px;
+  color: #21aaff;
+  cursor: pointer;
+}
+
+.authWrapper .auth button {
+  background: linear-gradient(45deg, #3fec86 0%, #36dede 100%);
+  color: white;
+  width: 228px;
+  padding: 10px 0;
+  border-radius: 20px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.authWrapper .auth .loginOrSignup {
+  display: flex;
+  font-size: 13px;
+}
+
+.authWrapper .auth .loginOrSignup p {
+  margin: 20px 3px;
+}
+
+.authWrapper .auth .loginOrSignup p.callToAction {
+  color: #30e29f;
+  cursor: pointer;
+}
+
+.authWrapper .auth .accessAgain {
+  margin-top: -16px;
+  color: #3cecab;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.authWrapper .auth .inputField p {
+  margin: 10px 0 0;
+}
+
+.authWrapper .auth .inputField input {
+  margin: 10px 0;
+  border: 1px solid #e2e2e2;
+  border-radius: 7px;
+  padding: 11px 12px;
+  width: 230px;
+  font-size: 16px;
+}
+
+.authWrapper .auth .recoveryTitle {
+  font-size: 7vw;
+}
+
+.authWrapper .auth .recoveryCopy {
+  width: 85%;
+  text-align: justify;
+  font-size: 13px;
+  color: #6f6f6f;
+  width: 220px;
+}
+
+@media screen and (min-width: 480px) {
+	.authWrapper.show {
+    top: 50px;
+  }
+
+  .authWrapper .auth .recoveryTitle {
+    font-size: 33px;
+  }
+}

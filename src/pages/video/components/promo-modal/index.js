@@ -54,7 +54,7 @@ export default class PromoModal extends Component {
               this.setState({ open: false });
               const date = new Date();
               date.setHours(date.getHours() + 24);
-              document.cookie = `${promoOffer}=true;expires=${date}`;
+              document.cookie = `${promoOffer}=true;expires=${date};path=/`;
             }}
           />
           <p className="title">{title}</p>
