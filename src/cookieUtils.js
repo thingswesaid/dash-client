@@ -21,7 +21,7 @@ export function setCookie(localStorageName, data) {
 }
 
 export function getCookie(localStorageName, op = {}) {
-  const cookie = cookies.get(localStorageName, op)
+  const cookie = cookies.get(localStorageName, { path: "/" })
   if (cookie) {
     return cookie
   } else {

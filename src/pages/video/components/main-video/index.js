@@ -13,7 +13,6 @@ import { setCookie, addChangeListener, removeChangeListener } from '../../../../
 import {
   ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
-  COOKIE_EMAIL,
   COOKIE_USER_TOKEN,
   COOKIE_RECENT_ORDER,
   COOKIE_PAYPAYL_EMAIL,
@@ -89,7 +88,7 @@ export default class MainVideo extends Component {
     this.setState({ hasAccess: true, videoOpen: true, showPayment: false });
   }
 
-  async processPayment(payment, videoId, price, videoName, type, userToken, createOrder) {
+  async processPayment(payment, videoId, price, videoName, type, createOrder) {
     try {
       const {
         payer: {
@@ -99,14 +98,16 @@ export default class MainVideo extends Component {
         purchase_units: purchase,
         status,
       } = payment;
-
-      const { payments: { captures } } = purchase[0];
-      const { id: paymentId } = captures[0];
-
       if (status !== 'COMPLETED') {
         notification.error(PAYMENT_ERROR);
         return this.setState({ loading: false });
       }
+
+      const userToken = getCookie(COOKIE_USER_TOKEN);
+      const { payments: { captures } } = purchase[0];
+      const { id: paymentId } = captures[0];
+
+      if (!userToken) setCookie(COOKIE_PAYPAYL_EMAIL, payPalEmail);
 
       const ip = this.props.userIp || 'IP-NOT-RECEIVED';
       const { 
@@ -126,10 +127,7 @@ export default class MainVideo extends Component {
         },
       });
 
-      setCookie(COOKIE_EMAIL, userEmail); // TODO move to helper functions (accepts array of cookies)
-
-      const { userId } = jwt.verify(userToken, process.env.REACT_APP_JWT_SECRET);
-      if (!userId) setCookie(COOKIE_PAYPAYL_EMAIL, payPalEmail);
+      setCookie(COOKIE_RECENT_ORDER, true);
 
       transactionToAnalytics(dataLayer, {
         videoName,
@@ -137,6 +135,7 @@ export default class MainVideo extends Component {
         price,
         paymentId,
       });
+
 
       this.setState({
         hasAccess: true,
@@ -263,20 +262,21 @@ export default class MainVideo extends Component {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
                       setCookie(COOKIE_RECENT_ORDER, true);
-                      const userToken = getCookie(COOKIE_USER_TOKEN);
-                      if (userToken) this.processPayment(payment, queryVideoId, price, name, type, userToken, createOrder);
-                      else if (payment.status === 'COMPLETED') {
-                        addChangeListener((cookieName) => {this.cookieCheck(
-                          cookieName, payment, queryVideoId, price, name, type, createOrder
-                        )});
-                        this.setState({
-                          hasAccess: true,
-                          videoOpen: true,
-                          showPreview: false,
-                          showPayment: false,
-                          loading: false,
-                        });
-                      }
+                      // const userToken = getCookie(COOKIE_USER_TOKEN);
+                      this.processPayment(payment, queryVideoId, price, name, type, createOrder);
+                      // if (userToken) this.processPayment(payment, queryVideoId, price, name, type, createOrder);
+                      // else if (payment.status === 'COMPLETED') {
+                      //   addChangeListener((cookieName) => {this.cookieCheck(
+                      //     cookieName, payment, queryVideoId, price, name, type, createOrder
+                      //   )});
+                      //   this.setState({
+                      //     hasAccess: true,
+                      //     videoOpen: true,
+                      //     showPreview: false,
+                      //     showPayment: false,
+                      //     loading: false,
+                      //   });
+                      // }
                     } catch (error) {
                       notification.error(PAYMENT_ERROR);
                       Sentry.captureException(`MAIN-VIDEO:onApprove - ${error}`);

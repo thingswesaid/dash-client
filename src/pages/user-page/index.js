@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { removeCookie } from '../../cookieUtils';
-import { COOKIE_USER_TOKEN } from '../../constants';
+import { COOKIE_USER_TOKEN, COOKIE_USER_ID } from '../../constants';
 
 export default ({ id }) => (
   <div
@@ -26,6 +26,7 @@ export default ({ id }) => (
       }}
       onClick={() => { 
         removeCookie(COOKIE_USER_TOKEN) 
+        removeCookie(COOKIE_USER_ID) 
         window.location.assign('/');
       }}
     >LOG OUT</button>

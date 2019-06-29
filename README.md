@@ -15,12 +15,20 @@
 - [x] Rebuild search component
 - [x] Figure out search for pick a card - should show only main reading (maybe page) - don't show options
 - [x] Revisit overall user access check
+- [x] Build Login page (make it a popup instead as shared component) and change navbar item to profile when logged in 
+- [x] Figure out PROMO check and redeem with new login system
+- [x] Show Loader on homepage while loading dropdownXL
+- [x] Adapt Navbar for mobile
 - [ ] Build Dashboard to quickly handle customer service
-- [ ] Change email address / password from user's profile
+  - check everything about that user (order + videos + promos)
+  - assign video to user manually
+- build USER PAGE (timeline)
+  - all videos purchased
+  - promos
+  - personal quotes
+  - retrieve pasts videos (by entering paypal email address)
+  - Settings: Change email address / password - personalize your experience
 - [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
-- [ ] Build Login page (make it a popup instead as shared component) and change navbar item to profile when logged in - COMPONENT SHOULD BE AT THE APP FRAME LEVEL
-- [ ] Figure out PROMO check and redeem with new login system
-- [ ] Create promo modal for pick a card that says that you can access all the videos after purchase (cookie expires after one month) "A single purchase will give you access to all groups extended readings"
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title + video preview (only first 30 secs then keep watching on youtube)
   - watch on YouTube button
@@ -33,8 +41,6 @@
 	- create buy 1 get 1 free emails for Secret reading
 	- create marketing campaigns bulk email (don't miss out! 4.99 for all videos at the end of the month)
 - [ ] Get lucky popup
-- [x] Show Loader on homepage while loading dropdownXL
-- [x] Adapt Navbar for mobile
 - [ ] DropdownXL add field to suggest pick-a-card topic (when NO RESULT)
 - [ ] For search point to keywords instead of name and make it Elastic Search
 - [ ] TECH: remove all `) : ''}` from ternary operators

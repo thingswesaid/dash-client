@@ -36,7 +36,8 @@ export default class Auth extends Component {
 
   static getDerivedStateFromProps(props) {
     if (props.afterCheckout) {
-      return { email: getCookie(COOKIE_PAYPAYL_EMAIL), loginActive: false }
+      const email = getCookie(COOKIE_PAYPAYL_EMAIL);
+      return { email, loginActive: false }
     }
     return null
   }
