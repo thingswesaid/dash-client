@@ -79,7 +79,7 @@ export default class Auth extends Component {
         }) => (
           <Fragment>
             <h1>{type}</h1>
-            {afterCheckout && <p className="accessAgain">Watch once or sign up to watch again at any time.</p>}
+            {afterCheckout && <p className="accessAgain shake">Watch once or sign up to watch again at any time.</p>}
             <div className="inputField">
               <p>Email Address</p>
               <input 

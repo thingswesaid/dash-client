@@ -87,3 +87,17 @@ a {
 	0% {transform:translateX(-100%);}
 	100% {transform:translateX(100%);}
 }
+
+.shake {
+  animation-name: shake;
+  animation-iteration-count: 2;
+  animation-delay: 1s;
+  animation-duration: 10s;
+}
+
+@keyframes shake {
+  1%, 9% { transform: translate3d(-1px, 0, 0);}
+  2%, 8% { transform: translate3d(2px, 0, 0);}
+  3%, 5%, 7% { transform: translate3d(-4px, 0, 0);}
+  4%, 6% {transform: translate3d(4px, 0, 0);}
+}
