@@ -13,7 +13,7 @@ import {
   PASSWORD_RESET_EMAIL_MUTATION,
 } from '../../../../operations/mutations';
 import { COOKIE_EMAIL, COOKIE_USER_TOKEN, COOKIE_USER_ID, COOKIE_PAYPAYL_EMAIL } from '../../../../constants';
-import { getCookie, setCookie } from '../../../../cookieUtils';
+import { getCookie, setCookie, addChangeListener, removeChangeListener } from '../../../../cookieUtils';
 import { validateField } from '../../../../utils';
 
 import './index.css';
@@ -40,6 +40,17 @@ export default class Auth extends Component {
       return { email, loginActive: false }
     }
     return null
+  }
+
+  componentDidMount() {
+    addChangeListener(this.cookieCheck);
+  }
+
+  cookieCheck = ({ name: cookieName, value: cookieValue }) => {
+    if (cookieName === COOKIE_PAYPAYL_EMAIL) {
+      this.setState({ email: cookieValue });
+      removeChangeListener(this.cookieCheck);
+    }
   }
 
   async authAttempt(isLogin, loginCb, signupCb) {
@@ -86,10 +97,7 @@ export default class Auth extends Component {
               <input 
                 type="email" 
                 value={email}
-                onChange={(e) => { 
-                  if (afterCheckout) removeAfterCheckout();
-                  this.setState({ email: e.target.value.toLowerCase() }) 
-                }}
+                onChange={(e) => this.setState({ email: e.target.value.toLowerCase() })}
                 onKeyPress={(e) => { if (e.key === "Enter") this.authAttempt(showLogin, login, signup) }}
               />
             </div>

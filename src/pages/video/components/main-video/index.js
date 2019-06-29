@@ -102,7 +102,7 @@ export default class MainVideo extends Component {
         notification.error(PAYMENT_ERROR);
         return this.setState({ loading: false });
       }
-
+      setCookie(COOKIE_RECENT_ORDER, true);
       const userToken = getCookie(COOKIE_USER_TOKEN);
       const { payments: { captures } } = purchase[0];
       const { id: paymentId } = captures[0];
@@ -261,22 +261,7 @@ export default class MainVideo extends Component {
                     try {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
-                      setCookie(COOKIE_RECENT_ORDER, true);
-                      // const userToken = getCookie(COOKIE_USER_TOKEN);
                       this.processPayment(payment, queryVideoId, price, name, type, createOrder);
-                      // if (userToken) this.processPayment(payment, queryVideoId, price, name, type, createOrder);
-                      // else if (payment.status === 'COMPLETED') {
-                      //   addChangeListener((cookieName) => {this.cookieCheck(
-                      //     cookieName, payment, queryVideoId, price, name, type, createOrder
-                      //   )});
-                      //   this.setState({
-                      //     hasAccess: true,
-                      //     videoOpen: true,
-                      //     showPreview: false,
-                      //     showPayment: false,
-                      //     loading: false,
-                      //   });
-                      // }
                     } catch (error) {
                       notification.error(PAYMENT_ERROR);
                       Sentry.captureException(`MAIN-VIDEO:onApprove - ${error}`);
