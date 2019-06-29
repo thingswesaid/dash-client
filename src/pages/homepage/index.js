@@ -84,7 +84,7 @@ export default class Homepage extends Component {
           <div className="input">
             {homepageMGlass}
             <input 
-              placeholder="Will add gif on top of this" 
+              placeholder="Search" 
               className="search" 
               onChange={(e) => { this.setState({ searchInput: e.target.value.toLowerCase(), dropdownClosed: false }) }}
               onFocus={() => { this.setState({ dropdownClosed: false }) }}

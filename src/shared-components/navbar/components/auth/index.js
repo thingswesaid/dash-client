@@ -50,7 +50,7 @@ export default class Auth extends Component {
   
     try {
       const userId = getCookie(COOKIE_USER_ID);
-      const token = jwt.sign({ email, password, userId }, 'temporarydashsecret'); // TODO get from process
+      const token = jwt.sign({ email, password, userId }, process.env.REACT_APP_JWT_SECRET); // TODO get from process
       const authType = isLogin ? 'login' : 'signup';
       const { data: { [authType]: { error, user, token: tokenServer } } } = isLogin ? 
         await loginCb({ variables: { token }}) : await signupCb({ variables: { token }});
@@ -194,7 +194,7 @@ export default class Auth extends Component {
   async attemptPasswordReset(passwordUpdate) {
     this.setState({ loading: true });
     const { state: { password, passwordConfirmation }, props: { urlToken } } = this;
-    const { email } = jwt.verify(urlToken, 'temporarydashsecret');
+    const { email } = jwt.verify(urlToken, process.env.REACT_APP_JWT_SECRET);
     const isPasswordValid = validateField('password', password);
     if (!isPasswordValid) {
       this.setState({ loading: false });
@@ -203,7 +203,7 @@ export default class Auth extends Component {
       this.setState({ loading: false });
       return notification.error('Passwords don\'t match.');
     }
-    const token = jwt.sign({ email, password }, 'temporarydashsecret'); // TODO get from process - move all to utils
+    const token = jwt.sign({ email, password }, process.env.REACT_APP_JWT_SECRET); // TODO get from process - move all to utils
     const { data: { passwordUpdate: { user, token: tokenServer } } } = await passwordUpdate({ variables: { token } });
     this.setState({ loading: false });
     setCookie(COOKIE_USER_TOKEN, tokenServer);

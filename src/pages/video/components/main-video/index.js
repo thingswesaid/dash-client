@@ -128,7 +128,7 @@ export default class MainVideo extends Component {
 
       setCookie(COOKIE_EMAIL, userEmail); // TODO move to helper functions (accepts array of cookies)
 
-      const { userId } = jwt.verify(userToken, 'temporarydashsecret');
+      const { userId } = jwt.verify(userToken, process.env.REACT_APP_JWT_SECRET);
       if (!userId) setCookie(COOKIE_PAYPAYL_EMAIL, payPalEmail);
 
       transactionToAnalytics(dataLayer, {

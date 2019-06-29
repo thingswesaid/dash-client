@@ -14,9 +14,8 @@
 - [x] build unsubscribe email page
 - [x] Rebuild search component
 - [x] Figure out search for pick a card - should show only main reading (maybe page) - don't show options
-- [ ] ATTENTION TO THIS: CHANGE LINK IN PROMO VIDEO WHEN DEPLOYING NEW CHANGES - SHOULD BE `0tg9m`
-- ALSO CHANGE IN YT VIDEO DESCRIPTION TO // Get access to all four extended readings
-- [ ] REVISIT OVERALL CHECKUSERACCESS FUNCTION
+- [x] Revisit overall user access check
+- [ ] Build Dashboard to quickly handle customer service
 - [ ] Change email address / password from user's profile
 - [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
 - [ ] Build Login page (make it a popup instead as shared component) and change navbar item to profile when logged in - COMPONENT SHOULD BE AT THE APP FRAME LEVEL
