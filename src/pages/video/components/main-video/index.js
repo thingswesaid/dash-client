@@ -16,6 +16,7 @@ import {
   COOKIE_USER_TOKEN,
   COOKIE_RECENT_ORDER,
   COOKIE_PAYPAYL_EMAIL,
+  COOKIE_USER_ID,
 } from '../../../../constants';
 import Image from '../../../../shared-components/image';
 import PromoCode from '../promo-code';
@@ -63,7 +64,7 @@ export default class MainVideo extends Component {
       return user || undefined;
     } 
     
-    const userId = getCookie(COOKIE_USER_TOKEN);
+    const userId = getCookie(COOKIE_USER_ID);
     const user = users.filter(({ id }) => id === userId)[0];
     
     if (!user) {
@@ -126,8 +127,6 @@ export default class MainVideo extends Component {
           paymentEmail: payPalEmail,
         },
       });
-
-      setCookie(COOKIE_RECENT_ORDER, true);
 
       transactionToAnalytics(dataLayer, {
         videoName,
