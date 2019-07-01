@@ -5,10 +5,9 @@ import classNames from 'classnames';
 import { toast as notification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 import * as Sentry from '@sentry/browser';
-import jwt from 'jsonwebtoken';
 
 import Modal from '../../../../shared-components/modal';
-import { setCookie, addChangeListener, removeChangeListener } from '../../../../cookieUtils';
+import { setCookie } from '../../../../cookieUtils';
 
 import {
   ACCOUNT_SUSPENDED,
@@ -35,25 +34,14 @@ export default class MainVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      emailField: '',
-      loading: false,
       optionSelected: 0,
+      loading: false,
       hasAccess: false,
       videoOpen: false,
-      showPromo: false,
-      showEmail: false,
       showPreview: true,
       showPayment: false,
-      showEmailModal: false,
       showPromoModal: false,
     };
-  }
-
-  cookieCheck = ({ name: cookieName, value: cookieValue }, payment, queryVideoId, price, name, type, createOrder) => {
-    if (cookieName === COOKIE_USER_TOKEN) {
-      this.processPayment(payment, queryVideoId, price, name, type, cookieValue, createOrder);
-      removeChangeListener(this.cookieCheck);
-    }
   }
 
   checkUserVideoAccess = (showPreview) => {
@@ -99,22 +87,20 @@ export default class MainVideo extends Component {
         purchase_units: purchase,
         status,
       } = payment;
+
       if (status !== 'COMPLETED') {
         notification.error(PAYMENT_ERROR);
         return this.setState({ loading: false });
       }
       setCookie(COOKIE_RECENT_ORDER, true);
-      const userToken = getCookie(COOKIE_USER_TOKEN);
       const { payments: { captures } } = purchase[0];
       const { id: paymentId } = captures[0];
-
+      const userToken = getCookie(COOKIE_USER_TOKEN);
       if (!userToken) setCookie(COOKIE_PAYPAYL_EMAIL, payPalEmail);
 
       const ip = this.props.userIp || 'IP-NOT-RECEIVED';
       const { 
-        data: { 
-          createOrder: { promo, user: { email: userEmail } } 
-        }
+        data: { createOrder: { promo } },
       } = await createOrder({
         variables: {
           userToken,
@@ -135,7 +121,6 @@ export default class MainVideo extends Component {
         paymentId,
       });
 
-
       this.setState({
         hasAccess: true,
         videoOpen: true,
@@ -152,9 +137,14 @@ export default class MainVideo extends Component {
       }
       return undefined;
     } catch (error) {
-      notification.error(PAYMENT_ERROR);
       Sentry.captureException(`MAIN-VIDEO:processPayment:error - ${error}`);
-      return this.setState({ loading: false });
+      return this.setState({
+        hasAccess: true,
+        videoOpen: true,
+        showPreview: false,
+        showPayment: false,
+        loading: false,
+      });
     }
   }
 
@@ -165,7 +155,6 @@ export default class MainVideo extends Component {
         showPromoModal,
         showPreview,
         showPayment,
-        emailField,
         videoOpen,
         hasAccess,
         loading,

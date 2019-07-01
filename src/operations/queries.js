@@ -70,6 +70,28 @@ export const SEARCH_QUERY = gql`
   }
 `;
 
+export const USER_QUERY = gql` 
+  query userQuery($id: ID!) {
+    userPage(id: $id) {
+      email
+      promos {
+        code
+        createdAt
+        valid
+      }
+      orders {
+        createdAt
+        video {
+          id
+          title
+          image
+          placeholder
+        }
+      }
+    }
+  }
+`;
+
 export const USERIP_QUERY = gql` 
   query UserIpQuery {
     userIp

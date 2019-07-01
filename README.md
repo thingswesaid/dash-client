@@ -22,11 +22,11 @@
 - [ ] Build Dashboard to quickly handle customer service
   - check everything about that user (order + videos + promos)
   - assign video to user manually
-- build USER PAGE (timeline)
+  - assign promos manually
+- [ ] build USER PAGE (timeline)
   - all videos purchased
-  - promos
-  - personal quotes
-  - retrieve pasts videos (by entering paypal email address)
+  - promos active and used
+  - personal quotes 
   - Settings: Change email address / password - personalize your experience
 - [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
@@ -43,7 +43,10 @@
 - [ ] Get lucky popup
 - [ ] DropdownXL add field to suggest pick-a-card topic (when NO RESULT)
 - [ ] For search point to keywords instead of name and make it Elastic Search
-- [ ] TECH: remove all `) : ''}` from ternary operators
+- [ ] Major refactor
+  - TECH: remove all `) : ''}` from ternary operators
+  - jwt sign and verify refactor
+  - use lodash where possible
 - [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) - TODO when have more readings
 - [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar) - add option to checkout pannel
 - [ ] Add images (sad and happy) to unsubscribe emails

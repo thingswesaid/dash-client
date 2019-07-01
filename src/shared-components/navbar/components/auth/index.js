@@ -216,7 +216,7 @@ export default class Auth extends Component {
     const { data: { passwordUpdate: { user, token: tokenServer } } } = await passwordUpdate({ variables: { token } });
     this.setState({ loading: false });
     setCookie(COOKIE_USER_TOKEN, tokenServer);
-    setCookie(COOKIE_EMAIL, user.email);
+    setCookie(COOKIE_USER_ID, user.id);
     window.location.assign(`/?notification=Password Updated`)
   }
 
