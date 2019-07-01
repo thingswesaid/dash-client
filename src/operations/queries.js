@@ -3,11 +3,10 @@ import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
 export const VIDEO_PAGE_QUERY = gql` 
-  query VideoPageQuery($id: ID!, $ip: String, $email: String, $showAll: Boolean) {
-    videoPage(id: $id, ip: $ip, email: $email, showAll: $showAll) {
+  query VideoPageQuery($id: ID!, $ip: String, $userId: String, $showAll: Boolean) {
+    videoPage(id: $id, ip: $ip, userId: $userId, showAll: $showAll) {
       video {
         id
-        # name
         link
         preview
         image
@@ -28,7 +27,6 @@ export const VIDEO_PAGE_QUERY = gql`
       latestVideos {
         id
         title
-        # name
         image
         placeholder
         published
@@ -42,7 +40,13 @@ export const VIDEO_PAGE_QUERY = gql`
         banner
         bannerMobile
       }
-      userActive
+      user {
+        id
+        active
+        videos {
+          id
+        }
+      }
       sitePromo {
         promoOffer
         type
@@ -108,12 +112,12 @@ const PROMO_CODE_QUERY = gql`
 `;
 
 export const videoPageQuery = ({
-  render, id, ip, email, showAll,
+  render, id, ip, userId, showAll,
 }) => (
   <Query
     query={VIDEO_PAGE_QUERY}
     variables={{
-      id, ip, email, showAll,
+      id, ip, userId, showAll,
     }}
   >
     {render}

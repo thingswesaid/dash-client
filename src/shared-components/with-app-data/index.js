@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 
 import { USERIP_QUERY } from '../../operations/queries';
-import { COOKIE_EMAIL } from '../../constants';
+import { COOKIE_USER_ID } from '../../constants';
 import { getCookie } from '../../cookieUtils';
 import Loader from '../loader';
 import Error from '../error';
@@ -14,7 +14,7 @@ export const AppContext = React.createContext();
 export function withAppData(WrappedComponent) {
   class WithAppData extends React.Component {
     render() {
-      const cookieEmail = getCookie(COOKIE_EMAIL);
+      const userId = getCookie(COOKIE_USER_ID);
       return (
         <Query query={USERIP_QUERY}>
           {({ data, loading, error }) => {
@@ -22,7 +22,7 @@ export function withAppData(WrappedComponent) {
             if (error) { return <Error message="We will be right back!" />; } /* log to sumo or similar */
             const { userIp } = data;
             return (
-              <AppContext.Provider value={{ ...this.state, ...{ userIp, cookieEmail } }}>
+              <AppContext.Provider value={{ ...this.state, ...{ userIp, userId } }}>
                 <WrappedComponent {...this.props} />
               </AppContext.Provider>
             );

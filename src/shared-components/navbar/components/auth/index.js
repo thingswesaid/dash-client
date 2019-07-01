@@ -159,7 +159,6 @@ export default class Auth extends Component {
                 value={email}
                 onChange={(e) => { this.setState({ email: e.target.value.toLowerCase() }) }}
                 onKeyPress={async (e) => { 
-                  // if (e.key === 'Enter' && process.env.NODE_ENV === 'production') {
                   if (e.key === 'Enter') {
                     const isEmailValid = validateField('email', email);
                     if (!isEmailValid) return notification.error('Email address is invalid.');

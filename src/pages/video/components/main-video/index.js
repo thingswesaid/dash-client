@@ -2,13 +2,13 @@
 import React, { Component, Fragment } from 'react';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
+import _ from 'lodash';
 import { toast as notification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 import * as Sentry from '@sentry/browser';
-import jwt from 'jsonwebtoken';
 
 import Modal from '../../../../shared-components/modal';
-import { setCookie, addChangeListener, removeChangeListener } from '../../../../cookieUtils';
+import { setCookie } from '../../../../cookieUtils';
 
 import {
   ACCOUNT_SUSPENDED,
@@ -35,9 +35,8 @@ export default class MainVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      emailField: '',
-      loading: false,
       optionSelected: 0,
+      loading: false,
       hasAccess: false,
       videoOpen: false,
       showPromo: false,
@@ -47,13 +46,6 @@ export default class MainVideo extends Component {
       showEmailModal: false,
       showPromoModal: false,
     };
-  }
-
-  cookieCheck = ({ name: cookieName, value: cookieValue }, payment, queryVideoId, price, name, type, createOrder) => {
-    if (cookieName === COOKIE_USER_TOKEN) {
-      this.processPayment(payment, queryVideoId, price, name, type, cookieValue, createOrder);
-      removeChangeListener(this.cookieCheck);
-    }
   }
 
   checkUserVideoAccess = (showPreview) => {
@@ -113,7 +105,7 @@ export default class MainVideo extends Component {
       const ip = this.props.userIp || 'IP-NOT-RECEIVED';
       const { 
         data: { 
-          createOrder: { promo, user: { email: userEmail } } 
+          createOrder: { promo } 
         }
       } = await createOrder({
         variables: {
@@ -153,7 +145,14 @@ export default class MainVideo extends Component {
       return undefined;
     } catch (error) {
       notification.error(PAYMENT_ERROR);
-      Sentry.captureException(`MAIN-VIDEO:processPayment:error - ${error}`);
+      Sentry.captureException(
+        `
+          MAIN-VIDEO:processPayment:error
+          ${error}
+          ${this.props.user}
+          ${this.props.video}
+        `
+      );
       return this.setState({ loading: false });
     }
   }
@@ -165,7 +164,6 @@ export default class MainVideo extends Component {
         showPromoModal,
         showPreview,
         showPayment,
-        emailField,
         videoOpen,
         hasAccess,
         loading,
@@ -245,17 +243,20 @@ export default class MainVideo extends Component {
                   {price}
                 </div>
                 <PayPalButton
-                  createOrder={(data, actions) => actions.order.create({
-                    purchase_units: [{
-                      amount: {
-                        currency_code: 'USD',
-                        value: sitePromo ? sitePromo.newPrice : price,
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [{
+                        amount: {
+                          currency_code: 'USD',
+                          value: sitePromo ? sitePromo.newPrice : price,
+                        },
+                      }],
+                      application_context: {
+                        shipping_preference: 'NO_SHIPPING',
                       },
-                    }],
-                    application_context: {
-                      shipping_preference: 'NO_SHIPPING',
-                    },
-                  })}
+                    })
+                  }}
+
                   onApprove={async (_data, actions) => {
                     try {
                       this.setState({ loading: true });
@@ -267,6 +268,7 @@ export default class MainVideo extends Component {
                       return this.setState({ loading: false });
                     }
                   }}
+
                   options={{
                     clientId: process.env.NODE_ENV === 'production'
                       ? process.env.REACT_APP_PAYPAL_CLIENT_ID

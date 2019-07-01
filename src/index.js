@@ -46,23 +46,13 @@ removeCookie(COOKIE_RECENT_ORDER);
 removeCookie(COOKIE_PAYPAYL_EMAIL);
 browserCheck();
 
-// fetch('/ping')
-//   .then(function(response) {
-//     console.log('>>>>>>>> RESP <<<<<<<<<', response);
-//     return response.text();
-//   })
-//   .then(function(myJson) {
-//     console.log('>>>>>>>> myJson <<<<<<<<<', myJson);
-//     console.log(JSON.stringify(myJson));
-//   });
-
 render((
   <ApolloProvider client={client}>
     <Router>
       <AppFrameWithData>
         <ErrorBoundary>
           <AppContext.Consumer>
-            {({ userIp, cookieEmail }) => (
+            {({ userIp, userId }) => (
               <Switch>
                 <Route
                   path="/"
@@ -79,7 +69,7 @@ render((
                         <VideoPage
                           videoId={id}
                           userIp={userIp}
-                          cookieEmail={cookieEmail}
+                          userId={userId}
                           showAll={!!showall}
                         />
                       );
