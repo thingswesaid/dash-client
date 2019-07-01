@@ -28,7 +28,6 @@ import UnsubscribePage from './pages/unsubscribe';
 
 import './index.css';
 
-
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DNS });
 }
@@ -46,6 +45,16 @@ const AppFrameWithData = withAppData(AppFrame);
 removeCookie(COOKIE_RECENT_ORDER);
 removeCookie(COOKIE_PAYPAYL_EMAIL);
 browserCheck();
+
+// fetch('/ping')
+//   .then(function(response) {
+//     console.log('>>>>>>>> RESP <<<<<<<<<', response);
+//     return response.text();
+//   })
+//   .then(function(myJson) {
+//     console.log('>>>>>>>> myJson <<<<<<<<<', myJson);
+//     console.log(JSON.stringify(myJson));
+//   });
 
 render((
   <ApolloProvider client={client}>
