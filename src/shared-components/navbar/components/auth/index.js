@@ -12,7 +12,7 @@ import {
   PASSWORD_UPDATE_MUTATION,
   PASSWORD_RESET_EMAIL_MUTATION,
 } from '../../../../operations/mutations';
-import { COOKIE_EMAIL, COOKIE_USER_TOKEN, COOKIE_USER_ID, COOKIE_PAYPAYL_EMAIL } from '../../../../constants';
+import { COOKIE_USER_TOKEN, COOKIE_USER_ID, COOKIE_PAYPAYL_EMAIL } from '../../../../constants';
 import { getCookie, setCookie, addChangeListener, removeChangeListener } from '../../../../cookieUtils';
 import { validateField } from '../../../../utils';
 
@@ -216,7 +216,7 @@ export default class Auth extends Component {
     const { data: { passwordUpdate: { user, token: tokenServer } } } = await passwordUpdate({ variables: { token } });
     this.setState({ loading: false });
     setCookie(COOKIE_USER_TOKEN, tokenServer);
-    setCookie(COOKIE_EMAIL, user.email);
+    setCookie(COOKIE_USER_ID, user.id);
     window.location.assign(`/?notification=Password Updated`)
   }
 
