@@ -2,62 +2,74 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import StackGrid from 'react-stack-grid';
 import idGenerator from 'react-id-generator';
+import sizeMe from 'react-sizeme';
 import _ from 'lodash';
 
 import { USER_QUERY } from '../../operations/queries';
-import { getCookie } from '../../cookieUtils';
-import { COOKIE_USER_ID } from '../../constants';
+import { getCookie, removeCookie } from '../../cookieUtils';
+import { COOKIE_USER_ID, COOKIE_USER_TOKEN } from '../../constants';
 import Loader from '../../shared-components/loader';
 import Video from './components/video';
+import PromoCode from './components/promo-code';
+import Quote from './components/quote';
 
 import './index.css';
 
-export default () => {
+
+const userPage = ({ size: { width } }) => {
   const userId = getCookie(COOKIE_USER_ID);
   return (
     <Query query={USER_QUERY} variables={{ id: userId }}>
       {({ loading, error, data }) => {
         if (loading) return <Loader />;
         if (error) return `Error! ${error.message}`; // TODO CHANGE USE ERROR COMPONENT
+        if (data.userPage && !data.userPage.user) return <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '20px 0'
+        }}>LOGIN PLEASE</div>
 
-        const { userPage: { email, orders, promos } } = data;
+        const { userPage: { user: { email, orders, promoCodes }, quotes } } = data;
         const validOrders = _.reject(orders, (order) => !order.video);
-        const allData = _.sortBy([ ...validOrders, ...promos ], 'createdAt');
+        const ordersAndCodes = _.sortBy([ ...validOrders, ...promoCodes ], 'createdAt');
+  
+        const allData = _.flatMap(ordersAndCodes, (value, index) => {
+          const quoteIndex = index / 3;
+          return index % 3 === 0
+            ? [value, quotes[quoteIndex]]
+            : value
+          });
 
         return (
           <div className="userPage">
-            <StackGrid
-              columnWidth={200}
+            <p className="title">Activity Feed</p>
+            <p className="description">All of your videos and promos in one place.</p>
+            {!allData.length && <div>NO ACTIVITY YET</div>}
+            {allData.length && <StackGrid
+              columnWidth={width <= 565 ? 150 : 250}
+              gutterWidth={10}
+              gutterHeight={10}
             >
-              {allData.map((obj) => 
-                <Fragment key={idGenerator()}> 
-                  {obj.code && <div style={{
-                    width: "150px",
-                    height: "150px",
-                    background: "lightblue"
-                  }}>Promo Code {obj.code}</div>}
+              {allData.map((obj) => {
+                return (<Fragment key={idGenerator()}> 
+                  {obj.code && <PromoCode promoCode={obj} />}
                   {obj.video && <Video video={obj.video} />}
-                </Fragment>
-              )}
-            </StackGrid>
+                  {obj.text && <Quote quote={obj} /> }
+                </Fragment>)
+              })}
+            </StackGrid>}
+            <div className="dock">
+              <button className="logout" onClick={() => {  
+                removeCookie(COOKIE_USER_TOKEN); 
+                removeCookie(COOKIE_USER_ID);  
+                window.location.assign('/');
+              }}>LOGOUT</button>
+            </div>
           </div>
-
-          
         )
       }}
     </Query>
   )
 }
 
-{/* <button
-  style={{
-    border: "1px solid gray",
-    borderRadius: "10px",
-    padding: "10px 20px",
-  }}
-  onClick={() => { 
-    removeCookie(COOKIE_USER_TOKEN) 
-    removeCookie(COOKIE_USER_ID) 
-    window.location.assign('/');
-  }}
->LOG OUT</button> */}
+export default sizeMe()(userPage);

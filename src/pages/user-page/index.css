@@ -1,6 +1,41 @@
 .userPage {
-  width: 90%;
+  width: 95%;
   max-width: 1020px;
   min-height: 60vh;
   margin: 0 auto;
+  position: relative;
+}
+
+.userPage .title {
+  letter-spacing: 2px;
+  font-size: 21px;
+  text-align: center;
+  color: #969696;
+  margin-bottom: 0;
+}
+
+.userPage .description {
+  text-align: center;
+  font-size: 11px;
+  color: #969696;
+  margin: 3px 0 20px;
+}
+
+.userPage .dock {
+  margin: 40px 0;
+  display: flex;
+}
+
+.userPage .dock .logout {
+  color: #36dedc;
+  border: 1px solid #36dedb;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 565px) {
+  .userPage .item {
+    width: 250px;
+  }
 }

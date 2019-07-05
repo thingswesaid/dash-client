@@ -1,6 +1,8 @@
 import React from 'react';
 import { Adopt } from 'react-adopt';
 import idGenerator from 'react-id-generator';
+import StackGrid from 'react-stack-grid';
+import sizeMe from 'react-sizeme';
 
 import Image from '../../../../shared-components/image';
 import Loader from '../../../../shared-components/loader';
@@ -9,7 +11,7 @@ import './index.css';
 
 const mapper = { searchQuery };
 
-export default ({ keywords }) => (
+const DropdownXl = ({ size: { width }, keywords }) => (
   <Adopt mapper={mapper} keywords={keywords}>
     {({
       searchQuery
@@ -20,7 +22,12 @@ export default ({ keywords }) => (
 
       return (
         <div className="dropdownXlContainer">
-          <div className="dropdownXl">
+          <StackGrid
+              columnWidth={200}
+              columnWidth={width < 500 ? 150 : 200}
+              gutterWidth={10}
+              gutterHeight={10}
+            >
             {
               videos.slice(0, 9).map(({
                 id, image, placeholder,
@@ -32,7 +39,7 @@ export default ({ keywords }) => (
                 </div>
               ))
             }
-          </div>
+          </StackGrid>
           {!videos.length && (
               <div className="empty">
                 <p>NO RESULTS</p>
@@ -43,3 +50,5 @@ export default ({ keywords }) => (
     }}
   </Adopt>
 );
+
+export default sizeMe()(DropdownXl);

@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import YouTube from 'react-youtube';
 import classNames from 'classnames';
+import _ from 'lodash';
 import { toast as notification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 import * as Sentry from '@sentry/browser';
@@ -100,7 +101,9 @@ export default class MainVideo extends Component {
 
       const ip = this.props.userIp || 'IP-NOT-RECEIVED';
       const { 
-        data: { createOrder: { promo } },
+        data: { 
+          createOrder: { promo } 
+        }
       } = await createOrder({
         variables: {
           userToken,
@@ -137,14 +140,16 @@ export default class MainVideo extends Component {
       }
       return undefined;
     } catch (error) {
-      Sentry.captureException(`MAIN-VIDEO:processPayment:error - ${error}`);
-      return this.setState({
-        hasAccess: true,
-        videoOpen: true,
-        showPreview: false,
-        showPayment: false,
-        loading: false,
-      });
+      notification.error(PAYMENT_ERROR);
+      Sentry.captureException(
+        `
+          MAIN-VIDEO:processPayment:error
+          ${error}
+          ${this.props.user}
+          ${this.props.video}
+        `
+      );
+      return this.setState({ loading: false });
     }
   }
 
@@ -234,17 +239,20 @@ export default class MainVideo extends Component {
                   {price}
                 </div>
                 <PayPalButton
-                  createOrder={(data, actions) => actions.order.create({
-                    purchase_units: [{
-                      amount: {
-                        currency_code: 'USD',
-                        value: sitePromo ? sitePromo.newPrice : price,
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [{
+                        amount: {
+                          currency_code: 'USD',
+                          value: sitePromo ? sitePromo.newPrice : price,
+                        },
+                      }],
+                      application_context: {
+                        shipping_preference: 'NO_SHIPPING',
                       },
-                    }],
-                    application_context: {
-                      shipping_preference: 'NO_SHIPPING',
-                    },
-                  })}
+                    })
+                  }}
+
                   onApprove={async (_data, actions) => {
                     try {
                       this.setState({ loading: true });
@@ -256,6 +264,7 @@ export default class MainVideo extends Component {
                       return this.setState({ loading: false });
                     }
                   }}
+
                   options={{
                     clientId: process.env.NODE_ENV === 'production'
                       ? process.env.REACT_APP_PAYPAL_CLIENT_ID

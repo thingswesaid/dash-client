@@ -12,7 +12,7 @@ import {
   PASSWORD_UPDATE_MUTATION,
   PASSWORD_RESET_EMAIL_MUTATION,
 } from '../../../../operations/mutations';
-import { COOKIE_EMAIL, COOKIE_USER_TOKEN, COOKIE_USER_ID, COOKIE_PAYPAYL_EMAIL } from '../../../../constants';
+import { COOKIE_USER_TOKEN, COOKIE_USER_ID, COOKIE_PAYPAYL_EMAIL } from '../../../../constants';
 import { getCookie, setCookie, addChangeListener, removeChangeListener } from '../../../../cookieUtils';
 import { validateField } from '../../../../utils';
 
@@ -159,7 +159,6 @@ export default class Auth extends Component {
                 value={email}
                 onChange={(e) => { this.setState({ email: e.target.value.toLowerCase() }) }}
                 onKeyPress={async (e) => { 
-                  // if (e.key === 'Enter' && process.env.NODE_ENV === 'production') {
                   if (e.key === 'Enter') {
                     const isEmailValid = validateField('email', email);
                     if (!isEmailValid) return notification.error('Email address is invalid.');

@@ -1,0 +1,40 @@
+.promoCodeItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 112px;
+  width: 150px;
+  background: #ff6e6e;
+  border-radius: 5px;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 2px;
+  box-shadow: 0px 14px 7px -15px rgba(71,71,71,1);
+  text-align: center;
+  padding: 0 1px;
+  cursor: not-allowed;
+}
+
+.promoCodeItem.active {
+  background: #97ea8d;
+  cursor: pointer;
+}
+
+.promoCodeItem p.code {
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 20px;
+  margin: 0;
+  transition: transform .2s;
+}
+
+.promoCodeItem.active p.code:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 565px) {
+  .promoCodeItem {
+    width: 250px;
+  }
+}

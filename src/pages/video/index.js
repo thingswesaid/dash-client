@@ -28,12 +28,12 @@ const mapper = {
 
 export default (props) => {
   const {
-    videoId, userIp, cookieEmail, showAll,
+    videoId, userIp, userId, showAll,
   } = props;
 
   return (
     <Fragment>
-      <Adopt mapper={mapper} id={videoId} ip={userIp} email={cookieEmail} showAll={showAll}>
+      <Adopt mapper={mapper} id={videoId} ip={userIp} userId={userId} showAll={showAll}>
         {({
           videoPageQuery: videoPageData,
           addUserIpMutation: addUserIp,
@@ -45,7 +45,7 @@ export default (props) => {
             if (error) { return <Error message="We will be right back!" />; }
             const {
               videoPage: {
-                video, latestVideos, promoVideo, userActive, sitePromo,
+                video, latestVideos, promoVideo, user, sitePromo,
               },
             } = data;
 
@@ -53,6 +53,7 @@ export default (props) => {
             const showMerch = false;
             const promoCookie = sitePromo ? getCookie(sitePromo.promoOffer) : '';
             const showPromo = sitePromo && !promoCookie && sitePromo.type === video.type;
+            const userActive = user ? user.active : true;
 
             return userActive ? (
               <Fragment>
@@ -61,7 +62,7 @@ export default (props) => {
                   <h2>Checkout this tarot video to find out what your monthly energies are going to be.</h2>
                 </div>
                 <div className="page">
-                  {showPromo ? <PromoModal promo={sitePromo} /> : '' }
+                  {showPromo && <PromoModal promo={sitePromo} />}
                   <div className="videoWrapper">
                     <MainVideo
                       video={video}
@@ -69,20 +70,21 @@ export default (props) => {
                       addUserIp={addUserIp}
                       createOrder={createOrder}
                       sitePromo={sitePromo}
+                      user={user} // to debug non-capture payments
                     />
-                    {promoVideo ? <div className="separator" /> : ''}
-                    {promoVideo ? <Promo video={promoVideo} orientation="portrait" /> : ''}
+                    {promoVideo && <div className="separator" />}
+                    {promoVideo && <Promo video={promoVideo} orientation="portrait" />}
                   </div>
                   <div className="mobileWrapper" />
-                  {latestVideos ? <SuggestedVideos videos={latestVideos} /> : ''}
-                  {promoVideo ? <Promo video={promoVideo} orientation="landscape" /> : ''}
+                  {latestVideos && <SuggestedVideos videos={latestVideos} />}
+                  {promoVideo && <Promo video={promoVideo} orientation="landscape" />}
                 </div>
-                {showMerch ? (
+                {showMerch && (
                   <div className="bottomPage">
                     <Educational />
                     {/* <Merch products={products || []} types={productTypes} /> */}
                   </div>
-                ) : ''}
+                )}
               </Fragment>
             ) : (
               <Error message="Account not active. If you think this is a mistake contact us right away." />

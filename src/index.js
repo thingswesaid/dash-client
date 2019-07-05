@@ -28,7 +28,6 @@ import UnsubscribePage from './pages/unsubscribe';
 
 import './index.css';
 
-
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DNS });
 }
@@ -53,7 +52,7 @@ render((
       <AppFrameWithData>
         <ErrorBoundary>
           <AppContext.Consumer>
-            {({ userIp, cookieEmail }) => (
+            {({ userIp, userId }) => (
               <Switch>
                 <Route
                   path="/"
@@ -70,7 +69,7 @@ render((
                         <VideoPage
                           videoId={id}
                           userIp={userIp}
-                          cookieEmail={cookieEmail}
+                          userId={userId}
                           showAll={!!showall}
                         />
                       );

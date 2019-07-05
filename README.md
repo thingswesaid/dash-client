@@ -19,16 +19,24 @@
 - [x] Figure out PROMO check and redeem with new login system
 - [x] Show Loader on homepage while loading dropdownXL
 - [x] Adapt Navbar for mobile
+- [ ] Make videos downloadable - BFF now available
 - [ ] Build Dashboard to quickly handle customer service
   - check everything about that user (order + videos + promos)
   - assign video to user manually
   - assign promos manually
+- [ ] Build like me system similar to facebook
 - [ ] build USER PAGE (timeline)
   - all videos purchased
   - promos active and used
   - personal quotes 
+  - refer friends
+  - maybe external ads and video promos 
   - Settings: Change email address / password - personalize your experience
 - [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
+- [ ] Create help desk page to answer
+  - where do I see my promo code
+  - where do I see the videos I purchased
+  - how long are the viewable for
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title + video preview (only first 30 secs then keep watching on youtube)
   - watch on YouTube button
@@ -47,13 +55,15 @@
   - TECH: remove all `) : ''}` from ternary operators
   - jwt sign and verify refactor
   - use lodash where possible
+  - change link in Video to extended
+  - consolidate react-media with react-size (go for react size)
 - [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) - TODO when have more readings
 - [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar) - add option to checkout pannel
 - [ ] Add images (sad and happy) to unsubscribe emails
 - [ ] Merge Utils
 - [ ] Create OUR MISSION section
 - [ ] Find influencers, create assets for them and track affiliate link with bitly.com
-- [ ] build recommendation engine
+- [ ] build recommendation engine based on zodiac signs and previously researched keywords
 - [ ] Fix Google ecommerce track purchase
 - [ ] Checkout payment redesign 
   - PayPal to server
@@ -67,3 +77,5 @@
 - [ ] Build following emails: 
 	- we'll answer ASAP
 	- account suspanded for suspicious activity
+- DASH | Find tool to track income and expenses 
+  - laptop, trip, speakers, food, amazon orders, all internet services, editing fees
