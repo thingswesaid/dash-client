@@ -1,6 +1,6 @@
 .labelContainer {
   position: absolute;
-  top: 99%;
+  top: 97%;
   left: 0;
   right: 0;
   margin: auto;
@@ -39,6 +39,6 @@
 
 @media screen and (min-width: 480px) {
 	.labelContainer {
-		/* top: 96.5%; */
+    top: 98.5%;
 	}
 }

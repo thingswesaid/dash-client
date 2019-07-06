@@ -28,9 +28,9 @@
 
 .quote p.main {
   align-self: center;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 96%;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   background: linear-gradient(45deg, #3fec86 0%, #36dede 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

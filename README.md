@@ -19,16 +19,17 @@
 - [x] Figure out PROMO check and redeem with new login system
 - [x] Show Loader on homepage while loading dropdownXL
 - [x] Adapt Navbar for mobile
-- [ ] Make videos downloadable - BFF now available
+- [x] build USER PAGE (timeline)
+  - all videos purchased
+  - promos active and used
+  - personal quotes
+- [ ] Lower price for India
 - [ ] Build Dashboard to quickly handle customer service
   - check everything about that user (order + videos + promos)
   - assign video to user manually
   - assign promos manually
-- [ ] Build like me system similar to facebook
-- [ ] build USER PAGE (timeline)
-  - all videos purchased
-  - promos active and used
-  - personal quotes 
+- [ ] Build LIKES system similar to facebook
+- [ ] Add settings to User page
   - refer friends
   - maybe external ads and video promos 
   - Settings: Change email address / password - personalize your experience
@@ -57,10 +58,12 @@
   - use lodash where possible
   - change link in Video to extended
   - consolidate react-media with react-size (go for react size)
+  - merge Utils
 - [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) - TODO when have more readings
-- [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar) - add option to checkout pannel
+- [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar)  
+  - add option to checkout pannel
+  - videos downloadable - BFF now available
 - [ ] Add images (sad and happy) to unsubscribe emails
-- [ ] Merge Utils
 - [ ] Create OUR MISSION section
 - [ ] Find influencers, create assets for them and track affiliate link with bitly.com
 - [ ] build recommendation engine based on zodiac signs and previously researched keywords
@@ -77,5 +80,5 @@
 - [ ] Build following emails: 
 	- we'll answer ASAP
 	- account suspanded for suspicious activity
-- DASH | Find tool to track income and expenses 
+- [ ] DASH | Find tool to track income and expenses 
   - laptop, trip, speakers, food, amazon orders, all internet services, editing fees
