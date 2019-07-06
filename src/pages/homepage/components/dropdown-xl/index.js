@@ -19,7 +19,6 @@ const DropdownXl = ({ size: { width }, keywords }) => (
       const { data: { videos: videosResp }, loading } = searchQuery;
       const videos = videosResp || [];
       if (loading) { return <Loader classContainer="dropdownXlLoader" />; }
-
       return (
         <div className="dropdownXlContainer">
           <StackGrid

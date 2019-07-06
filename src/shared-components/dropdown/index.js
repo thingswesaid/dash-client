@@ -20,6 +20,7 @@ export default ({ keywords, closeDropdown }) => (
       }
       searched = keywords;
       const videos = videosResp || [];
+      
       return (
         <Fragment>
           <div className="dropdownContainer" onClick={() => { closeDropdown() }} />

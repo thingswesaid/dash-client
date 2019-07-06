@@ -4,8 +4,8 @@
 
 .dropdownXlContainer {
   min-height: 50vh;
-  padding: 10px;
   max-width: 710px;
+  padding: 25px 0 0;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -43,6 +43,7 @@
 @media screen and (min-width: 500px) {
   .dropdownXlContainer {
     min-height: 470px;
+    padding: 40px 0 0;
   }
   
   .dropdownXlContainer .itemContainer img {

@@ -15,7 +15,6 @@ import Quote from './components/quote';
 
 import './index.css';
 
-
 const userPage = ({ size: { width } }) => {
   const userId = getCookie(COOKIE_USER_ID);
   return (
@@ -44,20 +43,21 @@ const userPage = ({ size: { width } }) => {
           <div className="userPage">
             <p className="title">Activity Feed</p>
             <p className="description">All of your videos and promos in one place.</p>
-            {!allData.length && <div>NO ACTIVITY YET</div>}
-            {allData.length && <StackGrid
-              columnWidth={width <= 565 ? 150 : 250}
-              gutterWidth={10}
-              gutterHeight={10}
-            >
-              {allData.map((obj) => {
-                return (<Fragment key={idGenerator()}> 
-                  {obj.code && <PromoCode promoCode={obj} />}
-                  {obj.video && <Video video={obj.video} />}
-                  {obj.text && <Quote quote={obj} /> }
-                </Fragment>)
-              })}
-            </StackGrid>}
+            {allData.length 
+              ? <StackGrid
+                  columnWidth={width <= 565 ? 150 : 250}
+                  gutterWidth={10}
+                  gutterHeight={10}
+                >
+                  {allData.map((obj) => <Fragment key={idGenerator()}> 
+                      {obj.code && <PromoCode promoCode={obj} />}
+                      {obj.video && <Video video={obj.video} />}
+                      {obj.text && <Quote quote={obj} /> }
+                    </Fragment>
+                  )}
+                </StackGrid>
+              : <div>NO ACTIVITY YET</div> 
+              }
             <div className="dock">
               <button className="logout" onClick={() => {  
                 removeCookie(COOKIE_USER_TOKEN); 
