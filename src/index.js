@@ -52,7 +52,7 @@ render((
       <AppFrameWithData>
         <ErrorBoundary>
           <AppContext.Consumer>
-            {({ userIp, userId }) => (
+            {({ userId, userIp, location }) => (
               <Switch>
                 <Route
                   path="/"
@@ -68,8 +68,9 @@ render((
                       return (
                         <VideoPage
                           videoId={id}
-                          userIp={userIp}
                           userId={userId}
+                          userIp={userIp}
+                          location={location}
                           showAll={!!showall}
                         />
                       );

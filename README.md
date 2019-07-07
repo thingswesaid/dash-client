@@ -23,7 +23,7 @@
   - all videos purchased
   - promos active and used
   - personal quotes
-- [ ] Lower price for India
+- [x] Lower price for India
 - [ ] Build Dashboard to quickly handle customer service
   - check everything about that user (order + videos + promos)
   - assign video to user manually

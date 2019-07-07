@@ -104,7 +104,10 @@ export const USER_QUERY = gql`
 
 export const USERIP_QUERY = gql` 
   query UserIpQuery {
-    userIp
+    userIp { 
+      ip
+      location
+    }
   }
 `;
 

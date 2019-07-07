@@ -9,7 +9,6 @@ import * as Sentry from '@sentry/browser';
 
 import Modal from '../../../../shared-components/modal';
 import { setCookie } from '../../../../cookieUtils';
-
 import {
   ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
@@ -29,6 +28,7 @@ import labelExtended from '../../../../assets/images/label-extended.png';
 import labelPreview from '../../../../assets/images/label-preview.png';
 import universe from '../../../../assets/images/universe-bg.jpg';
 import heart from '../../../../assets/gifs/heart.gif';
+
 import './index.css';
 
 export default class MainVideo extends Component {
@@ -60,6 +60,7 @@ export default class MainVideo extends Component {
       this.setState({ showPayment: true, videoOpen: false });
       return undefined;
     }
+
     const hasIp = user.ips.includes(userIp);
     if (!!userIp && !hasIp) {
       const { ips, email } = user;
@@ -164,7 +165,7 @@ export default class MainVideo extends Component {
         hasAccess,
         loading,
       },
-      props: { video, createOrder, sitePromo },
+      props: { video, createOrder, sitePromo, location },
     } = this;
 
     const {
@@ -175,6 +176,9 @@ export default class MainVideo extends Component {
     const hasDiscount = sitePromo && sitePromo.promoOffer === "DISCOUNT";
     const videoLabel = showPreview ? labelPreview : labelExtended;
     const showVideo = videoOpen || (hasAccess && videoOpen);
+    const isIndia = location === 'IN';
+    const videoPrice = sitePromo ? sitePromo.newPrice : price;
+    const price2 = location === 'IN' ? 1.99 : '';
 
     return (
       <Fragment>

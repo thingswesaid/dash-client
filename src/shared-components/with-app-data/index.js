@@ -20,9 +20,9 @@ export function withAppData(WrappedComponent) {
           {({ data, loading, error }) => {
             if (loading) { return <Loader />; }
             if (error) { return <Error message="We will be right back!" />; } /* log to sumo or similar */
-            const { userIp } = data;
+            const { userIp: { ip: userIp, location } } = data;
             return (
-              <AppContext.Provider value={{ ...this.state, ...{ userIp, userId } }}>
+              <AppContext.Provider value={{ ...this.state, ...{ userIp, userId, location } }}>
                 <WrappedComponent {...this.props} />
               </AppContext.Provider>
             );
