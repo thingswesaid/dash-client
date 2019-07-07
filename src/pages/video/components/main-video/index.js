@@ -9,7 +9,6 @@ import * as Sentry from '@sentry/browser';
 
 import Modal from '../../../../shared-components/modal';
 import { setCookie } from '../../../../cookieUtils';
-
 import {
   ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
@@ -29,6 +28,7 @@ import labelExtended from '../../../../assets/images/label-extended.png';
 import labelPreview from '../../../../assets/images/label-preview.png';
 import universe from '../../../../assets/images/universe-bg.jpg';
 import heart from '../../../../assets/gifs/heart.gif';
+
 import './index.css';
 
 export default class MainVideo extends Component {
@@ -60,6 +60,7 @@ export default class MainVideo extends Component {
       this.setState({ showPayment: true, videoOpen: false });
       return undefined;
     }
+
     const hasIp = user.ips.includes(userIp);
     if (!!userIp && !hasIp) {
       const { ips, email } = user;
@@ -164,7 +165,7 @@ export default class MainVideo extends Component {
         hasAccess,
         loading,
       },
-      props: { video, createOrder, sitePromo },
+      props: { video, createOrder, sitePromo, location },
     } = this;
 
     const {
@@ -175,6 +176,13 @@ export default class MainVideo extends Component {
     const hasDiscount = sitePromo && sitePromo.promoOffer === "DISCOUNT";
     const videoLabel = showPreview ? labelPreview : labelExtended;
     const showVideo = videoOpen || (hasAccess && videoOpen);
+    const isIndia = location === 'IN';
+    const shownPrice = isIndia ? 1.99 : price;
+    
+    let videoPrice;
+    if (isIndia) videoPrice = 1.99;
+    else if (hasDiscount) videoPrice = sitePromo.newPrice;
+    else videoPrice = price;
 
     return (
       <Fragment>
@@ -236,20 +244,13 @@ export default class MainVideo extends Component {
                 }
                 <div className={classNames('price', { hasDiscount })}>
                 $
-                  {price}
+                  {shownPrice}
                 </div>
                 <PayPalButton
                   createOrder={(data, actions) => {
                     return actions.order.create({
-                      purchase_units: [{
-                        amount: {
-                          currency_code: 'USD',
-                          value: sitePromo ? sitePromo.newPrice : price,
-                        },
-                      }],
-                      application_context: {
-                        shipping_preference: 'NO_SHIPPING',
-                      },
+                      purchase_units: [{ amount: { currency_code: 'USD', value: videoPrice } }],
+                      application_context: { shipping_preference: 'NO_SHIPPING' },
                     })
                   }}
 
@@ -257,7 +258,7 @@ export default class MainVideo extends Component {
                     try {
                       this.setState({ loading: true });
                       const payment = await actions.order.capture();
-                      this.processPayment(payment, queryVideoId, price, name, type, createOrder);
+                      this.processPayment(payment, queryVideoId, videoPrice, name, type, createOrder);
                     } catch (error) {
                       notification.error(PAYMENT_ERROR);
                       Sentry.captureException(`MAIN-VIDEO:onApprove - ${error}`);

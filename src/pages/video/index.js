@@ -27,10 +27,8 @@ const mapper = {
 };
 
 export default (props) => {
-  const {
-    videoId, userIp, userId, showAll,
-  } = props;
-
+  const { videoId, userId, userIp, location, showAll } = props;
+  
   return (
     <Fragment>
       <Adopt mapper={mapper} id={videoId} ip={userIp} userId={userId} showAll={showAll}>
@@ -69,6 +67,7 @@ export default (props) => {
                     <MainVideo
                       video={video}
                       userIp={userIp}
+                      location={location}
                       addUserIp={addUserIp}
                       createOrder={createOrder}
                       sitePromo={sitePromo}
