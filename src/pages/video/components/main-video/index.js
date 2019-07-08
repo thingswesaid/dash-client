@@ -7,8 +7,6 @@ import { toast as notification } from 'react-toastify';
 import { PayPalButton } from 'react-paypal-button-v2';
 import * as Sentry from '@sentry/browser';
 
-import Modal from '../../../../shared-components/modal';
-import { setCookie } from '../../../../cookieUtils';
 import {
   ACCOUNT_SUSPENDED,
   PAYMENT_ERROR,
@@ -17,6 +15,8 @@ import {
   COOKIE_PAYPAYL_EMAIL,
   COOKIE_USER_ID,
 } from '../../../../constants';
+import Modal from '../../../../shared-components/modal';
+import { setCookie } from '../../../../cookieUtils';
 import Image from '../../../../shared-components/image';
 import PromoCode from '../promo-code';
 import Labels from '../labels';

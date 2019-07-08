@@ -71,13 +71,13 @@ export default class Navbar extends Component {
           <Media query="(max-width: 549px)">
             <div 
               className="right" 
-              onClick={() => { this.setState({ sideNavOpen: !sideNavOpen, authOpen: sideNavOpen }) }}
+              onClick={() => { this.setState({ sideNavOpen: !sideNavOpen }) }}
             >
               <i className="fas fa-bars" />
             </div>
           </Media>
           <div 
-            className={classNames('sideNavContainer', { show: sideNavOpen })}
+            className={classNames('sideNavContainer', { zoomInRight: sideNavOpen })}
             onClick={() => { this.setState({sideNavOpen: false}) }}
           />
           <div className={classNames('sideNav', { show: sideNavOpen })}>

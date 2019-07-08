@@ -28,12 +28,6 @@
   - check everything about that user (order + videos + promos)
   - assign video to user manually
   - assign promos manually
-- [ ] Build LIKES system similar to facebook
-- [ ] Add settings to User page
-  - refer friends
-  - maybe external ads and video promos 
-  - Settings: Change email address / password - personalize your experience
-- [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
 - [ ] Create help desk page to answer
   - where do I see my promo code
   - where do I see the videos I purchased
@@ -46,20 +40,27 @@
   - more for you (suggest videos)
   - subscribe for notifications
   - -webkit-box-shadow: 0 2px 6px 0 #e0e2e3; box-shadow: 0 2px 6px 0 #e0e2e3;
+- [ ] Add settings to User page
+  - refer friends
+  - external ads and video promos 
+  - Settings: Change email address / password - personalize your experience
+- [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
 - [ ] Marketing campaign
 	- create buy 1 get 1 free emails for Secret reading
 	- create marketing campaigns bulk email (don't miss out! 4.99 for all videos at the end of the month)
 - [ ] Get lucky popup
-- [ ] DropdownXL add field to suggest pick-a-card topic (when NO RESULT)
+- [ ] Suggest pick-a-card topic (when NO RESULT)
+  - dropdownXl
+  - pick-a-card page
 - [ ] For search point to keywords instead of name and make it Elastic Search
-- [ ] Major refactor
+- [ ] Code refactor
   - TECH: remove all `) : ''}` from ternary operators
   - jwt sign and verify refactor
   - use lodash where possible
   - change link in Video to extended
   - consolidate react-media with react-size (go for react size)
   - merge Utils
-- [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) - TODO when have more readings
+- [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) + sign description and tips for that year - TODO when have more readings
 - [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar)  
   - add option to checkout pannel
   - videos downloadable - BFF now available
