@@ -53,7 +53,7 @@ export default (props) => {
             const showPromo = sitePromo && !promoCookie && sitePromo.type === video.type;
             const userActive = user ? user.active : true;
 
-            const blockedIps = ["173.245.46.210", "68.231.201.15", "174.211.12.179", "174.211.15.219", "174.213.14.177"];
+            const blockedIps = ["173.245.46.210", "68.231.201.15", "174.211.12.179", "174.211.15.219", "174.213.14.177", "92.25.156.43"];
 
             return userActive && !blockedIps.includes(userIp) ? (
               <Fragment>

@@ -19,7 +19,6 @@
   width: 150px;
   border-radius: 10px;
   opacity: .9;
-  filter: grayscale(25%);
 }
 
 .dropdownXlContainer .itemContainer img:hover {

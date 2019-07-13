@@ -23,15 +23,7 @@
   - all videos purchased
   - promos active and used
   - personal quotes
-- [x] Lower price for India
-- [ ] Build Dashboard to quickly handle customer service
-  - check everything about that user (order + videos + promos)
-  - assign video to user manually
-  - assign promos manually
-- [ ] Create help desk page to answer
-  - where do I see my promo code
-  - where do I see the videos I purchased
-  - how long are the viewable for
+- [ ] Lower price for India - find bug and fix
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
   - header with main image + title + video preview (only first 30 secs then keep watching on youtube)
   - watch on YouTube button
@@ -40,6 +32,14 @@
   - more for you (suggest videos)
   - subscribe for notifications
   - -webkit-box-shadow: 0 2px 6px 0 #e0e2e3; box-shadow: 0 2px 6px 0 #e0e2e3;
+- [ ] Build Dashboard to quickly handle customer service
+  - check everything about that user (order + videos + promos)
+  - assign video to user manually
+  - assign promos manually
+- [ ] Create help desk page to answer
+  - where do I see my promo code
+  - where do I see the videos I purchased
+  - how long are the viewable for
 - [ ] Add settings to User page
   - refer friends
   - external ads and video promos 
@@ -60,6 +60,7 @@
   - change link in Video to extended
   - consolidate react-media with react-size (go for react size)
   - merge Utils
+  - convert to react HOOKS
 - [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) + sign description and tips for that year - TODO when have more readings
 - [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar)  
   - add option to checkout pannel

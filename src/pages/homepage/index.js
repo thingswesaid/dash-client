@@ -73,7 +73,6 @@ export default class Homepage extends Component {
     };
   }
 
-  // TODO replace search subtitle Ask a question below.
   render() {
     const { searchInput } = this.state;
     return (
