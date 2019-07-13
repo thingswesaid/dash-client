@@ -49,7 +49,7 @@ const userPage = ({ size: { width } }) => {
                   gutterWidth={10}
                   gutterHeight={10}
                 >
-                  {allData.map((obj) => <Fragment key={idGenerator()}> 
+                  {allData.reverse().map((obj) => <Fragment key={idGenerator()}> 
                       {obj.code && <PromoCode promoCode={obj} />}
                       {obj.video && <Video video={obj.video} />}
                       {obj.text && <Quote quote={obj} /> }

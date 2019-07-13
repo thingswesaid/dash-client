@@ -147,7 +147,7 @@
 	text-decoration: underline;
 }
 
-.navbarContainer .navBar .left img {
+.navbarContainer .navBar .left .logo {
 	width: 70px;
 }
 
@@ -176,16 +176,8 @@
     margin: 0 auto;
 	}
 
-	.navbarContainer .navBar .left img {
-		width: 100px;
-	}
-
 	.navbarContainer .navBar .left .logo {
 		margin-top: 6px;
-	}
-
-	.navbarContainer .navBar .left i {
-		left: 133px;
 	}
 
 	.navbarContainer .navBar .sideNav {
