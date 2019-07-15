@@ -22,9 +22,35 @@
 - [x] build USER PAGE (timeline)
   - all videos purchased
   - promos active and used
-  - personal quotes
+  - personal quotes 
+- [x] Create help desk page to answer
+  - where do I see my promo code
+  - where do I see the videos I purchased
+  - how long are the viewable for
+- [ ] Build Dashboard to quickly handle customer service
+  - check everything about that user (order + videos + promos)
+  - assign video to user manually
+  - assign promos manually
 - [ ] Lower price for India - find bug and fix
+- [ ] Wasabi or AWS api to upload images - JS library to compress and blur images in automatic
+- [ ] Schedule videos publish date
+- [ ] User page - video hover show overlay with title of the video
+- [ ] Create page with all readers (will be in the footer)
+- [ ] Add settings to User page
+  - refer friends
+  - external ads and video promos 
+  - Settings: Change email address / password - personalize your experience
+- [ ] Personalize your experience form popup modal
+  - which signs you're interested into
+  - type of reading (zodiac - pickacard)
+  - more
+- [ ] Get lucky popup
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
+- [ ] For search point to keywords instead of name and make it Elastic Search
+- [ ] build recommendation engine based on zodiac signs and previously researched keywords
+- [ ] Suggest pick-a-card topic (when NO RESULT)
+  - dropdownXl
+  - pick-a-card page
   - header with main image + title + video preview (only first 30 secs then keep watching on youtube)
   - watch on YouTube button
   - description + options
@@ -32,27 +58,10 @@
   - more for you (suggest videos)
   - subscribe for notifications
   - -webkit-box-shadow: 0 2px 6px 0 #e0e2e3; box-shadow: 0 2px 6px 0 #e0e2e3;
-- [ ] Build Dashboard to quickly handle customer service
-  - check everything about that user (order + videos + promos)
-  - assign video to user manually
-  - assign promos manually
-- [ ] Create help desk page to answer
-  - where do I see my promo code
-  - where do I see the videos I purchased
-  - how long are the viewable for
-- [ ] Add settings to User page
-  - refer friends
-  - external ads and video promos 
-  - Settings: Change email address / password - personalize your experience
 - [ ] Gif search input placeholder - typing "are you thinking about me", "is it over" ...
 - [ ] Marketing campaign
 	- create buy 1 get 1 free emails for Secret reading
 	- create marketing campaigns bulk email (don't miss out! 4.99 for all videos at the end of the month)
-- [ ] Get lucky popup
-- [ ] Suggest pick-a-card topic (when NO RESULT)
-  - dropdownXl
-  - pick-a-card page
-- [ ] For search point to keywords instead of name and make it Elastic Search
 - [ ] Code refactor
   - TECH: remove all `) : ''}` from ternary operators
   - jwt sign and verify refactor
@@ -67,18 +76,12 @@
   - videos downloadable - BFF now available
 - [ ] Add images (sad and happy) to unsubscribe emails
 - [ ] Create OUR MISSION section
-- [ ] Find influencers, create assets for them and track affiliate link with bitly.com
-- [ ] build recommendation engine based on zodiac signs and previously researched keywords
 - [ ] Fix Google ecommerce track purchase
 - [ ] Checkout payment redesign 
   - PayPal to server
   - PayPal, Google Pay, Venmo, Samsung Pay, Skrill, Credit Cards, Paytm (India only)
     - suggest new payment method 
 - [ ] refer a friend (one free video for every purchase) - create logic + instruction page + emails confirmation
-- [ ] Personalize your experience form popup modal
-  - which signs you're interested into
-  - type of reading (zodiac - pickacard)
-  - more
 - [ ] Build following emails: 
 	- we'll answer ASAP
 	- account suspanded for suspicious activity

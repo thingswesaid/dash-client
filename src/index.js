@@ -24,6 +24,7 @@ import PickACard from './pages/pick-a-card';
 import UserPage from './pages/user-page';
 import VideoPage from './pages/video';
 import TermsPage from './pages/terms';
+import HelpDeskPage from './pages/help-desk';
 import UnsubscribePage from './pages/unsubscribe';
 
 import './index.css';
@@ -88,6 +89,10 @@ render((
                 <Route
                   path="/terms"
                   render={() => (<TermsPage />)}
+                />
+                <Route
+                  path="/help"
+                  render={() => (<HelpDeskPage />)}
                 />
                 <Route
                   path="/unsubscribe/:type/:email"

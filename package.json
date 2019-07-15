@@ -25,6 +25,7 @@
     "node-fetch": "^2.6.0",
     "path": "^0.12.7",
     "query-string": "^6.5.0",
+    "rc-collapse": "^1.11.3",
     "react": "16.8.6",
     "react-adopt": "^0.6.0",
     "react-apollo": "2.5.4",

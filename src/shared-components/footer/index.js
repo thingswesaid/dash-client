@@ -7,7 +7,7 @@ export default () => (
       <div className="firstSection">
         <img src="https://res.cloudinary.com/dw4v960db/image/upload/v1556328141/dashinbetween.png" alt="Dash in Between Tarot Zodiac" />
         <a href="/terms">Terms of Service</a>
-        <a href="mailto:info@dashinbetween.com" target="_blank" rel="noopener noreferrer">Contact Us</a>
+        <a href="/help">Help</a>
       </div>
       <div className="secondSection">
         <p>STAY CONNECTED</p>

@@ -1,0 +1,39 @@
+h1, h3 {
+  text-align: center;
+}
+
+.rc-collapse {
+  width: 90%;
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.rc-collapse-header {
+  font-weight: 600;
+  color: #5495fd !important;
+  height: 100px;
+}
+
+.rc-collapse-header:focus {
+  outline: none;
+}
+
+.rc-collapse-content-box {
+  padding: 0 10px;
+}
+
+.rc-collapse-content-box {
+  line-height: 24px;
+}  
+  
+.rc-collapse-content-box a {
+  color: #6273ff;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 420px) {
+  .rc-collapse-header {
+    height: 70px;
+  }
+}
