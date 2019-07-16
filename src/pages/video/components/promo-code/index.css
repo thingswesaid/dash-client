@@ -1,5 +1,6 @@
 .promoCode .bottomFieldSection {
 	height: 80px;
+	margin-bottom: -40px;
 }
 
 .promoCode .bottomFieldSection .title {

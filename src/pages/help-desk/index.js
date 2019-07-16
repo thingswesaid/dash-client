@@ -54,6 +54,14 @@ export default () => (
         from any device, without any restrictions. 
       </Panel>
       <Panel 
+        header="I don't have PayPal, how can I access the extended videos?" 
+        headerClass="my-header-class"
+      >
+        Good news! Our payment system is powered by PayPal, but you are not required to be a member in order to 
+        use it. PayPal infact, allows you to checkout as a guest while still processing your information in 
+        complete safety.
+      </Panel>
+      <Panel 
         header="After following the instructions above I'm still experiencing issues. What can I do?" 
         headerClass="my-header-class"
       >
