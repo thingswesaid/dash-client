@@ -17,6 +17,7 @@ export const VIDEO_PAGE_QUERY = gql`
         type
         familyId
         options
+        keywords
         users {
           id
           email
@@ -75,10 +76,16 @@ export const SEARCH_QUERY = gql`
 `;
 
 export const USER_QUERY = gql` 
-  query userQuery($id: ID!) {
-    userPage(id: $id) {
+  query userQuery($id: ID, $email: String) {
+    userPage(id: $id, email: $email) {
       user {
         email
+        role
+        active
+        subscribePromo
+        subscribeEarlyAccess
+        subscribeNews
+        password
         promoCodes {
           code
           valid
@@ -89,9 +96,13 @@ export const USER_QUERY = gql`
           createdAt
           video {
             id
-            imageVertical
-            placeholderVertical
+            keywords
           }
+        }
+        videos {
+          id
+          imageVertical
+          placeholderVertical
         }
       }
       quotes {
@@ -151,6 +162,12 @@ export const videoPageQuery = ({
       id, ip, userId, showAll,
     }}
   >
+    {render}
+  </Query>
+);
+
+export const userPageQuery = ({ render, id = '', email = '' }) => (
+  <Query query={USER_QUERY} variables={{ id, email }}>
     {render}
   </Query>
 );

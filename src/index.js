@@ -26,6 +26,7 @@ import VideoPage from './pages/video';
 import TermsPage from './pages/terms';
 import HelpDeskPage from './pages/help-desk';
 import UnsubscribePage from './pages/unsubscribe';
+import MemberServicePage from './pages/member-service';
 
 import './index.css';
 
@@ -93,6 +94,10 @@ render((
                 <Route
                   path="/help"
                   render={() => (<HelpDeskPage />)}
+                />
+                <Route
+                  path="/member-service"
+                  render={() => <MemberServicePage />}
                 />
                 <Route
                   path="/unsubscribe/:type/:email"

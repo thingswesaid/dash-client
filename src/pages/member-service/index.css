@@ -1,0 +1,169 @@
+.userSearch {
+	text-align: center;
+	margin: 30px auto;
+	position: relative;
+  max-width: 450px;
+}
+
+.userSearch input {
+	width: 100%;
+	height: 45px;
+	border-radius: 30px;
+	border: 2px solid #39e4b9;
+	box-shadow: 0 2px 6px 0 #e0e2e3;
+	color: #777;
+	font-size: 15px;
+	outline: none;
+	text-indent: 20px;
+}
+
+.userSearch button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 110px;
+  height: 44px;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50px;
+  font-weight: bold;
+  background: #34ff86;
+	background: linear-gradient(45deg, #3fec86 0%, #36dede 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$light-blue', GradientType=1);
+}
+
+.separatorHorizontal {
+	border-bottom: 1px solid #d2d2d2;
+	width: 500px;
+	margin: 15px auto 0;
+}
+
+.promoCodes {
+	text-align: center;
+}
+
+.promoCodes .codes {
+	display: flex;
+	justify-content: center;
+}
+
+.promoCodes .codes > div { 
+	margin: 0 10px;
+}
+
+.data {
+	display: flex;
+	justify-content: space-evenly;
+	text-align: center;
+	width: 640px;
+	margin: 0 auto 30px;
+}
+
+.data .section.userActive {
+	cursor: pointer;
+}
+
+.data h4 {
+	margin-bottom: 0;
+	letter-spacing: 1px;
+}
+
+.data p {
+	margin-top: 0;
+	color: #ff7575;
+}
+
+.data p.active {
+	color: #50da50;
+}
+
+.connects {
+	display: flex;
+	justify-content: space-evenly;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.connects > div {
+	min-height: 460px;
+	min-width: 370px;
+	display: flex;
+	justify-content: center;
+}
+
+.promoCodes > p,
+.connects > div > p {
+	font-weight: bold;
+}
+
+.connects .videosContainer,
+.connects .ordersContainer {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.connects .videosContainer .videos {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 65px auto 0;
+	width: 510px;
+}
+
+.connects .videosContainer .videos > div {
+	display: flex;
+	justify-content: center;
+	width: 157px;
+	margin: 5px;
+}
+
+.connects .ordersContainer .orders {
+	width: 365px;
+	margin: 65px auto 0;
+}
+
+.connects .ordersContainer .orders > div {
+	display: flex;
+	justify-content: space-between;
+	width: 400px;
+	height: 40px;
+} 
+
+.connects .videosContainer .videos > div > p:nth-child(2),
+.connects .ordersContainer .orders > div > p:nth-child(2) {
+	font-weight: 100;
+}
+
+.connects .videosContainer .videos img {
+	width: 150px;
+	border-radius: 5px;
+}
+
+.connects .separatorVertical {
+	height: 380px;
+	border-right: 1px solid rgb(210, 210, 210);
+	height: 600px;
+}
+
+.connects .addToDb {
+	position: absolute;
+	top: 30px;
+	margin: 20px 0;
+}
+
+.connects .addToDb input {
+	width: 100%;
+	height: 38px;
+	border-radius: 30px;
+	border: 2px solid #39e4b9;
+	box-shadow: 0 2px 6px 0 #e0e2e3;
+	color: #777;
+	font-size: 15px;
+	outline: none;
+	text-indent: 20px;
+}

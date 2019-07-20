@@ -39,6 +39,7 @@
   - change logo / header / mission
   - check orders and payments
   - social media links
+  - http://i4.ytimg.com/vi/videoId/hqdefault.jpg
 - [ ] Wasabi or AWS api to upload images - JS library to compress and blur images in automatic
 - [ ] Schedule videos publish date
 - [ ] User page - video hover show overlay with title of the video
