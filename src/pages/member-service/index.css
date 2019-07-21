@@ -154,6 +154,7 @@
 	position: absolute;
 	top: 30px;
 	margin: 20px 0;
+	width: 220px;
 }
 
 .connects .addToDb input {

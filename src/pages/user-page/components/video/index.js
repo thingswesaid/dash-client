@@ -3,7 +3,8 @@ import Image from '../../../../shared-components/image';
 
 import './index.css';
 
-export default ({ video: { id, imageVertical, placeholderVertical } }) => {
+export default ({ video }) => {
+  const { id, imageVertical, placeholderVertical } = video;
   return (
   <div className="videoItem">
     <a href={`/video/${id.slice(-5)}`}>

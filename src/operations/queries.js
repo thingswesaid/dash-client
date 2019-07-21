@@ -97,6 +97,8 @@ export const USER_QUERY = gql`
           video {
             id
             keywords
+            imageVertical
+            placeholderVertical
           }
         }
         videos {

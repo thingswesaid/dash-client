@@ -51,22 +51,12 @@ export default (props) => {
             const userActive = user ? user.active : true;
 
             const blockedIps = ["173.245.46.210", "68.231.201.15", "174.211.12.179", "174.211.15.219", "174.213.14.177", "92.25.156.43"];
-            const monthNames = [
-              "January", "February", "March", "April", "May", "June",
-              "July", "August", "September", "October", "November", "December",
-            ];
-            const currentDate = new Date();
-
-            console.log('video', video);
 
             return userActive && !blockedIps.includes(userIp) ? (
               <Fragment>
                 <div className="seo">
                   <h1>{video.keywords}</h1>
-                  <h2>
-                    Checkout this tarot reading to find out what your monthly energies are going to be. 
-                    {monthNames[currentDate.getMonth()]} - {currentDate.getFullYear()}
-                  </h2>
+                  <h2>Checkout this tarot reading to find out what your monthly energies are going to be.</h2>
                 </div>
                 <div className="page">
                   {showPromo && <PromoModal promo={sitePromo} />}

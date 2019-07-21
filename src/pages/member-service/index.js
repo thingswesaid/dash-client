@@ -8,8 +8,6 @@ import Error from '../../shared-components/error';
 import Image from '../../shared-components/image';
 import PromoCode from '../user-page/components/promo-code';
 import { userPageQuery } from '../../operations/queries';
-import { getCookie } from '../../cookieUtils';
-import { COOKIE_USER_ID } from '../../constants';
 
 import './index.css';
 
@@ -27,9 +25,7 @@ export default class Homepage extends Component {
   }
 
   render() {
-    const { refetching, userEmail } = this.state;
-    const userId = getCookie(COOKIE_USER_ID);
-    if (!userId) return window.location.assign('/');
+    const { state: { refetching, userEmail }, props: { userId } } = this;
     return (
       <Adopt mapper={mapper} id={userId}>
         {({ userPageQuery: userPageData }) => {
@@ -108,7 +104,7 @@ export default class Homepage extends Component {
                     ))}
                   </div>
                   <div className="addToDb">
-                    <input placeholder="video ID" />
+                    <input placeholder="Add video (video id)" />
                   </div>
                 </div>
                 <span className="separatorVertical" />
@@ -122,7 +118,7 @@ export default class Homepage extends Component {
                     ))}
                   </div>
                   <div className="addToDb">
-                    <input placeholder="video ID" />
+                    <input placeholder="Add order (video id)" />
                   </div>
                 </div>
               </div>

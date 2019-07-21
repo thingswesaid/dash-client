@@ -13,10 +13,10 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { COOKIE_RECENT_ORDER, COOKIE_PAYPAYL_EMAIL } from './constants';
+import { COOKIE_RECENT_ORDER, COOKIE_PAYPAYL_EMAIL, COOKIE_USER_ID } from './constants';
 import { withAppData, AppContext } from './shared-components/with-app-data';
 import { browserCheck } from './utils';
-import { removeCookie } from './cookieUtils';
+import { removeCookie, getCookie } from './cookieUtils';
 import AppFrame from './shared-components/app-frame';
 import ErrorBoundary from './shared-components/error-boundary'
 import HomePage from './pages/homepage';
@@ -97,7 +97,10 @@ render((
                 />
                 <Route
                   path="/member-service"
-                  render={() => <MemberServicePage />}
+                  render={() => {
+                    const userId = getCookie(COOKIE_USER_ID);
+                    return userId ? <MemberServicePage userId={userId} /> : <HomePage />; 
+                }}
                 />
                 <Route
                   path="/unsubscribe/:type/:email"
