@@ -8,11 +8,15 @@ import Error from '../../shared-components/error';
 import Image from '../../shared-components/image';
 import PromoCode from '../user-page/components/promo-code';
 import { userPageQuery } from '../../operations/queries';
+import { updateUserMutation } from '../../operations/mutations';
+import { userSubscription } from '../../operations/subscriptions';
 
 import './index.css';
 
 const mapper = {
   userPageQuery,
+  updateUserMutation,
+  userSubscription,
 };
 
 export default class Homepage extends Component {
@@ -28,8 +32,9 @@ export default class Homepage extends Component {
     const { state: { refetching, userEmail }, props: { userId } } = this;
     return (
       <Adopt mapper={mapper} id={userId}>
-        {({ userPageQuery: userPageData }) => {
+        {({ userPageQuery: userPageData, updateUserMutation, userSubscription }) => {
           const { data, loading, error, refetch: fetchUser } = userPageData;
+          const { data: userSubData } = userSubscription;
           if (loading) { return <Loader />; }
           else if (error) { return <Error message="We will be right back!" />; }
           
@@ -48,6 +53,10 @@ export default class Homepage extends Component {
               } 
             } 
           } = data;
+
+          // const { user: { active } } = userSubData;
+
+          console.log('userSubData', userSubscription);
 
           const isActive = active.toString().toUpperCase();
           const isSignedUp = password && password.length;
@@ -71,7 +80,10 @@ export default class Homepage extends Component {
                 >SEARCH</button>
               </div>
               <div className="data">
-                <div className="section userActive">
+                <div 
+                  className="section userActive" 
+                  onClick={() => { updateUserMutation({ variables: { email: userEmail, key: 'active', valueBoolean: !active } }) }}
+                >
                   <h4>IS ACTIVE</h4>
                   <p className={classNames({ active })}>{isActive}</p>
                 </div>

@@ -32,16 +32,19 @@
   - check everything about that user (order + videos + promos)
   - assign video to user manually
   - assign promos manually
-  - create order when issue (paymentId: manual(gen-ID))
+  - create order when issue manually (paymentId: manual(gen-ID))
   - user active / not active
-- [ ] Build CMS for tarotreaders.net
-  - add video
-  - change logo / header / mission
-  - check orders and payments
-  - social media links
-  - http://i4.ytimg.com/vi/videoId/hqdefault.jpg
-- [ ] Wasabi or AWS api to upload images - JS library to compress and blur images in automatic
+  - create new user
 - [ ] Schedule videos publish date
+- [ ] Build CMS for tarotreaders.net
+  - create video / bulk videos
+  - change logo / header / mission
+  - see orders and payments charts
+  - social media links
+  - http://i4.ytimg.com/vi/videoId/hqdefault.jpg for video image
+  - reader settings: available for personal reading, schedule, chat (buy credits?)
+  - videos schedule
+- [ ] Wasabi or AWS api to upload images - JS library to compress and blur images in automatic
 - [ ] User page - video hover show overlay with title of the video
 - [ ] Create page with all readers (will be in the footer)
 - [ ] Add settings to User page

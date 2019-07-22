@@ -114,6 +114,15 @@ export const UNSUBSCRIBE_USER_MUTATION = gql` #rename make more general because 
   }
 `;
 
+const USER_UPDATE_MUTATION = gql` 
+  mutation UserUpdateMutation($id: ID, $email: String, $key: String!, $valueString: String, $valueBoolean: Boolean) {
+    updateUser(id: $id, email: $email, key: $key, valueString: $valueString, valueBoolean: $valueBoolean) {
+      id
+      active
+    }
+  }
+`;
+
 
 export const loginMutation = ({ render, token }) => (
   <Mutation mutation={LOGIN_MUTATION} variables={{ token }}>
@@ -149,6 +158,12 @@ export const usePromoCodeMutation = ({
   render, code, videoId, email,
 }) => (
   <Mutation mutation={USE_PROMO_CODE_MUTATION} variables={{ code, videoId, email }}>
+    {render}
+  </Mutation>
+);
+
+export const updateUserMutation = ({ render, id = '', email = '', key, value }) => (
+  <Mutation mutation={USER_UPDATE_MUTATION} variables={{ id, email, key, value }}>
     {render}
   </Mutation>
 );

@@ -2,7 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
+import { split } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
+import { WebSocketLink } from 'apollo-link-ws';
+import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
 import queryString from 'query-string';
@@ -34,12 +37,32 @@ if (process.env.NODE_ENV === 'production') {
   Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DNS });
 }
 
+
 const uri = process.env.NODE_ENV === 'production'
   ? process.env.REACT_APP_APOLLO_URI : 'http://localhost:4000';
 
+
+const httpLink = new HttpLink({ uri, fetch });
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:5000/`,
+  options: { reconnect: true }
+});
+
+const link = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
+
 const client = new ApolloClient({
   ssrMode: true,
-  link: new HttpLink({ uri, fetch }),
+  link: link,
   cache: new InMemoryCache(),
 });
 
