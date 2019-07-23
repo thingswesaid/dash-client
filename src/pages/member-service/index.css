@@ -1,3 +1,11 @@
+.noUserFound {
+	text-align: center;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .userSearch {
 	text-align: center;
 	margin: 30px auto;
@@ -34,10 +42,23 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$light-blue', GradientType=1);
 }
 
+.email {
+	text-align: center;
+	font-weight: 600;
+	color: #5fb98d;
+	text-decoration: underline;
+}
+
+.ips {
+	text-align: center;
+	font-weight: bold;
+	font-size: 13px;
+}
+
 .separatorHorizontal {
 	border-bottom: 1px solid #d2d2d2;
 	width: 500px;
-	margin: 15px auto 0;
+	margin: 15px auto;
 }
 
 .promoCodes {
@@ -105,17 +126,18 @@
 	flex-direction: column;
 	align-items: center;
 	position: relative;
+	width: 500px;
 }
 
 .connects .videosContainer .videos {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin: 65px auto 0;
+	margin: 0 auto;
 	width: 510px;
 }
 
-.connects .videosContainer .videos > div {
+.connects .videosContainer .videos > a {
 	display: flex;
 	justify-content: center;
 	width: 157px;
@@ -124,10 +146,10 @@
 
 .connects .ordersContainer .orders {
 	width: 365px;
-	margin: 65px auto 0;
+	max-height: 550px;
 }
 
-.connects .ordersContainer .orders > div {
+.connects .ordersContainer .orders > a {
 	display: flex;
 	justify-content: space-between;
 	width: 400px;
@@ -152,9 +174,9 @@
 
 .connects .addToDb {
 	position: absolute;
-	top: 30px;
+	bottom: 30px;
 	margin: 20px 0;
-	width: 220px;
+	width: 240px;
 }
 
 .connects .addToDb input {

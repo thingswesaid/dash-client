@@ -106,6 +106,14 @@ const CREATE_ORDER_MUTATION = gql`
   }
 `;
 
+const CREATE_MANUAL_ORDER_MUTATION = gql`
+  mutation createManualOrderMutation($email: String!, $videoId: String!) {
+    createManualOrder(email: $email, videoId: $videoId) {
+      error
+    }
+  }
+`;
+
 export const UNSUBSCRIBE_USER_MUTATION = gql` #rename make more general because it's used for both unsub and sub
   mutation SubscribeUpdateMutation($email: String!, $type: String!, $subscribe: Boolean!) {
     subscribeUpdate(email: $email, type: $type, subscribe: $subscribe) {
@@ -122,7 +130,6 @@ const USER_UPDATE_MUTATION = gql`
     }
   }
 `;
-
 
 export const loginMutation = ({ render, token }) => (
   <Mutation mutation={LOGIN_MUTATION} variables={{ token }}>
@@ -144,6 +151,12 @@ export const addUserIpMutation = ({ render }) => (
 
 export const createOrderMutation = ({ render }) => (
   <Mutation mutation={CREATE_ORDER_MUTATION}>
+    {render}
+  </Mutation>
+);
+
+export const createManualOrderMutation = ({ render, email, videoId }) => (
+  <Mutation mutation={CREATE_MANUAL_ORDER_MUTATION} variables={{ email, videoId }}>
     {render}
   </Mutation>
 );

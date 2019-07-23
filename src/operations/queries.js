@@ -86,6 +86,7 @@ export const USER_QUERY = gql`
         subscribeEarlyAccess
         subscribeNews
         password
+        ips
         promoCodes {
           code
           valid

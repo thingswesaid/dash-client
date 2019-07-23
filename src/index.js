@@ -37,34 +37,29 @@ if (process.env.NODE_ENV === 'production') {
   Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DNS });
 }
 
-
 const uri = process.env.NODE_ENV === 'production'
   ? process.env.REACT_APP_APOLLO_URI : 'http://localhost:4000';
 
+const uriWs = process.env.NODE_ENV === 'production'
+  ? process.env.REACT_APP_APOLLO_URI_WS : 'ws://localhost:4000';
 
+console.log('>>>>>> uriWs <<<<<<<', uriWs, uri);
+
+const wsLink = new WebSocketLink({ uri: uriWs, options: { reconnect: true } });
 const httpLink = new HttpLink({ uri, fetch });
-const wsLink = new WebSocketLink({
-  uri: `ws://localhost:5000/`,
-  options: { reconnect: true }
-});
 
 const link = split(
   ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
-    );
-  },
-  wsLink,
-  httpLink,
-);
+    const { kind, operation } = getMainDefinition(query)
+    return kind === 'OperationDefinition' && operation === 'subscription'
+  }, wsLink, httpLink,
+)
 
 const client = new ApolloClient({
   ssrMode: true,
-  link: link,
-  cache: new InMemoryCache(),
-});
+  link,
+  cache: new InMemoryCache()
+})
 
 const AppFrameWithData = withAppData(AppFrame);
 removeCookie(COOKIE_RECENT_ORDER);
