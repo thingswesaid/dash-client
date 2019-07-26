@@ -28,9 +28,8 @@
   - where do I see the videos I purchased
   - how long are the viewable for
 - [x] Lower price for India - find bug and fix
-- [ ] Build Dashboard to quickly handle customer service
+- [x] Build Dashboard to quickly handle customer service
   - check everything about that user (order + videos + promos)
-  - assign video to user manually
   - assign promos manually
   - create order when issue manually (paymentId: manual(gen-ID))
   - user active / not active

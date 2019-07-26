@@ -43,8 +43,6 @@ const uri = process.env.NODE_ENV === 'production'
 const uriWs = process.env.NODE_ENV === 'production'
   ? process.env.REACT_APP_APOLLO_URI_WS : 'ws://localhost:4000';
 
-console.log('>>>>>> uriWs <<<<<<<', uriWs, uri);
-
 const wsLink = new WebSocketLink({ uri: uriWs, options: { reconnect: true } });
 const httpLink = new HttpLink({ uri, fetch });
 

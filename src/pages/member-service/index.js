@@ -2,14 +2,19 @@ import React, { Component, Fragment } from 'react';
 import { Adopt } from 'react-adopt';
 import classNames from 'classnames';
 import idGenerator from 'react-id-generator';
+import ToggleButton from 'react-toggle-button';
 
 import Loader from '../../shared-components/loader';
 import Error from '../../shared-components/error';
 import Image from '../../shared-components/image';
 import PromoCode from '../user-page/components/promo-code';
 import { userPageQuery } from '../../operations/queries';
-import { updateUserMutation, createManualOrderMutation } from '../../operations/mutations';
 import { userSubscription } from '../../operations/subscriptions';
+import { 
+  updateUserMutation, 
+  createManualOrderMutation, 
+  createManualPromoMutation,
+} from '../../operations/mutations';
 
 import './index.css';
 
@@ -17,6 +22,7 @@ const mapper = {
   userPageQuery,
   updateUserMutation,
   createManualOrderMutation,
+  createManualPromoMutation,
   userSubscription,
 };
 
@@ -27,6 +33,7 @@ export default class Homepage extends Component {
     this.state = {
       refetching: false,
       userEmail: '',
+      promoToggleZod: true,
     };
   }
 
@@ -38,13 +45,14 @@ export default class Homepage extends Component {
   }
 
   render() {
-    const { state: { refetching, userEmail }, props: { userId } } = this;
+    const { state: { refetching, userEmail, promoToggleZod }, props: { userId } } = this;
     return (
       <Adopt mapper={mapper} id={userId} email={userEmail}>
         {({ 
           userPageQuery: userPageData, 
           updateUserMutation: updateUser, 
           createManualOrderMutation: createManualOrder,
+          createManualPromoMutation: createManualPromo,
           userSubscription: userSub,
         }) => {
           const { data, loading, error, refetch: fetchUser } = userPageData;
@@ -75,6 +83,8 @@ export default class Homepage extends Component {
           const isActiveFormatted = isActive ? 'TRUE' : 'FALSE';
           const isSignedUp = password && password.length;
           if (!refetching && role !== "ADMIN") return window.location.assign('/');
+
+          console.log('promoToggleZod', promoToggleZod);
 
           return (
             <Fragment>
@@ -185,6 +195,21 @@ export default class Homepage extends Component {
                     </div>
                   ))}
                   {!promoCodes.length && <div>No promo codes found.</div>}
+                  <div className="addPromo">
+                    <i 
+                      className="fas fa-plus" 
+                      onClick={() => {
+                        const type = promoToggleZod ? 'ZODIAC' : 'PICKACARD'
+                        createManualPromo({ variables: { email, type } });
+                      }}
+                    />
+                    <ToggleButton
+                      inactiveLabel={<div>PICK</div>}
+                      activeLabel={<div>ZOD</div>}
+                      value={promoToggleZod}
+                      colors={{ active: {base: '#97eb8d'}, inactive: {base: '#ffa84b'} }}
+                      onToggle={(value) => { this.setState({ promoToggleZod: !value }) }} />
+                  </div>
                 </div>
               </div>
             </Fragment>

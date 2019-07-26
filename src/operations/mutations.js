@@ -106,6 +106,14 @@ const CREATE_ORDER_MUTATION = gql`
   }
 `;
 
+const CREATE_MANUAL_PROMO_MUTATION = gql`
+  mutation createManualPromoMutation($email: String!, $type: String!) {
+    createManualPromo(email: $email, type: $type) {
+      error
+    }
+  }
+`;
+
 const CREATE_MANUAL_ORDER_MUTATION = gql`
   mutation createManualOrderMutation($email: String!, $videoId: String!) {
     createManualOrder(email: $email, videoId: $videoId) {
@@ -157,6 +165,12 @@ export const createOrderMutation = ({ render }) => (
 
 export const createManualOrderMutation = ({ render, email, videoId }) => (
   <Mutation mutation={CREATE_MANUAL_ORDER_MUTATION} variables={{ email, videoId }}>
+    {render}
+  </Mutation>
+);
+
+export const createManualPromoMutation = ({ render, email, type }) => (
+  <Mutation mutation={CREATE_MANUAL_PROMO_MUTATION} variables={{ email, type }}>
     {render}
   </Mutation>
 );
