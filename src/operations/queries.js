@@ -11,7 +11,6 @@ export const VIDEO_PAGE_QUERY = gql`
         preview
         image
         placeholder
-        published
         price
         start
         type
@@ -30,7 +29,6 @@ export const VIDEO_PAGE_QUERY = gql`
         title
         image
         placeholder
-        published
       } 
       promoVideo {
         link
