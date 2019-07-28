@@ -46,6 +46,7 @@
     "react-stack-grid": "^0.7.1",
     "react-toastify": "^5.1.0",
     "react-toggle-button": "^2.2.0",
+    "react-vis": "^1.11.7",
     "react-youtube": "^7.9.0",
     "subscriptions-transport-ws": "^0.9.16",
     "tachyons": "4.11.1",

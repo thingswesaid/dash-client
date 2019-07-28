@@ -115,6 +115,7 @@ export default class MainVideo extends Component {
           paymentId,
           type,
           paymentEmail: payPalEmail,
+          amount: price,
         },
       });
 

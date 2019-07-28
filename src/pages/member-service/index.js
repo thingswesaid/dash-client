@@ -84,8 +84,6 @@ export default class Homepage extends Component {
           const isSignedUp = password && password.length;
           if (!refetching && role !== "ADMIN") return window.location.assign('/');
 
-          console.log('promoToggleZod', promoToggleZod);
-
           return (
             <Fragment>
               <div className="userSearch">

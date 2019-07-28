@@ -34,33 +34,38 @@
   - create order when issue manually (paymentId: manual(gen-ID))
   - user active / not active
   - create new user
-- [ ] Schedule videos publish date
-- [ ] Build CMS for tarotreaders.net
-  - create video / bulk videos
-  - change logo / header / mission
+- [x] Schedule videos publish date
+- [ ] Build CMS / Analytics for tarotreaders.net
   - see orders and payments charts
   - social media links
+  - create video / bulk videos
+  - create promo videos
+  - users are suggesting these topics
+  - change logo / header / mission
   - http://i4.ytimg.com/vi/videoId/hqdefault.jpg for video image
   - reader settings: available for personal reading, schedule, chat (buy credits?)
   - videos schedule
-- [ ] Wasabi or AWS api to upload images - JS library to compress and blur images in automatic
-- [ ] User page - video hover show overlay with title of the video
-- [ ] Create page with all readers (will be in the footer)
-- [ ] Add settings to User page
-  - refer friends
-  - external ads and video promos 
+  - from reader page - offer personal reading / schedule
+- [ ] treaders.net site updates:
+  - [ ] Wasabi or AWS api to upload images - JS library to compress and blur images in automatic
+  - [ ] User page - video hover show overlay with title of the video
+  - [ ] Create page with all readers (will be in the footer)
+  - [ ] Add settings to User page
+    - refer friends (create referral logic)
+    - external ads and video promos
+     - readers can pay to sponsor their videos (highlight in latest videos - search and user page)
   - Settings: Change email address / password - personalize your experience
-- [ ] Personalize your experience form popup modal
-  - which signs you're interested into
-  - type of reading (zodiac - pickacard)
-  - more
-- [ ] Get lucky popup
+- [ ] Recommendation engine based on zodiac signs and previously researched keywords
+  - [ ] Personalize your experience form popup modal
+    - which signs you're interested into
+    - type of reading (zodiac - pickacard)
+    - more
+- [ ] Get lucky popup (win private reading)
 - [ ] Create item PICKACARD in navbar and create page (copy style from Raise.com)
 - [ ] For search point to keywords instead of name and make it Elastic Search
-- [ ] build recommendation engine based on zodiac signs and previously researched keywords
-- [ ] Suggest pick-a-card topic (when NO RESULT)
+- [ ] Suggest pick-a-card / dash series topic (when NO RESULT)
   - dropdownXl
-  - pick-a-card page
+  - dash series page
   - header with main image + title + video preview (only first 30 secs then keep watching on youtube)
   - watch on YouTube button
   - description + options
@@ -76,9 +81,9 @@
   - TECH: remove all `) : ''}` from ternary operators
   - jwt sign and verify refactor
   - use lodash where possible
-  - change link in Video to extended
+  - change "link" name in Video model to "extended"
   - consolidate react-media with react-size (go for react size)
-  - merge Utils
+  - merge Utils with cookieUtil
   - convert to react HOOKS
 - [ ] Build single sign pages with all readings for a sign (Capricorn, Leo) + sign description and tips for that year - TODO when have more readings
 - [ ] Build prices page + monthly pass for specific emails - monthly payment 29.99 (add promos on navbar)  
@@ -95,5 +100,5 @@
 - [ ] Build following emails: 
 	- we'll answer ASAP
 	- account suspanded for suspicious activity
-- [ ] DASH | Find tool to track income and expenses 
+- [ ] DASH | Track income and expenses 
   - laptop, trip, speakers, food, amazon orders, all internet services, editing fees

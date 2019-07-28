@@ -154,6 +154,24 @@ const PROMO_CODE_QUERY = gql`
   }
 `;
 
+const STUDIO_PAGE_QUERY = gql` 
+  query StudioPageQuery($userId: String!, $from: String, $to: String) {
+    studioPage(userId: $userId, from: $from, to: $to) {
+     error
+     orders {
+       list 
+       count
+     }
+    }
+  }
+`;
+
+export const studioPageQuery = ({ render, userId, from, to }) => (
+  <Query query={STUDIO_PAGE_QUERY} variables={{ userId, from, to }}>
+    {render}
+  </Query>
+);
+
 export const videoPageQuery = ({
   render, id, ip, userId, showAll,
 }) => (

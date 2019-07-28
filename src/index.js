@@ -30,6 +30,7 @@ import TermsPage from './pages/terms';
 import HelpDeskPage from './pages/help-desk';
 import UnsubscribePage from './pages/unsubscribe';
 import MemberServicePage from './pages/member-service';
+import StudioPage from './pages/studio';
 
 import './index.css';
 
@@ -110,6 +111,13 @@ render((
                 <Route
                   path="/help"
                   render={() => (<HelpDeskPage />)}
+                />
+                <Route
+                  path="/studio"
+                  render={() => {
+                    const userId = getCookie(COOKIE_USER_ID);
+                    return <StudioPage userId={userId} />;
+                }}
                 />
                 <Route
                   path="/member-service"

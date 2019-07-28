@@ -1,0 +1,16 @@
+.noUserAccess {
+	text-align: center;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.studioPage {
+	margin: 30px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 430px;
+	height: 300px;
+}

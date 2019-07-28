@@ -82,9 +82,10 @@ const CREATE_ORDER_MUTATION = gql`
     $videoId: String!, 
     $firstName: String, 
     $lastName: String,
-    $paymentId: String!
-    $type: String!
-    $paymentEmail: String!
+    $paymentId: String!,
+    $type: String!,
+    $paymentEmail: String!,
+    $amount: Float!,
   ) {
     createOrder(
       userToken: $userToken, 
@@ -95,6 +96,7 @@ const CREATE_ORDER_MUTATION = gql`
       paymentId: $paymentId,
       type: $type,
       paymentEmail: $paymentEmail,
+      amount: $amount,
     ) {
       promo {
         code
