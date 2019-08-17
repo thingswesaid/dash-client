@@ -25,6 +25,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root {
@@ -35,7 +36,6 @@ html {
   -webkit-box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
   -moz-box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
   box-shadow: 0px 16px 6px -14px rgba(71,71,71,1);
-  
 }
 
 button {
@@ -92,7 +92,7 @@ a {
   animation-name: shake;
   animation-iteration-count: 2;
   animation-delay: 1s;
-  animation-duration: 10s;
+  animation-duration: 1s;
 }
 
 @keyframes shake {

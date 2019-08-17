@@ -10,7 +10,7 @@
   max-width: 350px;
 }
 
-.label {
+.labelContainer .label {
   font-weight: bold;
   width: 70px;
 	border: 1px solid #e0e0e0;
@@ -27,12 +27,12 @@
   box-shadow: 0px 8px 14px -15px rgba(99,99,99,1);
 }
 
-.label p {
+.labelContainer .label p {
 	margin-bottom: 0;
   margin-top: 3px;
 }
 
-.selected {
+.labelContainer .selected {
   background: linear-gradient(45deg, #34ff86 0%, #4EE5E5 100%) !important;
   color: white;
 }

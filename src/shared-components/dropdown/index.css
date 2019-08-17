@@ -1,10 +1,10 @@
-.dropdownContainer {
+.dropdownComponent .dropdownContainer {
 	width: 500vw;
 	height: 500vh;
 	position: absolute;
 }
 
-.dropdown {
+.dropdownComponent .dropdown {
 	position: absolute;
 	width: 100%;
 	max-height: 300px;
@@ -21,24 +21,24 @@
 	z-index: 999;
 }
 
-.dropdown .item {
+.dropdownComponent .dropdown .item {
 	background: white;
 	height: 85px;	
 	border-bottom: 1px solid lightgray;
 	color: gray;
 }
 
-.dropdown .item:hover {
+.dropdownComponent .dropdown .item:hover {
 	background: #f5f5f5;
 }
 
-.dropdown .item a {
+.dropdownComponent .dropdown .item a {
 	display: flex;
 	align-items: center;
 	height: 100%;
 }
 
-.dropdown .item .itemContainer { 
+.dropdownComponent .dropdown .item .itemContainer { 
 	border-radius: 7px;
 	margin: 0 11px;
 	display: flex;
@@ -46,23 +46,23 @@
 	align-items: center;
 }
 
-.dropdown .item .itemContainer img { 
+.dropdownComponent .dropdown .item .itemContainer img { 
 	width: 125px;
 }
 
-.dropdown .item a p {
+.dropdownComponent .dropdown .item a p {
 	font-size: 12px;
 }
 
 
 @media screen and (min-width: 370px) {
-	.dropdown {
+	.dropdownComponent .dropdown {
 		left: 5%;
 	}
 }
 
 @media screen and (min-width: 550px) {
-	.dropdown {
+	.dropdownComponent .dropdown {
 		top: 50px;
 		left: 120px;
 		width: 370px;

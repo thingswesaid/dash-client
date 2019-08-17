@@ -17,7 +17,7 @@ export default ({ videos }) => (
               <div className="suggestedImageContainer">
                 <Image src={image} placeholder={placeholder} />
               </div>
-              <p>{title}</p>
+              <p>{title.toUpperCase()}</p>
             </div>
           </a>
         ))}

@@ -36,16 +36,25 @@
   - create new user
 - [x] Schedule videos publish date
 - [ ] Build CMS / Analytics for tarotreaders.net
-  - see orders and payments charts
-  - social media links
-  - create video / bulk videos
-  - create promo videos
-  - users are suggesting these topics
-  - change logo / header / mission
+  - add STUDIO to navbar if user is reader or admin
+  - ANALYTICS - see orders and payments charts
+  - ANALYTICS - upcoming videos schedule
+  - ANALYTICS - old promos + upcoming
+  - ANALYTICS - users are suggesting these topics
+  - VIDEO - create video / bulk videos
+  - VIDEO - create promo videos (all videos or specific video)
+  - SETTINGS - social media links
+  - SETTINGS - change logo / header / mission
+  - When SHOWALL add banner saying video not live yet - only visible to you
+    - showall should also make sure user logged in is Reader or Admin
+  - SETTINGS - description: available for personal reading, schedule, chat (buy credits?)
   - http://i4.ytimg.com/vi/videoId/hqdefault.jpg for video image
-  - reader settings: available for personal reading, schedule, chat (buy credits?)
-  - videos schedule
-  - from reader page - offer personal reading / schedule
+  - all graphql calls will need to be *namespaced* by tarot reader
+  - SERVICE PITCH: 
+    - Built by tarot readers for tarot readers
+    - Don't wait to have 30k sub - you need to pay your bills today
+  - THINKING ABOUT NAME FOR GENERAL SERVICE (not only tarot readers)
+- [ ] Always refresh after login (test) - pass notification message in url
 - [ ] treaders.net site updates:
   - [ ] Wasabi or AWS api to upload images - JS library to compress and blur images in automatic
   - [ ] User page - video hover show overlay with title of the video

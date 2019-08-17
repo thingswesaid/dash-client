@@ -22,7 +22,7 @@ export default ({ keywords, closeDropdown }) => (
       const videos = videosResp || [];
       
       return (
-        <Fragment>
+        <div className="dropdownComponent">
           <div className="dropdownContainer" onClick={() => { closeDropdown() }} />
           <div className="dropdown">
             {
@@ -36,7 +36,7 @@ export default ({ keywords, closeDropdown }) => (
               ))
             }
           </div>
-        </Fragment>
+        </div>
       );
     }}
   </Adopt>

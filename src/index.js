@@ -57,7 +57,7 @@ const link = split(
 const client = new ApolloClient({
   ssrMode: true,
   link,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 })
 
 const AppFrameWithData = withAppData(AppFrame);
@@ -120,7 +120,7 @@ render((
                 }}
                 />
                 <Route
-                  path="/member-service"
+                  path="/members"
                   render={() => {
                     const userId = getCookie(COOKIE_USER_ID);
                     return userId ? <MemberServicePage userId={userId} /> : <HomePage />; 

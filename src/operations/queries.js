@@ -154,23 +154,37 @@ const PROMO_CODE_QUERY = gql`
   }
 `;
 
-const STUDIO_PAGE_QUERY = gql` 
-  query StudioPageQuery($userId: String!, $from: String, $to: String) {
-    studioPage(userId: $userId, from: $from, to: $to) {
-     error
-     orders {
-       list 
-       count
-     }
+// TODO change name
+export const STUDIO_PAGE_QUERY = gql` 
+  query OrdersAnalytics($userId: String!, $from: String, $to: String) {
+    ordersAnalytics(userId: $userId, from: $from, to: $to) {
+      error
+      list 
+      count
+      totalAmount
     }
   }
 `;
 
-export const studioPageQuery = ({ render, userId, from, to }) => (
-  <Query query={STUDIO_PAGE_QUERY} variables={{ userId, from, to }}>
-    {render}
-  </Query>
-);
+export const PROMOS_HISTORY_QUERY = gql` 
+  query ScheduledPromos {
+    scheduledPromos {
+      promo {
+        promoOffer
+        startDate
+        endDate
+        type
+      }
+      hasVideos
+    }
+  }
+`;
+
+export const SCHEDULED_VIDEOS_QUERY = gql` 
+  query ScheduledVideos {
+    scheduledVideos
+  }
+`;
 
 export const videoPageQuery = ({
   render, id, ip, userId, showAll,
