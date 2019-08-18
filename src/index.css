@@ -92,7 +92,7 @@ a {
   animation-name: shake;
   animation-iteration-count: 2;
   animation-delay: 1s;
-  animation-duration: 1s;
+  animation-duration: 10s;
 }
 
 @keyframes shake {
