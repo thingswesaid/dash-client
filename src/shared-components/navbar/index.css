@@ -117,6 +117,10 @@
 	position: relative;
 }
 
+.navbarContainer .navBar .left input {
+	background-color: #fff0;
+}
+
 .navbarContainer .navBar .right {
 	display: flex;
 	justify-content: flex-end;

@@ -2,6 +2,8 @@
 	width: 500vw;
 	height: 500vh;
 	position: absolute;
+	top: 0;
+	left: -300px;
 }
 
 .dropdownComponent .dropdown {

@@ -54,7 +54,7 @@ export default class Auth extends Component {
   }
 
   async authAttempt(isLogin, loginCb, signupCb) {
-    const { state: { email, password }, props: { close } } = this;
+    const { email, password } = this.state;
     const isEmailValid = validateField('email', email);
     const isPasswordValid = validateField('password', password);
     if (!isEmailValid) return notification.error('Email address is invalid.') // TODO move all messages to constants
@@ -69,8 +69,7 @@ export default class Auth extends Component {
       if (error) return notification.error(error);
       setCookie(COOKIE_USER_TOKEN, tokenServer);
       setCookie(COOKIE_USER_ID, user.id);
-      notification('Welcome to DASH!');
-      close();
+      window.location.assign(`${window.location.href}?notification=WELCOME%20TO%20DASH!`);
     } catch(e) {
       notification.error('Ops! Something went wrong. Please try again later.');
     }

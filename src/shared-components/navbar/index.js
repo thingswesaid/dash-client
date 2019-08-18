@@ -63,7 +63,6 @@ export default class Navbar extends Component {
           </div>
           <Media query="(min-width: 550px)">
             <div className="right">
-              {/* <a href="/pick-a-card">Pick-a-Card</a> */}
               {!userLoggedIn && <a onClick={() => { this.setState({ authOpen: true }) }}>Login</a>} {/* change a to button also in CSS */}
               {userLoggedIn && <a href="/user"><i className="far fa-user" /></a>}
             </div>

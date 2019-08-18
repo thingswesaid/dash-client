@@ -21,7 +21,7 @@ export default ({ from, to }) => (
         <div className="videoAnalytics">
           <p className="title">SCHEDULED VIDEOS</p>
           <i className="fas fa-arrow-down" />
-          {!videoDates.length && <div style={{ textAlign: 'center' }}>NO UPCOMING VIDEOS</div>}
+          {!videoDates.length && <div className="noVideos">NO UPCOMING VIDEOS</div>}
           <div className="videos">
             {videoDates.map((videoDate) => (
               <div key={idGenerator()} className="videoGroup">

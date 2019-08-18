@@ -13,6 +13,13 @@
   position: relative;
 }
 
+.videoAnalytics .noVideos {
+  text-align: center;
+  transform: translateY(50%);
+  height: 100%;
+}
+
+
 .videoAnalytics i {
   position: absolute;
   top: 360px;

@@ -14,10 +14,10 @@
 }
 
 .promoVideo .imageContainer {
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: center; */
 	height: 215px;
 }
 
@@ -30,11 +30,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 0;
 }
 
 .promoVideo .imageContainer img {
-	height: 111%;
-	position: absolute;
+	height: 100%;
 }
 
 .promoVideo p.description {
