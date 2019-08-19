@@ -31,9 +31,7 @@ export default class PromoCode extends Component {
     if (!userToken) return notification.error("You need to be logged in to use your promo code.");
     await this.setState({ loading: true });
     const { data: { usePromoCode: { code, error } } } = await usePromoCode(
-      { variables: 
-        { code: promoCode, videoType, videoId, token: userToken }
-      }
+      { variables: { code: promoCode, videoType, videoId, token: userToken } }
     );
     await this.setState({ loading: false });
     if (error) return notification.error(error);

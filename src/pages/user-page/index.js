@@ -22,11 +22,12 @@ const userPage = ({ size: { width } }) => {
       {({ loading, error, data }) => {
         if (loading) return <Loader />;
         if (error) return `Error! ${error.message}`; // TODO CHANGE USE ERROR COMPONENT
-        if (data.userPage && !data.userPage.user) return <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '20px 0'
-        }}>LOGIN PLEASE</div>
+        if (data.userPage && !data.userPage.user) {
+          removeCookie(COOKIE_USER_TOKEN); 
+          removeCookie(COOKIE_USER_ID);  
+          window.location.assign(`/?notification=Please%20login`);
+          return <Loader />;
+        } 
 
         const { userPage: { user: { email, orders, promoCodes }, quotes } } = data;
         const validOrders = _.reject(orders, (order) => !order.video);
